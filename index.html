@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MAS EGI RMX — Toko Musik & Jasa Remix</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #ffd700;
+            --secondary: #1a1a1a;
+            --accent: #2563eb;
+            --light: #f3f4f6;
+            --gray: #9ca3af;
+        }
+        body { background: #f0f0f0; color: #333; min-height: 100vh; padding-bottom: 80px; }
+
+        /* ===== HEADER DENGAN LOGO ===== */
+        header { background: #fff; padding: 12px 20px; display: flex; align-items: center; gap: 14px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); position: sticky; top:0; z-index:100; }
+        .logo-box { 
+            width: 48px; 
+            height: 48px; 
+            background: #000; 
+            border-radius: 10px; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 6px;
+        }
+        .logo-img { width: 100%; height: auto; }
+        .brand h1 { font-size: 18px; color: #000; font-weight: 800; letter-spacing: 0.5px; }
+        .brand p { font-size: 12px; color: #777; letter-spacing: 1px; text-transform: uppercase; }
+
+        /* ===== KONTEN ===== */
+        main { padding: 20px; max-width: 480px; margin: 0 auto; }
+        .page-title { text-align: center; font-size: 28px; font-weight: bold; margin: 20px 0; color: #222; line-height: 1.3; }
+        .search-box { width: 100%; padding: 14px 16px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; margin-bottom: 24px; }
+
+        /* ===== FITUR CARD ===== */
+        .features { display: flex; flex-direction: column; gap: 16px; margin-bottom: 30px; }
+        .feature-card { background: #fff; padding: 24px; border-radius: 12px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.05); }
+        .feature-icon { font-size: 40px; color: var(--accent); margin-bottom: 12px; }
+        .feature-card h3 { font-size: 20px; margin-bottom: 8px; color: #222; }
+        .feature-card p { font-size: 14px; color: #666; line-height: 1.6; }
+
+        /* ===== PRODUK GRID ===== */
+        .produk-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .produk-card { background: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+        .produk-gambar { 
+            width: 100%; 
+            height: 200px; 
+            background: #000; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            padding: 20px;
+        }
+        .produk-logo { 
+            width: 100%; 
+            max-width: 320px; 
+            height: auto; 
+        }
+        .produk-info { padding: 16px; }
+        .produk-nama { font-size: 18px; font-weight: bold; margin-bottom: 8px; }
+        .produk-harga { font-size: 22px; font-weight: bold; color: var(--accent); margin-bottom: 4px; }
+        .produk-terjual { font-size: 13px; color: #888; margin-bottom: 12px; }
+        .btn-row { display: flex; gap: 10px; }
+        .btn-play { flex: 1; padding: 12px; border: none; border-radius: 8px; background: #e5e7eb; color: #333; font-size: 15px; cursor: pointer; }
+        .btn-play.playing { background: #22c55e; color: #fff; }
+        .btn-buy { flex: 1.5; padding: 12px; border: none; border-radius: 8px; background: var(--accent); color: #fff; font-size: 15px; font-weight: bold; cursor: pointer; }
+        .audio-hidden { display: none; }
+
+        /* ===== REQUEST FORM ===== */
+        .form-card { background: #fff; padding: 24px; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.08); margin-top: 20px; }
+        .form-card h2 { text-align: center; font-size: 22px; margin-bottom: 20px; color: #222; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; margin-bottom: 6px; font-weight: 500; color: #444; }
+        .form-group input, .form-group select { width: 100%; padding: 12px; border: 1px solid #ddd; border-radius: 8px; font-size: 15px; }
+        .btn-submit { width: 100%; padding: 14px; border: none; border-radius: 8px; background: var(--accent); color: #fff; font-size: 16px; font-weight: bold; cursor: pointer; margin-top: 8px; }
+
+        /* ===== BOTTOM NAV ===== */
+        nav { position: fixed; bottom: 0; left: 0; right: 0; background: #fff; display: flex; justify-content: space-around; padding: 10px 0; box-shadow: 0 -2px 6px rgba(0,0,0,0.1); z-index: 100; }
+        .nav-item { display: flex; flex-direction: column; align-items: center; gap: 4px; font-size: 12px; color: #777; cursor: pointer; }
+        .nav-item.active { color: var(--accent); }
+        .nav-item span { font-size: 20px; }
+
+        /* ===== HIDE/SHOW PAGE ===== */
+        .page { display: none; }
+        .page.active { display: block; }
+    </style>
+</head>
+<body>
+
+<!-- HEADER DENGAN LOGO BARU -->
+<header>
+    <div class="logo-box">
+        <svg class="logo-img" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <text x="50%" y="45%" text-anchor="middle" font-family="Arial, sans-serif" font-size="52" font-weight="900" fill="white" letter-spacing="1">MAS EGI RMX</text>
+            <text x="50%" y="70%" text-anchor="middle" font-family="Arial, sans-serif" font-size="14" fill="white" letter-spacing="3">THE MUSIC CHANNEL</text>
+        </svg>
+    </div>
+    <div class="brand">
+        <h1>MAS EGI RMX</h1>
+        <p>THE MUSIC CHANNEL</p>
+    </div>
+</header>
+
+<main>
+    <!-- ===== PAGE 1: DASHBOARD ===== -->
+    <div id="page-dashboard" class="page active">
+        <h2 class="page-title">Selamat Datang di<br>MAS EGI RMX SHOP</h2>
+        
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🎧</div>
+                <h3>Kualitas Premium</h3>
+                <p>Semua projek yang saya jual sudah berkualitas tinggi dan harganya tetap terjangkau.</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Proses Cepat</h3>
+                <p>Dapatkan akses instan ke projek yang sudah jadi. Pengerjaan request juga cepat & rapi!</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎵</div>
+                <h3>Semua Style</h3>
+                <p>Maman Fvndy, Trap, Funkot, Kondang, Gedruk, BBHC, Reggae — semua gaya ada!</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== PAGE 2: PRODUK ===== -->
+    <div id="page-produk" class="page">
+        <h2 class="page-title">LIST LAGU YANG TERSEDIA</h2>
+        <input type="text" class="search-box" placeholder="Cari Lagu / Style..." oninput="cariProduk(this.value)">
+        
+        <div class="produk-grid" id="produk-list">
+            <!-- Produk akan ditampilkan di sini -->
+        </div>
+    </div>
+
+    <!-- ===== PAGE 3: REQUEST ===== -->
+    <div id="page-request" class="page">
+        <div class="form-card">
+            <h2>📝 Request Projek</h2>
+            <form onsubmit="kirimRequest(event)">
+                <div class="form-group">
+                    <label>Judul Lagu</label>
+                    <input type="text" id="judul-lagu" placeholder="Masukkan judul lagu" required>
+                </div>
+                <div class="form-group">
+                    <label>Kategori</label>
+                    <select id="kategori" required>
+                        <option value="">Pilih kategori</option>
+                        <option value="FLM">FLM / Project</option>
+                        <option value="Jasa Remix">Jasa Remix</option>
+                        <option value="Lagu Jadi">Lagu Jadi</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Style</label>
+                    <select id="style" required>
+                        <option value="">Pilih style</option>
+                        <option>STYLE MAMAN FVNDY</option>
+                        <option>STYLE TRAP HOREG</option>
+                        <option>STYLE TRAP PARTY</option>
+                        <option>STYLE FUNKOT</option>
+                        <option>STYLE XPUTZ</option>
+                        <option>STYLE KONDANG</option>
+                        <option>STYLE MASPIN RMX</option>
+                        <option>STYLE GEDRUK</option>
+                        <option>STYLE FULL BASS</option>
+                        <option>STYLE DROP BBHC</option>
+                        <option>STYLE REGGAE REMIX</option>
+                        <option>STYLE BABAT BABAT</option>
+                        <option>STYLE ENAFF</option>
+                        <option>STYLE PANI FVNKY</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-submit">Order Sekarang via WhatsApp</button>
+            </form>
+        </div>
+    </div>
+</main>
+
+<!-- BOTTOM NAVIGATION -->
+<nav>
+    <div class="nav-item active" onclick="bukaPage('dashboard')">
+        <span>🏠</span>
+        <div>Dashboard</div>
+    </div>
+    <div class="nav-item" onclick="bukaPage('produk')">
+        <span>🛒</span>
+        <div>Produk</div>
+    </div>
+    <div class="nav-item" onclick="bukaPage('request')">
+        <span>📝</span>
+        <div>Request</div>
+    </div>
+</nav>
+
+<script>
+    // DATA PRODUK — NAMA FILE SUDAH PERSIS SAMA DENGAN DI FOLDER!
+    const produk = [
+        { nama: 'STYLE DROP BBHC', harga: 150000, file: 'style_drop_bbhc.mp3', terjual: 15 },
+        { nama: 'STYLE FUNKOT', harga: 200000, file: 'style_funkot.mp3', terjual: 12 },
+        { nama: 'STYLE GEDRUK', harga: 70000, file: 'style_gedruk.mp3', terjual: 28 },
+        { nama: 'STYLE KONDANG', harga: 100000, file: 'style_kondang.mp3', terjual: 35 },
+        { nama: 'STYLE MAMAN FVNDY', harga: 150000, file: 'style_maman_fvndy.mp3', terjual: 42 },
+        { nama: 'STYLE PANI FVNKY', harga: 80000, file: 'style_pani_fvnky.mp3', terjual: 19 },
+        { nama: 'STYLE TRAP HOREG', harga: 150000, file: 'style_trap_horeg.mp3', terjual: 25 },
+        { nama: 'STYLE XPUTZ', harga: 100000, file: 'style_xputz.mp3', terjual: 31 },
+    ];
+
+    let audioSedangBermain = null;
+    let tombolAktif = null;
+
+    // TAMPILKAN PRODUK DENGAN LOGO DI GAMBAR
+    function tampilkanProduk(list) {
+        const container = document.getElementById('produk-list');
+        container.innerHTML = '';
+        list.forEach((p, index) => {
+            container.innerHTML += `
+                <div class="produk-card" data-index="${index}">
+                    <div class="produk-gambar">
+                        <svg class="produk-logo" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <text x="50%" y="50%" text-anchor="middle" font-family="Arial, sans-serif" font-size="36" font-weight="900" fill="white" letter-spacing="1">MAS EGI RMX</text>
+                            <text x="50%" y="80%" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="white" letter-spacing="2">THE MUSIC CHANNEL</text>
+                        </svg>
+                    </div>
+                    <div class="produk-info">
+                        <div class="produk-nama">${p.nama}</div>
+                        <div class="produk-harga">Rp ${p.harga.toLocaleString('id-ID')}</div>
+                        <div class="produk-terjual">Terjual: ${p.terjual}</div>
+                        <div class="btn-row">
+                            <button class="btn-play" onclick="putarAudio('${p.file}', this)">▶ Play</button>
+                            <button class="btn-buy" onclick="beli('${p.nama}', ${p.harga})">Beli Sekarang</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    // CARI PRODUK
+    function cariProduk(kata) {
+        const hasil = produk.filter(p => p.nama.toLowerCase().includes(kata.toLowerCase()));
+        tampilkanProduk(hasil);
+    }
+
+    // PUTAR AUDIO
+    function putarAudio(file, tombol) {
+        // Kalau ada yang sedang bermain, hentikan dulu
+        if (audioSedangBermain) {
+            audioSedangBermain.pause();
+            audioSedangBermain = null;
+            if (tombolAktif) tombolAktif.classList.remove('playing');
+            // Kalau tombol yang sama ditekan lagi → berhenti
+            if (tombol === tombolAktif) {
+                tombolAktif = null;
+                return;
+            }
+        }
+
+        // Buat & putar audio baru
+        audioSedangBermain = new Audio(file);
+        audioSedangBermain.volume = 1.0;
+        
+        audioSedangBermain.play()
+            .then(() => {
+                tombol.textContent = '⏸ Berhenti';
+                tombol.classList.add('playing');
+                tombolAktif = tombol;
+            })
+            .catch(err => {
+                alert('⚠️ Gagal memutar!\nFile: ' + file + '\n\nPastikan file ada di folder yang sama & namanya benar!');
+                console.error('Error:', err);
+            });
+
+        // Auto reset saat audio selesai
+        audioSedangBermain.onended = () => {
+            if (tombolAktif) {
+                tombolAktif.textContent = '▶ Play';
+                tombolAktif.classList.remove('playing');
+            }
+            audioSedangBermain = null;
+            tombolAktif = null;
+        };
+    }
+
+    // BELI → KE WA
+    function beli(nama, harga) {
+        const pesan = `Halo! Saya mau beli:\n🎵 ${nama}\n💰 Harga: Rp ${harga.toLocaleString('id-ID')}`;
+        window.open(`https://wa.me/6288293311033?text=${encodeURIComponent(pesan)}`, '_blank');
+    }
+
+    // KIRIM REQUEST → KE WA
+    function kirimRequest(e) {
+        e.preventDefault();
+        const judul = document.getElementById('judul-lagu').value;
+        const kategori = document.getElementById('kategori').value;
+        const style = document.getElementById('style').value;
+        const pesan = `Halo MAS EGI RMX! Saya mau request:\n📀 Judul: ${judul}\n📂 Kategori: ${kategori}\n🎵 Style: ${style}`;
+        window.open(`https://wa.me/6288293311033?text=${encodeURIComponent(pesan)}`, '_blank');
+    }
+
+    // GANTI HALAMAN
+    function bukaPage(nama) {
+        document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+        document.getElementById('page-' + nama).classList.add('active');
+        event.currentTarget.classList.add('active');
+        if (nama === 'produk') tampilkanProduk(produk);
+    }
+
+    // SAAT PERTAMA BUKA
+    tampilkanProduk(produk);
+</script>
+</body>
+</html>
