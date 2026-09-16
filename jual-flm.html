@@ -1,0 +1,376 @@
+<a href="jual-flm.html" class="menu-item">
+    <span class="menu-icon">📦</span>
+    <span>Jual FLM</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Jual FLM</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.4);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+            --blue-btn: #165dff;
+            --green-btn: #00c991;
+            --yellow: #ffd700;
+            --fire: #ff6b35;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 500px; margin: 0 auto; }
+        .page-title {
+            font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem;
+        }
+        .page-subtitle {
+            color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;
+        }
+        .info-card {
+            background: rgba(0,80,120,0.2);
+            border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem;
+            border: 1px solid rgba(0,229,176,0.15);
+            font-size: 0.9rem; line-height: 1.5;
+            color: #c0d8e8;
+        }
+        .section-heading {
+            font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.8rem;
+            display: flex; align-items: center; gap: 0.4rem;
+            color: var(--fire);
+        }
+        .badge-pop {
+            background: var(--yellow); color: #000; font-size: 0.7rem; font-weight: bold;
+            padding: 0.2rem 0.5rem; border-radius: 6px; margin-left: 0.5rem;
+        }
+        /* PRODUK POPULER */
+        .product-popular {
+            background: rgba(0,40,80,0.4); border-radius: 12px; padding: 1rem; margin-bottom: 1rem;
+        }
+        .pop-row { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+        .pop-cover { width: 80px; height: 80px; border-radius: 8px; background: linear-gradient(135deg,#6a11cb,#2575fc); flex-shrink: 0; }
+        .pop-info { flex: 1; min-width: 200px; }
+        .pop-name { font-weight: 600; margin-bottom: 0.3rem; font-size: 1rem; }
+        .pop-price { color: var(--primary); font-weight: 700; margin-bottom: 0.3rem; font-size: 1.1rem; }
+        .pop-sold { font-size: 0.8rem; color: var(--gray); margin-bottom: 0.6rem; }
+        .pop-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .btn {
+            padding: 0.6rem 1rem; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem;
+        }
+        .btn-blue { background: var(--blue-btn); color: #fff; }
+        .btn-green { background: var(--green-btn); color: #000; }
+        /* REQUEST */
+        .request-card {
+            background: rgba(0,40,80,0.4); border-radius: 12px; padding: 1rem; margin-bottom: 1rem;
+        }
+        .request-row { display: flex; gap: 0.8rem; }
+        .request-cover { width: 80px; height: 80px; border-radius: 8px; background: linear-gradient(135deg,#00c991,#165dff); flex-shrink: 0; }
+        .request-badge {
+            background: var(--primary); color: #000; font-size: 0.75rem; font-weight: bold;
+            padding: 0.2rem 0.5rem; border-radius: 6px; display: inline-block; margin-bottom: 0.3rem;
+        }
+        .request-price { color: var(--primary); font-weight: 700; margin: 0.4rem 0; font-size: 1.1rem; }
+        .request-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 0.7rem; line-height: 1.4; }
+        .btn-full { width: 100%; }
+        /* FILTER & SEARCH */
+        .filter-bar { display: flex; gap: 0.7rem; margin: 1rem 0; }
+        .search-box {
+            width: 100%; padding: 0.9rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: #fff; margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        /* GRID PRODUK */
+        .products-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+        }
+        .product-card {
+            background: rgba(0,40,80,0.3); border-radius: 12px; overflow: hidden;
+        }
+        .product-cover {
+            width: 100%; aspect-ratio: 3/4;
+            background: linear-gradient(135deg,#2a1060,#0f4060);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: rgba(255,255,255,0.2);
+            position: relative;
+        }
+        .play-btn {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            width: 44px; height: 44px; background: rgba(22,93,255,0.8);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; color: #fff;
+        }
+        .product-body { padding: 0.8rem; }
+        .product-name { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.3; }
+        .product-price { color: var(--primary); font-weight: 700; font-size: 0.9rem; margin-bottom: 0.7rem; }
+        .product-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .action-btn {
+            flex: 1; padding: 0.5rem; border-radius: 6px; border: none; font-size: 0.75rem; cursor: pointer;
+            min-width: 60px;
+        }
+        .action-cart { background: var(--blue-btn); color: #fff; }
+        .action-share { background: rgba(255,255,255,0.1); color: #fff; }
+        .action-add { background: var(--green-btn); color: #000; flex: 1.5; }
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <h1 class="page-title">EGI PERDANA SHOP</h1>
+    <p class="page-subtitle">List FLM Beserta Harga Ada Di Bawah</p>
+
+    <!-- INFO CARD -->
+    <div class="info-card">
+        FLM khusus FL Studio Mobile • Siap di-import tanpa extract.<br>
+        Jika membutuhkan bantuan memasang, silakan hubungi WhatsApp kami. Preview audio mungkin memerlukan beberapa saat untuk dimuat.
+    </div>
+
+    <!-- PRODUK POPULER -->
+    <h3 class="section-heading">🔥 Produk Populer</h3>
+    <div class="product-popular">
+        <div class="pop-row">
+            <div class="pop-cover"></div>
+            <div class="pop-info">
+                <h4 class="pop-name">STYLE BABAT BABAT TRETETEW <span class="badge-pop">POP</span></h4>
+                <p class="pop-price">Rp 90.000</p>
+                <p class="pop-sold">Terjual: 20</p>
+                <div class="pop-buttons">
+                    <button class="btn btn-blue">🛒 Beli</button>
+                    <button class="btn btn-green">▶ Preview</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REQUEST FLM KHUSUS -->
+    <h3 class="section-heading">🔥 Request FLM Khusus</h3>
+    <div class="request-card">
+        <div class="request-row">
+            <div class="request-cover"></div>
+            <div style="flex:1">
+                <span class="request-badge">Custom</span>
+                <h4 style="font-weight:700; margin-bottom:0.3rem;">REQUEST FLM!!</h4>
+                <p class="request-price">Rp 80.000 — Rp 115.000</p>
+                <p class="request-desc">Butuh custom beat / style sesuai request? Klik tombol Request untuk isi detail dan harga estimasi.</p>
+                <button class="btn btn-blue btn-full">🛒 Request / Beli</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FILTER & KERANJANG -->
+    <div class="filter-bar">
+        <button class="btn btn-blue" style="flex:1;">⚙ Filter</button>
+        <button class="btn btn-green" style="flex:1;">🛒 Keranjang</button>
+    </div>
+
+    <!-- SEARCH -->
+    <input type="text" class="search-box" placeholder="Cari FLM, style, atau nama produk...">
+
+    <!-- DAFTAR PRODUK GRID -->
+    <div class="products-grid">
+        <!-- 1 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE DROP BBHC</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 2 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE FUNKOT</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 3 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE GEDRUK</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 4 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE KONDANG</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 5 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE MAMAN FVNDY</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 6 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE PANI FVNKY</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 7 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE TRAP HOREG</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 8 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE XPUTZ</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 9 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE BABAT BABAT TRETETEW</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 10 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE F17</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item active">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
