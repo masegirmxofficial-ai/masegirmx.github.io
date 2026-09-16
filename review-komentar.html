@@ -1,0 +1,192 @@
+<a href="review-komentar.html" class="menu-item">
+    <span class="menu-icon">⭐</span>
+    <span>Review & Komentar</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Review & Komentar</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --star: #ffd700;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(40,80,120,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .star-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* RATING SUMMARY */
+        .rating-summary {
+            background: var(--bg-card); border-radius: 14px; padding: 1.5rem 1.3rem;
+            margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1.5rem;
+        }
+        .rating-score { font-size: 2.5rem; font-weight: 700; line-height: 1; }
+        .stars-row { color: var(--star); font-size: 1.2rem; margin-top: 0.3rem; }
+        .rating-count p { color: var(--gray); font-size: 0.9rem; margin-top: 0.3rem; }
+
+        /* FORM CARD */
+        .form-card { background: var(--bg-card); border-radius: 14px; padding: 1.3rem; }
+        .form-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 1.2rem; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label {
+            font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem;
+        }
+        .form-input, .form-textarea {
+            width: 100%; padding: 0.9rem 1rem; background: var(--input-bg);
+            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem;
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--gray); }
+        .form-textarea { min-height: 100px; resize: vertical; }
+
+        .stars-select {
+            display: flex; gap: 0.5rem; font-size: 1.8rem; color: var(--star); cursor: pointer;
+        }
+        .star-empty { color: #444; }
+
+        .upload-note { font-size: 0.85rem; color: var(--gray); margin-top: 0.4rem; }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>💬 REVIEW PELANGGAN</p>
+            <h2>Komentar & Rating</h2>
+            <p>Bagikan pengalaman kamu setelah menggunakan layanan EGI PERDANA SHOP.</p>
+        </div>
+        <div class="star-icon">⭐</div>
+    </div>
+
+    <!-- RATING SUMMARY -->
+    <div class="rating-summary">
+        <div>
+            <div class="rating-score">5.0</div>
+            <div class="stars-row">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="rating-count">
+            <p style="font-size: 1.1rem; font-weight: 600;">3 komentar</p>
+            <p>Rating & komentar pelanggan</p>
+        </div>
+    </div>
+
+    <!-- FORM KOMENTAR -->
+    <div class="form-card">
+        <h3 class="form-title">Tulis Komentar</h3>
+
+        <div class="form-group">
+            <label class="form-label">👤 Nama</label>
+            <input type="text" class="form-input" placeholder="Nama kamu">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">⭐ Rating</label>
+            <div class="stars-select">
+                <span>⭐</span>
+                <span>⭐</span>
+                <span>⭐</span>
+                <span>⭐</span>
+                <span>⭐</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📝 Komentar</label>
+            <textarea class="form-textarea" placeholder="Tulis pengalaman kamu..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📷 Upload Foto <span style="color:var(--gray); font-weight:normal; font-size:0.9rem">(opsional, maks. 5 MB)</span></label>
+            <input type="file" accept="image/*" class="form-input" style="padding: 0.7rem 1rem; cursor: pointer;">
+        </div>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item active">💬 Review</a>
+</nav>
+
+</body>
+</html>
