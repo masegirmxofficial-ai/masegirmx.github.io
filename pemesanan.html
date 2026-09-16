@@ -1,0 +1,209 @@
+<a href="pemesanan.html" class="menu-item">
+    <span class="menu-icon">🎵</span>
+    <span>Pemesanan Lagu</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Pemesanan Remix Lagu</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+            --blue-btn: #165dff;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .music-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* PRICE BADGE */
+        .price-badge {
+            text-align: center; margin: 1rem 0;
+        }
+        .price-main { font-size: 1.4rem; font-weight: 700; color: var(--primary); }
+        .price-note {
+            background: rgba(22,93,255,0.1); color: #6aa7ff; font-size: 0.85rem;
+            padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; margin-top: 0.5rem;
+        }
+
+        /* FORM */
+        .form-card { background: var(--bg-card); border-radius: 14px; padding: 1.3rem; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label {
+            font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem;
+        }
+        .form-input {
+            width: 100%; padding: 0.9rem 1rem; background: var(--input-bg);
+            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem;
+        }
+        .form-input::placeholder { color: var(--gray); }
+        .add-link-btn {
+            width: 100%; padding: 0.8rem; background: transparent;
+            border: 1px dashed var(--primary); color: var(--primary);
+            border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; margin: 0.5rem 0;
+        }
+        .add-note { font-size: 0.8rem; color: var(--gray); margin-bottom: 1rem; line-height: 1.4; }
+        .form-textarea {
+            width: 100%; padding: 0.9rem 1rem; background: var(--input-bg);
+            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem;
+            min-height: 100px; resize: vertical;
+        }
+        .form-textarea::placeholder { color: var(--gray); }
+
+        .btn-submit {
+            width: 100%; padding: 1rem; background: var(--primary); color: #000;
+            border: none; border-radius: 10px; font-weight: 700; font-size: 1rem;
+            margin: 1rem 0 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .btn-check {
+            width: 100%; padding: 0.9rem; background: var(--input-bg); color: #fff;
+            border: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>🎵 PEMESANAN REMIX LAGU</p>
+            <h2>Pemesanan Remix Lagu</h2>
+            <p>Isi detail lagu, style remix, dan satu atau beberapa link vocal sesuai kebutuhan pesananmu.</p>
+        </div>
+        <div class="music-icon">🎵</div>
+    </div>
+
+    <!-- HARGA -->
+    <div class="price-badge">
+        <p class="price-main">💰 Mulai dari 80K</p>
+        <p class="price-note">💡 Harga tergantung kesulitan style & lagu</p>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card">
+        <div class="form-group">
+            <label class="form-label">👤 Nama Customer</label>
+            <input type="text" class="form-input" placeholder="Contoh: Muslih">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📱 Nomor WhatsApp</label>
+            <input type="tel" class="form-input" placeholder="Contoh: 081234567890">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">1️⃣ Judul Lagu</label>
+            <input type="text" class="form-input" placeholder="Contoh: Empat Mata">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">2️⃣ Style Remix / Link Style</label>
+            <input type="text" class="form-input" placeholder="Contoh: Style Candu">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">3️⃣ Link Vocal</label>
+            <input type="url" class="form-input" placeholder="Contoh: https://youtu.be/abcd1234">
+            <button class="add-link-btn">+ Tambah Link Vocal</button>
+            <p class="add-note">Bisa menambahkan sebanyak yang diperlukan. Setiap link vocal tetap berada di kolom terpisah.</p>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">4️⃣ Catatan Pesanan</label>
+            <textarea class="form-textarea" placeholder="Contoh: Intro 15 detik, bagian reff dibuat lebih energik, dll."></textarea>
+        </div>
+
+        <button class="btn-submit">🟢 Kirim Pesanan</button>
+        <button class="btn-check">🔍 Cek Proses Pesanan</button>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>

@@ -1,0 +1,214 @@
+<a href="request.html" class="menu-item">Request FLM</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Request FLM</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+            --blue-btn: #165dff;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .music-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* PAYMENT CARD */
+        .pay-card {
+            background: var(--bg-card); border-radius: 14px; padding: 1.3rem; margin-bottom: 1.5rem;
+        }
+        .pay-title {
+            font-size: 1rem; font-weight: 700; margin-bottom: 0.7rem;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .pay-desc { font-size: 0.9rem; color: var(--gray); margin-bottom: 1rem; line-height: 1.5; }
+        .dana-box {
+            background: var(--primary); color: #000; font-weight: 700; padding: 0.8rem 1.2rem;
+            border-radius: 10px; text-align: center; font-size: 1rem; margin-bottom: 1rem;
+        }
+        .qris-box {
+            width: 100%; background: #fff; border-radius: 12px; padding: 1rem;
+            display: flex; flex-direction: column; align-items: center; margin-bottom: 1rem;
+            color: #000;
+        }
+        .qris-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .qris-id { font-size: 0.75rem; color: #555; margin-bottom: 1rem; }
+        .qris-code {
+            width: 220px; height: 220px; background: #f5f5f5; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; font-size: 3rem;
+            margin-bottom: 0.8rem;
+        }
+        .btn-dana {
+            width: 100%; background: var(--primary); color: #000; border: none;
+            padding: 0.9rem; border-radius: 10px; font-weight: 700; font-size: 1rem;
+            margin-bottom: 1.5rem; cursor: pointer;
+        }
+
+        /* FORM */
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label {
+            font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; display: block;
+        }
+        .form-input, .form-textarea {
+            width: 100%; padding: 0.9rem 1rem; background: var(--input-bg);
+            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem;
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--gray); }
+        .form-textarea { min-height: 90px; resize: vertical; }
+
+        .btn-wa {
+            width: 100%; background: var(--blue-btn); color: #fff; border: none;
+            padding: 0.9rem; border-radius: 10px; font-weight: 700; font-size: 1rem;
+            margin: 0.5rem 0 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .note-text { font-size: 0.85rem; color: var(--gray); text-align: center; line-height: 1.5; }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>✨ REQUEST FLM CUSTOM</p>
+            <h2>Request FLM</h2>
+            <p>Ajukan judul dan referensi YouTube untuk dibuatkan project FL Studio Mobile sesuai request kamu.</p>
+        </div>
+        <div class="music-icon">🎵</div>
+    </div>
+
+    <!-- PEMBAYARAN -->
+    <div class="pay-card">
+        <h3 class="pay-title">💳 PEMBAYARAN REQUEST</h3>
+        <p class="pay-desc">Estimasi request sekitar Rp80.000 – Rp115.000. Untuk pembayaran, kamu bisa menggunakan DANA atau QRIS.</p>
+
+        <div class="dana-box">DANA: 083821665970</div>
+
+        <div class="qris-box">
+            <span class="qris-title">EGI PERDANA SHOP</span>
+            <span class="qris-id">NMID: 1025426726143</span>
+            <div class="qris-code">📷</div>
+            <span style="font-size:0.7rem; color:#666;">QRIS Pembayaran Nasional</span>
+        </div>
+
+        <button class="btn-dana">💳 Bayar via DANA</button>
+
+        <!-- FORM -->
+        <div class="form-group">
+            <label class="form-label">Judul / Jenis FLM</label>
+            <input type="text" class="form-input" placeholder="Contoh: FLM Trabas">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Link YouTube Contoh</label>
+            <input type="url" class="form-input" placeholder="Contoh: https://youtu.be/xxxx">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Catatan</label>
+            <textarea class="form-textarea" placeholder="Contoh: bassnya kayak di menit 01:20"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Link YouTube Contoh</label>
+            <input type="url" class="form-input" placeholder="Contoh: https://youtu.be/xxxx">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Catatan</label>
+            <textarea class="form-textarea" placeholder="Contoh: bassnya kayak di menit 01:20"></textarea>
+        </div>
+
+        <button class="btn-wa">📱 Kirim Request ke WhatsApp</button>
+
+        <p class="note-text">Setelah mengirim request, silakan tunggu konfirmasi dan estimasi harga melalui WhatsApp.</p>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>

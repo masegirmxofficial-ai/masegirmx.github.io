@@ -1,0 +1,216 @@
+<a href="mixing-mastering.html" class="menu-item">
+    <span class="menu-icon">🎚️</span>
+    <span>Mixing & Mastering</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Mixing & Mastering</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .music-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* PACKAGES */
+        .packages-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .packages-desc { font-size: 0.9rem; color: var(--gray); margin-bottom: 1rem; }
+        .package-item {
+            background: var(--input-bg); border-radius: 10px; padding: 1rem;
+            text-align: center; margin-bottom: 0.7rem;
+        }
+        .package-name { font-size: 0.95rem; color: var(--gray); margin-bottom: 0.3rem; }
+        .package-price { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+
+        /* FORM */
+        .form-card { margin-top: 1rem; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label {
+            font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%; padding: 0.9rem 1rem; background: var(--input-bg);
+            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem;
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--gray); }
+        .form-textarea { min-height: 90px; resize: vertical; }
+        .note-opt { font-size: 0.8rem; color: var(--gray); margin-top: 0.4rem; }
+
+        .btn-wa {
+            width: 100%; padding: 1rem; background: var(--primary); color: #000;
+            border: none; border-radius: 10px; font-weight: 700; font-size: 1rem;
+            margin: 0.5rem 0; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .btn-preview {
+            width: 100%; padding: 0.9rem; background: var(--input-bg); color: #fff;
+            border: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;
+        }
+        .info-note {
+            background: rgba(0,229,176,0.08); padding: 1rem; border-radius: 10px;
+            font-size: 0.85rem; color: var(--gray); line-height: 1.5; margin-bottom: 2rem;
+        }
+        .copyright { text-align: center; font-size: 0.75rem; color: var(--gray); }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>🛠️ JASA AUDIO</p>
+            <h2>Mixing & Mastering</h2>
+            <p>Pesan jasa mixing dan mastering untuk merapikan balance, karakter, serta hasil akhir audio kamu.</p>
+        </div>
+        <div class="music-icon">🎵</div>
+    </div>
+
+    <!-- PACKAGES -->
+    <h3 class="packages-title">Pesan Jasa Mixing & Mastering</h3>
+    <p class="packages-desc">Pilih paket, isi data & detail, lalu kirim file FLM melalui WhatsApp.</p>
+
+    <div class="package-item">
+        <p class="package-name">Mixing Saja</p>
+        <p class="package-price">IDR 50.000</p>
+    </div>
+    <div class="package-item">
+        <p class="package-name">Mastering Saja</p>
+        <p class="package-price">IDR 50.000</p>
+    </div>
+    <div class="package-item">
+        <p class="package-name">Mixing & Mastering</p>
+        <p class="package-price">IDR 100.000</p>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card">
+        <div class="form-group">
+            <label class="form-label">👤 Nama</label>
+            <input type="text" class="form-input" placeholder="Masukkan nama kamu">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📱 Kontak (WA atau Email)</label>
+            <input type="text" class="form-input" placeholder="Contoh: 0838xxxx atau email@ex.com">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📋 Pilih Paket</label>
+            <select class="form-select">
+                <option>Mixing Saja — IDR 50.000</option>
+                <option>Mastering Saja — IDR 50.000</option>
+                <option>Mixing & Mastering — IDR 100.000</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">🔗 Link FLM (Google Drive / Dropbox) — opsional</label>
+            <input type="url" class="form-input" placeholder="https://drive.google.com/...">
+            <p class="note-opt">Kalau file besar, upload ke Google Drive lalu paste link di sini.</p>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📝 Detail / Catatan</label>
+            <textarea class="form-textarea" placeholder="Contoh: suara vokal ke depan, bass sedikit ditekankan"></textarea>
+        </div>
+
+        <button class="btn-wa">📱 Kirim & Pesan lewat WhatsApp</button>
+        <button class="btn-preview">👀 Preview Pesan</button>
+
+        <p class="info-note">💡 Setelah pesan dibuka di WhatsApp, cek kembali detail paket dan file sebelum mengirim ke admin.</p>
+
+        <p class="copyright">© 2025 EGI PERDANA SHOP. All rights reserved.</p>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>

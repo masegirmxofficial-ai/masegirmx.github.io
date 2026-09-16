@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Pack</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.4);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+            --blue-btn: #165dff;
+            --green-btn: #00c991;
+            --yellow: #ffd700;
+            --fire: #ff6b35;
+            --tag-blue: #165dff;
+            --tag-green: #00c991;
+            --tag-purple: #9333ea;
+            --tag-orange: #f97316;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 500px; margin: 0 auto; }
+        .page-title {
+            font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem;
+        }
+        .page-subtitle {
+            color: var(--gray); font-size: 0.9rem; margin-bottom: 1.5rem;
+        }
+        .section-heading {
+            font-size: 1.2rem; font-weight: 700; margin: 1.5rem 0 0.8rem;
+            display: flex; align-items: center; gap: 0.4rem;
+            color: var(--fire);
+        }
+        /* PACK CARD */
+        .pack-card {
+            background: rgba(0,40,80,0.35);
+            border-radius: 14px; padding: 1rem; margin-bottom: 1.2rem;
+            border: 1px solid rgba(0,229,176,0.1);
+        }
+        .pack-tag {
+            display: inline-block; padding: 0.3rem 0.7rem; border-radius: 6px;
+            font-size: 0.75rem; font-weight: 700; margin-bottom: 0.8rem;
+        }
+        .tag-premium { background: var(--tag-blue); }
+        .tag-murah { background: var(--tag-green); color: #000; }
+        .tag-trending { background: var(--tag-purple); }
+        .tag-full { background: var(--tag-orange); }
+        .pack-size {
+            text-align: right; font-size: 0.8rem; color: var(--gray); margin-top: -1.8rem; margin-bottom: 1rem;
+        }
+        .pack-icon-box {
+            width: 40px; height: 40px; border-radius: 8px;
+            background: rgba(0,229,176,0.1); display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; margin-bottom: 0.8rem;
+        }
+        .pack-name { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .pack-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 1rem; line-height: 1.4; }
+        .pack-list-title { font-size: 0.85rem; color: var(--primary); margin-bottom: 0.6rem; font-weight: 600; }
+        .pack-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; padding-left: 0.3rem; }
+        .pack-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+        .play-small { color: var(--primary); font-size: 0.9rem; }
+        .pack-price { font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 0.3rem; }
+        .pack-discount { font-size: 0.8rem; color: var(--gray); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.3rem; }
+        .btn-row { display: flex; gap: 0.7rem; }
+        .btn {
+            flex: 1; padding: 0.8rem; border-radius: 10px; border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem;
+        }
+        .btn-cart { background: rgba(0,229,176,0.15); color: var(--primary); }
+        .btn-buy { background: var(--blue-btn); color: #fff; }
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <h1 class="page-title">Paket Hemat FLM</h1>
+    <p class="page-subtitle">Pilih paket hemat terbaik untuk kebutuhan project musikmu.</p>
+
+    <h3 class="section-heading">🔥 Pilih Paket</h3>
+    <p style="color:var(--gray); font-size:0.9rem; margin-bottom:1rem;">Bundle FLM dengan folder yang sudah siap digunakan.</p>
+
+    <!-- PACK 1 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-premium">PREMIUM PACK</span>
+        <p class="pack-size">~182MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">STYLE BABAT BABAT PACK</h4>
+        <p class="pack-desc">Style remix premium yang viral di TikTok, dapatkan paketnya sekarang.</p>
+        <p class="pack-list-title">Isi Pack • 5 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE DROP BBHC</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE FUNKOT</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE GEDRUK</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE KONDANG</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE BABAT BABAT TRETETEW</p>
+        </div>
+        <p class="pack-price">Rp 262.500</p>
+        <p class="pack-discount">💰 Hemat Rp 87.500</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+    <!-- PACK 2 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-murah">MURAH & WORTH IT</span>
+        <p class="pack-size">~82MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">Slow Beat Pack</h4>
+        <p class="pack-desc">Sangat cocok untuk pencinta ketukan santai, jedag-jedug tipis, maupun style healing.</p>
+        <p class="pack-list-title">Isi Pack • 3 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE TRAP HOREG</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE KONDANG</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE MAMAN FVNDY</p>
+        </div>
+        <p class="pack-price">Rp 145.999</p>
+        <p class="pack-discount">💰 Hemat Rp 52.001</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+    <!-- PACK 3 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-trending">TRENDING FLM</span>
+        <p class="pack-size">~302MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">Pack FLM Terviral</h4>
+        <p class="pack-desc">Berisi FLM yang pernah viral dan trending topik.</p>
+        <p class="pack-list-title">Isi Pack • 6 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE DROP BBHC</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE FUNKOT</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE GEDRUK</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE XPUTZ</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE PANI FVNKY</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE BABAT BABAT TRETETEW</p>
+        </div>
+        <p class="pack-price">Rp 309.999</p>
+        <p class="pack-discount">💰 Hemat Rp 109.001</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+    <!-- PACK 4 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-trending">TRENDING JAWA</span>
+        <p class="pack-size">~278MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">Pack Jawa Pride</h4>
+        <p class="pack-desc">Berisi FLM Jawa Pride yang viral dan trending topik.</p>
+        <p class="pack-list-title">Isi Pack • 3 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE FUNKOT</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE GEDRUK</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE F17</p>
+        </div>
+        <p class="pack-price">Rp 149.250</p>
+        <p class="pack-discount">💰 Hemat Rp 49.750</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+    <!-- PACK 5 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-full">FULL PACK REMIXER VIRAL</span>
+        <p class="pack-size">~442MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">Pack Remixer Viral</h4>
+        <p class="pack-desc">Berisi FLM para Remixer yang viral dan trending TikTok.</p>
+        <p class="pack-list-title">Isi Pack • 10 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE DROP BBHC</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE FUNKOT</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE GEDRUK</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE KONDANG</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE MAMAN FVNDY</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE PANI FVNKY</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE TRAP HOREG</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE XPUTZ</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE BABAT BABAT TRETETEW</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE F17</p>
+        </div>
+        <p class="pack-price">Rp 402.999</p>
+        <p class="pack-discount">💰 Hemat Rp 290.001</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+    <!-- PACK 6 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-premium">FULL PACK</span>
+        <p class="pack-size">~240MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">Style F17 Pack V2</h4>
+        <p class="pack-desc">Berisi FLM Style F17 yang viral dan trending TikTok.</p>
+        <p class="pack-list-title">Isi Pack • 3 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE F17</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE FUNKOT</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE BABAT BABAT TRETETEW</p>
+        </div>
+        <p class="pack-price">Rp 262.500</p>
+        <p class="pack-discount">💰 Hemat Rp 87.500</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+    <!-- PACK 7 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-murah">WORTH IT</span>
+        <p class="pack-size">~250MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">Edisi Campur</h4>
+        <p class="pack-desc">FLM Mantap.</p>
+        <p class="pack-list-title">Isi Pack • 2 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE TRAP HOREG</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE GEDRUK</p>
+        </div>
+        <p class="pack-price">Rp 300.000</p>
+        <p class="pack-discount">💰 Hemat Rp 50.000</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item active">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
