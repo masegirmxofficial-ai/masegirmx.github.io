@@ -1,0 +1,3221 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — FLM • PACK • JASA MUSIK</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,60,90,0.45);
+            --text: #ffffff;
+            --gray: #94b8cc;
+            --accent: #00c991;
+            --fire: #ff6b35;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .top-bar {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,30,50,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem;
+        }
+        .brand-header { display: flex; align-items: center; gap: 0.8rem; }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        .brand-text h1 { font-size: 1rem; font-weight: 700; }
+        .brand-text p { font-size: 0.7rem; color: var(--gray); }
+        /* HERO SECTION */
+        .hero {
+            padding: 1.5rem 1.2rem;
+            background: rgba(0,60,90,0.3);
+            margin: 1rem;
+            border-radius: 16px;
+        }
+        .hero-top { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 0.8rem; }
+        .hero-brand { font-size: 0.85rem; color: var(--primary); font-weight: 600; }
+        .hero-logo {
+            width: 60px; height: 60px;
+            background: #000;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.3rem;
+        }
+        .hero h2 { font-size: 1.6rem; line-height: 1.3; margin-bottom: 0.5rem; }
+        .hero p { font-size: 0.9rem; color: var(--gray); margin-bottom: 1rem; }
+        .hero-desc {
+            background: rgba(0,30,50,0.5);
+            padding: 1rem; border-radius: 10px;
+            font-size: 0.9rem; line-height: 1.5;
+            color: #d0e2ec;
+        }
+        /* PROMO */
+        .promo-banner {
+            margin: 0 1rem 1.2rem;
+            padding: 1rem;
+            background: rgba(0,150,120,0.15);
+            border-radius: 12px;
+            text-align: center;
+            border: 1px solid rgba(0,229,176,0.2);
+        }
+        .promo-title { color: var(--primary); font-weight: 700; margin-bottom: 0.3rem; }
+        .promo-text { font-size: 1rem; }
+        /* SECTION HEADING */
+        .section-heading {
+            display: flex; align-items: center; gap: 0.5rem;
+            font-size: 1.2rem; font-weight: 700; margin: 1.5rem 1rem 0.8rem;
+            color: var(--fire);
+        }
+        /* MENU LAYANAN */
+        .menu-list { padding: 0 1rem; }
+        .menu-item {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1.1rem 1.2rem;
+            background: var(--bg-card);
+            border-radius: 12px;
+            margin-bottom: 0.7rem;
+            border: 1px solid rgba(0,229,176,0.1);
+        }
+        .menu-left { display: flex; align-items: center; gap: 0.9rem; }
+        .menu-icon { font-size: 1.3rem; }
+        .menu-name { font-weight: 600; font-size: 1rem; }
+        .menu-arrow { color: var(--gray); }
+        .badge-fire {
+            background: var(--fire); color: #fff; font-size: 0.7rem;
+            padding: 0.15rem 0.4rem; border-radius: 4px; margin-left: 0.4rem;
+        }
+        /* KEUNGGULAN */
+        .section-wrap { padding: 0 1rem; margin-top: 1.5rem; }
+        .section-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 1rem; border-bottom: 2px solid var(--accent); display: inline-block; padding-bottom: 0.3rem; }
+        .benefit-list { display: flex; flex-direction: column; gap: 0.6rem; }
+        .benefit-item { display: flex; align-items: center; gap: 0.6rem; }
+        .check-icon { color: var(--accent); font-weight: bold; }
+        /* HUBUNGI KAMI */
+        .contact-card {
+            background: var(--bg-card);
+            border-radius: 12px; padding: 1.2rem; margin: 1.5rem 1rem;
+        }
+        .contact-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.8rem; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 0.5rem; }
+        .contact-item { margin-bottom: 0.5rem; font-size: 0.95rem; }
+        .contact-label { color: var(--gray); }
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); font-weight: 600; }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="top-bar">
+    <div class="menu-btn">☰</div>
+    <div class="brand-header">
+        <div class="brand-text">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <div style="width:40px;"></div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+    <div class="hero-top">
+        <p class="hero-brand">🎧 EGI PERDANA SHOP</p>
+        <div class="hero-logo">EP</div>
+    </div>
+    <h2>Semua Kebutuhan Musikmu, di Satu Tempat</h2>
+    <p>FLM • Pack • Jasa Musik • Pemesanan Lagu</p>
+    <div class="hero-desc">
+        Selamat datang di EGI PERDANA SHOP. Temukan FLM, paket project, dan jasa musik untuk kebutuhan produksi kamu dengan tampilan yang simpel dan mudah dipilih.
+    </div>
+</div>
+
+<!-- PROMO -->
+<div class="promo-banner">
+    <p class="promo-title">📢 PROMO MINGGUAN</p>
+    <p class="promo-text">Diskon Setiap Jumat & Minggu!</p>
+</div>
+
+<!-- PILIH LAYANAN -->
+<h3 class="section-heading">🔥 Pilih Layanan</h3>
+<div class="menu-list">
+    <div class="menu-item">
+        <div class="menu-left">
+            <span class="menu-icon">📦</span>
+            <span class="menu-name">FLM Satuan</span>
+        </div>
+        <span class="menu-arrow">›</span>
+    </div>
+    <div class="menu-item">
+        <div class="menu-left">
+            <span class="menu-icon">💸</span>
+            <span class="menu-name">Paket Hemat <span class="badge-fire">🔥</span></span>
+        </div>
+        <span class="menu-arrow">›</span>
+    </div>
+    <div class="menu-item">
+        <div class="menu-left">
+            <span class="menu-icon">🎵</span>
+            <span class="menu-name">Pemesanan Lagu</span>
+        </div>
+        <span class="menu-arrow">›</span>
+    </div>
+    <div class="menu-item">
+        <div class="menu-left">
+            <span class="menu-icon">🔍</span>
+            <span class="menu-name">Cek Pesanan</span>
+        </div>
+        <span class="menu-arrow">›</span>
+    </div>
+    <div class="menu-item">
+        <div class="menu-left">
+            <span class="menu-icon">🎚️</span>
+            <span class="menu-name">Jasa Mixing & Mastering</span>
+        </div>
+        <span class="menu-arrow">›</span>
+    </div>
+    <div class="menu-item">
+        <div class="menu-left">
+            <span class="menu-icon">🎹</span>
+            <span class="menu-name">Jasa Nyusun Chord & BPM</span>
+        </div>
+        <span class="menu-arrow">›</span>
+    </div>
+    <div class="menu-item">
+        <div class="menu-left">
+            <span class="menu-icon">🎤</span>
+            <span class="menu-name">Susun Melodi</span>
+        </div>
+        <span class="menu-arrow">›</span>
+    </div>
+    <div class="menu-item">
+        <div class="menu-left">
+            <span class="menu-icon">💳</span>
+            <span class="menu-name">Metode Pembayaran</span>
+        </div>
+        <span class="menu-arrow">›</span>
+    </div>
+    <div class="menu-item">
+        <div class="menu-left">
+            <span class="menu-icon">💬</span>
+            <span class="menu-name">Komentar & Rating</span>
+        </div>
+        <span class="menu-arrow">›</span>
+    </div>
+    <div class="menu-item">
+        <div class="menu-left">
+            <span class="menu-icon">📝</span>
+            <span class="menu-name">Blog</span>
+        </div>
+        <span class="menu-arrow">›</span>
+    </div>
+    <div class="menu-item">
+        <div class="menu-left">
+            <span class="menu-icon">📸</span>
+            <span class="menu-name">Lihat Bukti & Testimoni</span>
+        </div>
+        <span class="menu-arrow">›</span>
+    </div>
+</div>
+
+<!-- KEUNGGULAN KAMI -->
+<div class="section-wrap">
+    <h3 class="section-title">Keunggulan Kami</h3>
+    <div class="benefit-list">
+        <div class="benefit-item"><span class="check-icon">✅</span> Harga Murah</div>
+        <div class="benefit-item"><span class="check-icon">✅</span> Website Original EGI PERDANA</div>
+        <div class="benefit-item"><span class="check-icon">✅</span> Harga Terjangkau</div>
+        <div class="benefit-item"><span class="check-icon">✅</span> Tim Support Fast Respon</div>
+    </div>
+</div>
+
+<!-- HUBUNGI KAMI -->
+<div class="contact-card">
+    <h3 class="contact-title">Hubungi Kami</h3>
+    <p class="contact-item"><span class="contact-label">WhatsApp:</span> EGI PERDANA SHOP</p>
+    <p class="contact-item"><span class="contact-label">Instagram:</span> @egi_perdana</p>
+    <p class="contact-item"><span class="contact-label">YouTube:</span> EGI PERDANA</p>
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item active">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
+<a href="jual-flm.html" class="menu-item">
+    <span class="menu-icon">📦</span>
+    <span>Jual FLM</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Jual FLM</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.4);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+            --blue-btn: #165dff;
+            --green-btn: #00c991;
+            --yellow: #ffd700;
+            --fire: #ff6b35;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 500px; margin: 0 auto; }
+        .page-title {
+            font-size: 1.4rem; font-weight: 700; margin-bottom: 0.3rem;
+        }
+        .page-subtitle {
+            color: var(--gray); font-size: 0.9rem; margin-bottom: 1rem;
+        }
+        .info-card {
+            background: rgba(0,80,120,0.2);
+            border-radius: 12px; padding: 1rem; margin-bottom: 1.5rem;
+            border: 1px solid rgba(0,229,176,0.15);
+            font-size: 0.9rem; line-height: 1.5;
+            color: #c0d8e8;
+        }
+        .section-heading {
+            font-size: 1.1rem; font-weight: 700; margin: 1.5rem 0 0.8rem;
+            display: flex; align-items: center; gap: 0.4rem;
+            color: var(--fire);
+        }
+        .badge-pop {
+            background: var(--yellow); color: #000; font-size: 0.7rem; font-weight: bold;
+            padding: 0.2rem 0.5rem; border-radius: 6px; margin-left: 0.5rem;
+        }
+        /* PRODUK POPULER */
+        .product-popular {
+            background: rgba(0,40,80,0.4); border-radius: 12px; padding: 1rem; margin-bottom: 1rem;
+        }
+        .pop-row { display: flex; align-items: center; gap: 0.8rem; flex-wrap: wrap; }
+        .pop-cover { width: 80px; height: 80px; border-radius: 8px; background: linear-gradient(135deg,#6a11cb,#2575fc); flex-shrink: 0; }
+        .pop-info { flex: 1; min-width: 200px; }
+        .pop-name { font-weight: 600; margin-bottom: 0.3rem; font-size: 1rem; }
+        .pop-price { color: var(--primary); font-weight: 700; margin-bottom: 0.3rem; font-size: 1.1rem; }
+        .pop-sold { font-size: 0.8rem; color: var(--gray); margin-bottom: 0.6rem; }
+        .pop-buttons { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+        .btn {
+            padding: 0.6rem 1rem; border-radius: 8px; border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem;
+        }
+        .btn-blue { background: var(--blue-btn); color: #fff; }
+        .btn-green { background: var(--green-btn); color: #000; }
+        /* REQUEST */
+        .request-card {
+            background: rgba(0,40,80,0.4); border-radius: 12px; padding: 1rem; margin-bottom: 1rem;
+        }
+        .request-row { display: flex; gap: 0.8rem; }
+        .request-cover { width: 80px; height: 80px; border-radius: 8px; background: linear-gradient(135deg,#00c991,#165dff); flex-shrink: 0; }
+        .request-badge {
+            background: var(--primary); color: #000; font-size: 0.75rem; font-weight: bold;
+            padding: 0.2rem 0.5rem; border-radius: 6px; display: inline-block; margin-bottom: 0.3rem;
+        }
+        .request-price { color: var(--primary); font-weight: 700; margin: 0.4rem 0; font-size: 1.1rem; }
+        .request-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 0.7rem; line-height: 1.4; }
+        .btn-full { width: 100%; }
+        /* FILTER & SEARCH */
+        .filter-bar { display: flex; gap: 0.7rem; margin: 1rem 0; }
+        .search-box {
+            width: 100%; padding: 0.9rem 1rem;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 10px;
+            color: #fff; margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+        /* GRID PRODUK */
+        .products-grid {
+            display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem;
+        }
+        .product-card {
+            background: rgba(0,40,80,0.3); border-radius: 12px; overflow: hidden;
+        }
+        .product-cover {
+            width: 100%; aspect-ratio: 3/4;
+            background: linear-gradient(135deg,#2a1060,#0f4060);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 2rem; color: rgba(255,255,255,0.2);
+            position: relative;
+        }
+        .play-btn {
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+            width: 44px; height: 44px; background: rgba(22,93,255,0.8);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; color: #fff;
+        }
+        .product-body { padding: 0.8rem; }
+        .product-name { font-size: 0.85rem; font-weight: 600; margin-bottom: 0.5rem; line-height: 1.3; }
+        .product-price { color: var(--primary); font-weight: 700; font-size: 0.9rem; margin-bottom: 0.7rem; }
+        .product-actions { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+        .action-btn {
+            flex: 1; padding: 0.5rem; border-radius: 6px; border: none; font-size: 0.75rem; cursor: pointer;
+            min-width: 60px;
+        }
+        .action-cart { background: var(--blue-btn); color: #fff; }
+        .action-share { background: rgba(255,255,255,0.1); color: #fff; }
+        .action-add { background: var(--green-btn); color: #000; flex: 1.5; }
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <h1 class="page-title">EGI PERDANA SHOP</h1>
+    <p class="page-subtitle">List FLM Beserta Harga Ada Di Bawah</p>
+
+    <!-- INFO CARD -->
+    <div class="info-card">
+        FLM khusus FL Studio Mobile • Siap di-import tanpa extract.<br>
+        Jika membutuhkan bantuan memasang, silakan hubungi WhatsApp kami. Preview audio mungkin memerlukan beberapa saat untuk dimuat.
+    </div>
+
+    <!-- PRODUK POPULER -->
+    <h3 class="section-heading">🔥 Produk Populer</h3>
+    <div class="product-popular">
+        <div class="pop-row">
+            <div class="pop-cover"></div>
+            <div class="pop-info">
+                <h4 class="pop-name">STYLE BABAT BABAT TRETETEW <span class="badge-pop">POP</span></h4>
+                <p class="pop-price">Rp 90.000</p>
+                <p class="pop-sold">Terjual: 20</p>
+                <div class="pop-buttons">
+                    <button class="btn btn-blue">🛒 Beli</button>
+                    <button class="btn btn-green">▶ Preview</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- REQUEST FLM KHUSUS -->
+    <h3 class="section-heading">🔥 Request FLM Khusus</h3>
+    <div class="request-card">
+        <div class="request-row">
+            <div class="request-cover"></div>
+            <div style="flex:1">
+                <span class="request-badge">Custom</span>
+                <h4 style="font-weight:700; margin-bottom:0.3rem;">REQUEST FLM!!</h4>
+                <p class="request-price">Rp 80.000 — Rp 115.000</p>
+                <p class="request-desc">Butuh custom beat / style sesuai request? Klik tombol Request untuk isi detail dan harga estimasi.</p>
+                <button class="btn btn-blue btn-full">🛒 Request / Beli</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- FILTER & KERANJANG -->
+    <div class="filter-bar">
+        <button class="btn btn-blue" style="flex:1;">⚙ Filter</button>
+        <button class="btn btn-green" style="flex:1;">🛒 Keranjang</button>
+    </div>
+
+    <!-- SEARCH -->
+    <input type="text" class="search-box" placeholder="Cari FLM, style, atau nama produk...">
+
+    <!-- DAFTAR PRODUK GRID -->
+    <div class="products-grid">
+        <!-- 1 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE DROP BBHC</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 2 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE FUNKOT</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 3 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE GEDRUK</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 4 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE KONDANG</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 5 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE MAMAN FVNDY</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 6 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE PANI FVNKY</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 7 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE TRAP HOREG</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 8 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE XPUTZ</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 9 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE BABAT BABAT TRETETEW</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+        <!-- 10 -->
+        <div class="product-card">
+            <div class="product-cover"><span class="play-btn">▶</span></div>
+            <div class="product-body">
+                <h4 class="product-name">STYLE F17</h4>
+                <p class="product-price">Rp 90.000</p>
+                <div class="product-actions">
+                    <button class="action-btn action-cart">🛒</button>
+                    <button class="action-btn action-share">🔗</button>
+                    <button class="action-btn action-add">Tambah Keranjang</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item active">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Pack</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.4);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+            --blue-btn: #165dff;
+            --green-btn: #00c991;
+            --yellow: #ffd700;
+            --fire: #ff6b35;
+            --tag-blue: #165dff;
+            --tag-green: #00c991;
+            --tag-purple: #9333ea;
+            --tag-orange: #f97316;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 500px; margin: 0 auto; }
+        .page-title {
+            font-size: 1.5rem; font-weight: 700; margin-bottom: 0.3rem;
+        }
+        .page-subtitle {
+            color: var(--gray); font-size: 0.9rem; margin-bottom: 1.5rem;
+        }
+        .section-heading {
+            font-size: 1.2rem; font-weight: 700; margin: 1.5rem 0 0.8rem;
+            display: flex; align-items: center; gap: 0.4rem;
+            color: var(--fire);
+        }
+        /* PACK CARD */
+        .pack-card {
+            background: rgba(0,40,80,0.35);
+            border-radius: 14px; padding: 1rem; margin-bottom: 1.2rem;
+            border: 1px solid rgba(0,229,176,0.1);
+        }
+        .pack-tag {
+            display: inline-block; padding: 0.3rem 0.7rem; border-radius: 6px;
+            font-size: 0.75rem; font-weight: 700; margin-bottom: 0.8rem;
+        }
+        .tag-premium { background: var(--tag-blue); }
+        .tag-murah { background: var(--tag-green); color: #000; }
+        .tag-trending { background: var(--tag-purple); }
+        .tag-full { background: var(--tag-orange); }
+        .pack-size {
+            text-align: right; font-size: 0.8rem; color: var(--gray); margin-top: -1.8rem; margin-bottom: 1rem;
+        }
+        .pack-icon-box {
+            width: 40px; height: 40px; border-radius: 8px;
+            background: rgba(0,229,176,0.1); display: flex; align-items: center; justify-content: center;
+            font-size: 1.2rem; margin-bottom: 0.8rem;
+        }
+        .pack-name { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .pack-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 1rem; line-height: 1.4; }
+        .pack-list-title { font-size: 0.85rem; color: var(--primary); margin-bottom: 0.6rem; font-weight: 600; }
+        .pack-list { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1rem; padding-left: 0.3rem; }
+        .pack-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+        .play-small { color: var(--primary); font-size: 0.9rem; }
+        .pack-price { font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 0.3rem; }
+        .pack-discount { font-size: 0.8rem; color: var(--gray); margin-bottom: 1rem; display: flex; align-items: center; gap: 0.3rem; }
+        .btn-row { display: flex; gap: 0.7rem; }
+        .btn {
+            flex: 1; padding: 0.8rem; border-radius: 10px; border: none; font-weight: 600; cursor: pointer; font-size: 0.9rem;
+        }
+        .btn-cart { background: rgba(0,229,176,0.15); color: var(--primary); }
+        .btn-buy { background: var(--blue-btn); color: #fff; }
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <h1 class="page-title">Paket Hemat FLM</h1>
+    <p class="page-subtitle">Pilih paket hemat terbaik untuk kebutuhan project musikmu.</p>
+
+    <h3 class="section-heading">🔥 Pilih Paket</h3>
+    <p style="color:var(--gray); font-size:0.9rem; margin-bottom:1rem;">Bundle FLM dengan folder yang sudah siap digunakan.</p>
+
+    <!-- PACK 1 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-premium">PREMIUM PACK</span>
+        <p class="pack-size">~182MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">STYLE BABAT BABAT PACK</h4>
+        <p class="pack-desc">Style remix premium yang viral di TikTok, dapatkan paketnya sekarang.</p>
+        <p class="pack-list-title">Isi Pack • 5 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE DROP BBHC</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE FUNKOT</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE GEDRUK</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE KONDANG</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE BABAT BABAT TRETETEW</p>
+        </div>
+        <p class="pack-price">Rp 262.500</p>
+        <p class="pack-discount">💰 Hemat Rp 87.500</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+    <!-- PACK 2 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-murah">MURAH & WORTH IT</span>
+        <p class="pack-size">~82MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">Slow Beat Pack</h4>
+        <p class="pack-desc">Sangat cocok untuk pencinta ketukan santai, jedag-jedug tipis, maupun style healing.</p>
+        <p class="pack-list-title">Isi Pack • 3 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE TRAP HOREG</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE KONDANG</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE MAMAN FVNDY</p>
+        </div>
+        <p class="pack-price">Rp 145.999</p>
+        <p class="pack-discount">💰 Hemat Rp 52.001</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+    <!-- PACK 3 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-trending">TRENDING FLM</span>
+        <p class="pack-size">~302MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">Pack FLM Terviral</h4>
+        <p class="pack-desc">Berisi FLM yang pernah viral dan trending topik.</p>
+        <p class="pack-list-title">Isi Pack • 6 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE DROP BBHC</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE FUNKOT</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE GEDRUK</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE XPUTZ</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE PANI FVNKY</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE BABAT BABAT TRETETEW</p>
+        </div>
+        <p class="pack-price">Rp 309.999</p>
+        <p class="pack-discount">💰 Hemat Rp 109.001</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+    <!-- PACK 4 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-trending">TRENDING JAWA</span>
+        <p class="pack-size">~278MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">Pack Jawa Pride</h4>
+        <p class="pack-desc">Berisi FLM Jawa Pride yang viral dan trending topik.</p>
+        <p class="pack-list-title">Isi Pack • 3 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE FUNKOT</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE GEDRUK</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE F17</p>
+        </div>
+        <p class="pack-price">Rp 149.250</p>
+        <p class="pack-discount">💰 Hemat Rp 49.750</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+    <!-- PACK 5 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-full">FULL PACK REMIXER VIRAL</span>
+        <p class="pack-size">~442MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">Pack Remixer Viral</h4>
+        <p class="pack-desc">Berisi FLM para Remixer yang viral dan trending TikTok.</p>
+        <p class="pack-list-title">Isi Pack • 10 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE DROP BBHC</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE FUNKOT</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE GEDRUK</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE KONDANG</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE MAMAN FVNDY</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE PANI FVNKY</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE TRAP HOREG</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE XPUTZ</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE BABAT BABAT TRETETEW</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE F17</p>
+        </div>
+        <p class="pack-price">Rp 402.999</p>
+        <p class="pack-discount">💰 Hemat Rp 290.001</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+    <!-- PACK 6 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-premium">FULL PACK</span>
+        <p class="pack-size">~240MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">Style F17 Pack V2</h4>
+        <p class="pack-desc">Berisi FLM Style F17 yang viral dan trending TikTok.</p>
+        <p class="pack-list-title">Isi Pack • 3 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE F17</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE FUNKOT</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE BABAT BABAT TRETETEW</p>
+        </div>
+        <p class="pack-price">Rp 262.500</p>
+        <p class="pack-discount">💰 Hemat Rp 87.500</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+    <!-- PACK 7 -->
+    <div class="pack-card">
+        <span class="pack-tag tag-murah">WORTH IT</span>
+        <p class="pack-size">~250MB</p>
+        <div class="pack-icon-box">📦</div>
+        <h4 class="pack-name">Edisi Campur</h4>
+        <p class="pack-desc">FLM Mantap.</p>
+        <p class="pack-list-title">Isi Pack • 2 Item</p>
+        <div class="pack-list">
+            <p class="pack-item"><span class="play-small">▶</span> STYLE TRAP HOREG</p>
+            <p class="pack-item"><span class="play-small">▶</span> STYLE GEDRUK</p>
+        </div>
+        <p class="pack-price">Rp 300.000</p>
+        <p class="pack-discount">💰 Hemat Rp 50.000</p>
+        <div class="btn-row">
+            <button class="btn btn-cart">🛒 Tambah Keranjang</button>
+            <button class="btn btn-buy">⚡ Beli Langsung</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item active">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Bukti Transaksi</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.4);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+            --blue-btn: #165dff;
+            --green-btn: #00c991;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 500px; margin: 0 auto; }
+        
+        /* INTRO CARD */
+        .intro-card {
+            background: rgba(0,60,100,0.25);
+            border-radius: 14px; padding: 1.2rem; margin-bottom: 1.2rem;
+            border: 1px solid rgba(0,229,176,0.15);
+            display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .intro-text h2 { font-size: 1.4rem; margin-bottom: 0.5rem; }
+        .intro-text p { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .check-icon {
+            width: 44px; height: 44px;
+            background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.3rem; color: var(--primary);
+        }
+        
+        /* SECTION TITLE */
+        .section-title {
+            font-size: 1.2rem; font-weight: 700; margin: 1.5rem 0 0.5rem;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .section-desc { font-size: 0.9rem; color: var(--gray); margin-bottom: 1rem; }
+        
+        /* RATING BUTTON */
+        .rating-btn {
+            width: 100%; padding: 0.8rem; background: rgba(255,255,255,0.05);
+            border: none; border-radius: 10px; color: #fff; font-size: 0.95rem;
+            margin-bottom: 1.2rem; cursor: pointer;
+        }
+        
+        /* PROOF CARD */
+        .proof-card {
+            background: rgba(0,40,80,0.35);
+            border-radius: 14px; overflow: hidden; margin-bottom: 1.5rem;
+            border: 1px solid rgba(0,229,176,0.1);
+        }
+        .proof-img-wrap {
+            position: relative; width: 100%;
+            background: #111; display: flex; align-items: center; justify-content: center;
+        }
+        .proof-img {
+            width: 100%; height: auto; display: block;
+            background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+            min-height: 320px; display: flex; align-items: center; justify-content: center;
+            color: #555; font-size: 0.9rem;
+        }
+        .share-btn {
+            position: absolute; right: 1rem; bottom: 1rem;
+            width: 36px; height: 36px; background: rgba(0,0,0,0.6);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            color: #fff; font-size: 1rem;
+        }
+        .proof-info { padding: 1rem; }
+        .proof-label { font-size: 0.9rem; color: var(--gray); margin-bottom: 0.5rem; }
+        .proof-title { font-weight: 600; margin-bottom: 1rem; }
+        .proof-detail { display: flex; align-items: flex-start; gap: 0.5rem; margin-bottom: 0.6rem; font-size: 0.9rem; }
+        .proof-detail span:first-child { color: var(--primary); min-width: 90px; display: inline-block; }
+        
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- INTRO CARD -->
+    <div class="intro-card">
+        <div class="intro-text">
+            <p style="color:var(--primary); font-size:0.85rem; font-weight:600; margin-bottom:0.3rem;">📸 BUKTI TRANSAKSI</p>
+            <h2>Bukti Transaksi</h2>
+            <p>Lihat bukti transaksi pelanggan EGI PERDANA SHOP sebagai referensi dan tanda kepercayaan sebelum melakukan pemesanan.</p>
+        </div>
+        <div class="check-icon">✓</div>
+    </div>
+
+    <!-- SECTION -->
+    <h3 class="section-title">📸 Bukti Transaksi Pelanggan</h3>
+    <p class="section-desc">Bukti yang tampil di sini telah dipublikasikan oleh admin.</p>
+
+    <button class="rating-btn">💬 Beri Rating & Komentar</button>
+
+    <!-- BUKTI CARD -->
+    <div class="proof-card">
+        <div class="proof-img-wrap">
+            <div class="proof-img">
+                <!-- Ganti dengan gambar bukti asli -->
+                📷 Bukti Pembayaran<br>
+                (Gambar akan muncul di sini)
+            </div>
+            <button class="share-btn">↗</button>
+        </div>
+        <div class="proof-info">
+            <p class="proof-label">Website Pembayaran - EGI PERDANA</p>
+            <p class="proof-title"></p>
+            <div class="proof-detail">
+                <span>📌 ID Transaksi</span>
+                <span>: EP-826903</span>
+            </div>
+            <div class="proof-detail">
+                <span>🛒 Produk</span>
+                <span>: FLM MAMAN FVNDY</span>
+            </div>
+            <div class="proof-detail">
+                <span>💰 Nominal</span>
+                <span>: Rp 100.000</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tambahkan bukti lain di sini -->
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item active">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
+<a href="review-komentar.html" class="menu-item">
+    <span class="menu-icon">⭐</span>
+    <span>Review & Komentar</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Review & Komentar</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --star: #ffd700;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(40,80,120,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .star-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* RATING SUMMARY */
+        .rating-summary {
+            background: var(--bg-card); border-radius: 14px; padding: 1.5rem 1.3rem;
+            margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1.5rem;
+        }
+        .rating-score { font-size: 2.5rem; font-weight: 700; line-height: 1; }
+        .stars-row { color: var(--star); font-size: 1.2rem; margin-top: 0.3rem; }
+        .rating-count p { color: var(--gray); font-size: 0.9rem; margin-top: 0.3rem; }
+
+        /* FORM CARD */
+        .form-card { background: var(--bg-card); border-radius: 14px; padding: 1.3rem; }
+        .form-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 1.2rem; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label {
+            font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem;
+        }
+        .form-input, .form-textarea {
+            width: 100%; padding: 0.9rem 1rem; background: var(--input-bg);
+            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem;
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--gray); }
+        .form-textarea { min-height: 100px; resize: vertical; }
+
+        .stars-select {
+            display: flex; gap: 0.5rem; font-size: 1.8rem; color: var(--star); cursor: pointer;
+        }
+        .star-empty { color: #444; }
+
+        .upload-note { font-size: 0.85rem; color: var(--gray); margin-top: 0.4rem; }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>💬 REVIEW PELANGGAN</p>
+            <h2>Komentar & Rating</h2>
+            <p>Bagikan pengalaman kamu setelah menggunakan layanan EGI PERDANA SHOP.</p>
+        </div>
+        <div class="star-icon">⭐</div>
+    </div>
+
+    <!-- RATING SUMMARY -->
+    <div class="rating-summary">
+        <div>
+            <div class="rating-score">5.0</div>
+            <div class="stars-row">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="rating-count">
+            <p style="font-size: 1.1rem; font-weight: 600;">3 komentar</p>
+            <p>Rating & komentar pelanggan</p>
+        </div>
+    </div>
+
+    <!-- FORM KOMENTAR -->
+    <div class="form-card">
+        <h3 class="form-title">Tulis Komentar</h3>
+
+        <div class="form-group">
+            <label class="form-label">👤 Nama</label>
+            <input type="text" class="form-input" placeholder="Nama kamu">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">⭐ Rating</label>
+            <div class="stars-select">
+                <span>⭐</span>
+                <span>⭐</span>
+                <span>⭐</span>
+                <span>⭐</span>
+                <span>⭐</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📝 Komentar</label>
+            <textarea class="form-textarea" placeholder="Tulis pengalaman kamu..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📷 Upload Foto <span style="color:var(--gray); font-weight:normal; font-size:0.9rem">(opsional, maks. 5 MB)</span></label>
+            <input type="file" accept="image/*" class="form-input" style="padding: 0.7rem 1rem; cursor: pointer;">
+        </div>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item active">💬 Review</a>
+</nav>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Menu</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-sidebar: #0a2338;
+            --bg-item: rgba(0,40,80,0.35);
+            --bg-active: rgba(0,229,176,0.15);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+        }
+        /* Overlay latar belakang */
+        .overlay {
+            position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.6); z-index: 99;
+        }
+        /* Sidebar */
+        .sidebar {
+            position: fixed; top: 0; left: 0; bottom: 0; width: 340px;
+            background: var(--bg-sidebar); z-index: 100;
+            padding: 1.5rem 1.2rem;
+            border-right: 1px solid rgba(0,229,176,0.1);
+            overflow-y: auto;
+        }
+        /* Header sidebar */
+        .sidebar-header {
+            display: flex; align-items: center; justify-content: space-between;
+            margin-bottom: 2rem;
+        }
+        .sidebar-brand {
+            display: flex; align-items: center; gap: 0.8rem;
+        }
+        .logo-circle {
+            width: 40px; height: 40px; background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand-info h2 { font-size: 1.1rem; font-weight: 700; }
+        .brand-info p { font-size: 0.75rem; color: var(--gray); }
+        .close-btn {
+            width: 36px; height: 36px; background: rgba(255,255,255,0.08);
+            border-radius: 50%; border: none; color: #fff; font-size: 1rem;
+            cursor: pointer;
+        }
+        /* Menu items */
+        .menu-list { display: flex; flex-direction: column; gap: 0.6rem; }
+        .menu-item {
+            display: flex; align-items: center; gap: 0.9rem;
+            padding: 0.9rem 1.1rem;
+            background: var(--bg-item); border-radius: 10px;
+            text-decoration: none; color: var(--text);
+            font-size: 0.95rem; font-weight: 500;
+            transition: all 0.2s;
+        }
+        .menu-item.active {
+            background: var(--bg-active); color: var(--primary);
+            border: 1px solid rgba(0,229,176,0.2);
+        }
+        .menu-icon { font-size: 1.1rem; width: 22px; text-align: center; }
+    </style>
+</head>
+<body>
+
+<!-- Overlay Latar -->
+<div class="overlay"></div>
+
+<!-- Sidebar Menu -->
+<div class="sidebar">
+    <div class="sidebar-header">
+        <div class="sidebar-brand">
+            <div class="logo-circle">EP</div>
+            <div class="brand-info">
+                <h2>EGI PERDANA SHOP</h2>
+                <p>FLM • PACK • JASA MUSIK</p>
+            </div>
+        </div>
+        <button class="close-btn">✕</button>
+    </div>
+
+    <nav class="menu-list">
+        <a href="#" class="menu-item active">
+            <span class="menu-icon">🏠</span>
+            <span>Beranda</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="menu-icon">📦</span>
+            <span>Jual FLM</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="menu-icon">⧉</span>
+            <span>Pack FLM</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="menu-icon">✦</span>
+            <span>Request FLM</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="menu-icon">🎵</span>
+            <span>Pemesanan Lagu</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="menu-icon">🔍</span>
+            <span>Cek Pesanan</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="menu-icon">🎚️</span>
+            <span>Jasa Mixing & Mastering</span>
+        </a>
+        <a href="#" class="menu-item active">
+            <span class="menu-icon">🎹</span>
+            <span>Jasa Nyusun Chord & BPM</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="menu-icon">🎤</span>
+            <span>Susun Melodi</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="menu-icon">✓</span>
+            <span>Bukti Transaksi</span>
+        </a>
+        <a href="#" class="menu-item">
+            <span class="menu-icon">💬</span>
+            <span>Review</span>
+        </a>
+    </nav>
+</div>
+
+</body>
+</html>
+<a href="request.html" class="menu-item">Request FLM</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Request FLM</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+            --blue-btn: #165dff;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .music-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* PAYMENT CARD */
+        .pay-card {
+            background: var(--bg-card); border-radius: 14px; padding: 1.3rem; margin-bottom: 1.5rem;
+        }
+        .pay-title {
+            font-size: 1rem; font-weight: 700; margin-bottom: 0.7rem;
+            display: flex; align-items: center; gap: 0.4rem;
+        }
+        .pay-desc { font-size: 0.9rem; color: var(--gray); margin-bottom: 1rem; line-height: 1.5; }
+        .dana-box {
+            background: var(--primary); color: #000; font-weight: 700; padding: 0.8rem 1.2rem;
+            border-radius: 10px; text-align: center; font-size: 1rem; margin-bottom: 1rem;
+        }
+        .qris-box {
+            width: 100%; background: #fff; border-radius: 12px; padding: 1rem;
+            display: flex; flex-direction: column; align-items: center; margin-bottom: 1rem;
+            color: #000;
+        }
+        .qris-title { font-weight: 700; font-size: 1.1rem; margin-bottom: 0.5rem; }
+        .qris-id { font-size: 0.75rem; color: #555; margin-bottom: 1rem; }
+        .qris-code {
+            width: 220px; height: 220px; background: #f5f5f5; border-radius: 8px;
+            display: flex; align-items: center; justify-content: center; font-size: 3rem;
+            margin-bottom: 0.8rem;
+        }
+        .btn-dana {
+            width: 100%; background: var(--primary); color: #000; border: none;
+            padding: 0.9rem; border-radius: 10px; font-weight: 700; font-size: 1rem;
+            margin-bottom: 1.5rem; cursor: pointer;
+        }
+
+        /* FORM */
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label {
+            font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; display: block;
+        }
+        .form-input, .form-textarea {
+            width: 100%; padding: 0.9rem 1rem; background: var(--input-bg);
+            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem;
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--gray); }
+        .form-textarea { min-height: 90px; resize: vertical; }
+
+        .btn-wa {
+            width: 100%; background: var(--blue-btn); color: #fff; border: none;
+            padding: 0.9rem; border-radius: 10px; font-weight: 700; font-size: 1rem;
+            margin: 0.5rem 0 1rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .note-text { font-size: 0.85rem; color: var(--gray); text-align: center; line-height: 1.5; }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>✨ REQUEST FLM CUSTOM</p>
+            <h2>Request FLM</h2>
+            <p>Ajukan judul dan referensi YouTube untuk dibuatkan project FL Studio Mobile sesuai request kamu.</p>
+        </div>
+        <div class="music-icon">🎵</div>
+    </div>
+
+    <!-- PEMBAYARAN -->
+    <div class="pay-card">
+        <h3 class="pay-title">💳 PEMBAYARAN REQUEST</h3>
+        <p class="pay-desc">Estimasi request sekitar Rp80.000 – Rp115.000. Untuk pembayaran, kamu bisa menggunakan DANA atau QRIS.</p>
+
+        <div class="dana-box">DANA: 083821665970</div>
+
+        <div class="qris-box">
+            <span class="qris-title">EGI PERDANA SHOP</span>
+            <span class="qris-id">NMID: 1025426726143</span>
+            <div class="qris-code">📷</div>
+            <span style="font-size:0.7rem; color:#666;">QRIS Pembayaran Nasional</span>
+        </div>
+
+        <button class="btn-dana">💳 Bayar via DANA</button>
+
+        <!-- FORM -->
+        <div class="form-group">
+            <label class="form-label">Judul / Jenis FLM</label>
+            <input type="text" class="form-input" placeholder="Contoh: FLM Trabas">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Link YouTube Contoh</label>
+            <input type="url" class="form-input" placeholder="Contoh: https://youtu.be/xxxx">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Catatan</label>
+            <textarea class="form-textarea" placeholder="Contoh: bassnya kayak di menit 01:20"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Link YouTube Contoh</label>
+            <input type="url" class="form-input" placeholder="Contoh: https://youtu.be/xxxx">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">Catatan</label>
+            <textarea class="form-textarea" placeholder="Contoh: bassnya kayak di menit 01:20"></textarea>
+        </div>
+
+        <button class="btn-wa">📱 Kirim Request ke WhatsApp</button>
+
+        <p class="note-text">Setelah mengirim request, silakan tunggu konfirmasi dan estimasi harga melalui WhatsApp.</p>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
+<a href="pemesanan.html" class="menu-item">
+    <span class="menu-icon">🎵</span>
+    <span>Pemesanan Lagu</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Pemesanan Remix Lagu</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+            --blue-btn: #165dff;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .music-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* PRICE BADGE */
+        .price-badge {
+            text-align: center; margin: 1rem 0;
+        }
+        .price-main { font-size: 1.4rem; font-weight: 700; color: var(--primary); }
+        .price-note {
+            background: rgba(22,93,255,0.1); color: #6aa7ff; font-size: 0.85rem;
+            padding: 0.5rem 1rem; border-radius: 20px; display: inline-block; margin-top: 0.5rem;
+        }
+
+        /* FORM */
+        .form-card { background: var(--bg-card); border-radius: 14px; padding: 1.3rem; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label {
+            font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem;
+        }
+        .form-input {
+            width: 100%; padding: 0.9rem 1rem; background: var(--input-bg);
+            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem;
+        }
+        .form-input::placeholder { color: var(--gray); }
+        .add-link-btn {
+            width: 100%; padding: 0.8rem; background: transparent;
+            border: 1px dashed var(--primary); color: var(--primary);
+            border-radius: 8px; font-size: 0.95rem; font-weight: 600; cursor: pointer; margin: 0.5rem 0;
+        }
+        .add-note { font-size: 0.8rem; color: var(--gray); margin-bottom: 1rem; line-height: 1.4; }
+        .form-textarea {
+            width: 100%; padding: 0.9rem 1rem; background: var(--input-bg);
+            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem;
+            min-height: 100px; resize: vertical;
+        }
+        .form-textarea::placeholder { color: var(--gray); }
+
+        .btn-submit {
+            width: 100%; padding: 1rem; background: var(--primary); color: #000;
+            border: none; border-radius: 10px; font-weight: 700; font-size: 1rem;
+            margin: 1rem 0 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .btn-check {
+            width: 100%; padding: 0.9rem; background: var(--input-bg); color: #fff;
+            border: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>🎵 PEMESANAN REMIX LAGU</p>
+            <h2>Pemesanan Remix Lagu</h2>
+            <p>Isi detail lagu, style remix, dan satu atau beberapa link vocal sesuai kebutuhan pesananmu.</p>
+        </div>
+        <div class="music-icon">🎵</div>
+    </div>
+
+    <!-- HARGA -->
+    <div class="price-badge">
+        <p class="price-main">💰 Mulai dari 80K</p>
+        <p class="price-note">💡 Harga tergantung kesulitan style & lagu</p>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card">
+        <div class="form-group">
+            <label class="form-label">👤 Nama Customer</label>
+            <input type="text" class="form-input" placeholder="Contoh: Muslih">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📱 Nomor WhatsApp</label>
+            <input type="tel" class="form-input" placeholder="Contoh: 081234567890">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">1️⃣ Judul Lagu</label>
+            <input type="text" class="form-input" placeholder="Contoh: Empat Mata">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">2️⃣ Style Remix / Link Style</label>
+            <input type="text" class="form-input" placeholder="Contoh: Style Candu">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">3️⃣ Link Vocal</label>
+            <input type="url" class="form-input" placeholder="Contoh: https://youtu.be/abcd1234">
+            <button class="add-link-btn">+ Tambah Link Vocal</button>
+            <p class="add-note">Bisa menambahkan sebanyak yang diperlukan. Setiap link vocal tetap berada di kolom terpisah.</p>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">4️⃣ Catatan Pesanan</label>
+            <textarea class="form-textarea" placeholder="Contoh: Intro 15 detik, bagian reff dibuat lebih energik, dll."></textarea>
+        </div>
+
+        <button class="btn-submit">🟢 Kirim Pesanan</button>
+        <button class="btn-check">🔍 Cek Proses Pesanan</button>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
+<a href="cek-pesanan.html" class="menu-item">
+    <span class="menu-icon">🔍</span>
+    <span>Cek Pesanan</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Cek Pesanan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+            --inactive: rgba(255,255,255,0.1);
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .search-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* BACK BUTTON */
+        .back-btn {
+            width: 100%; padding: 0.9rem; background: var(--input-bg);
+            border: none; border-radius: 10px; color: #fff; font-size: 0.95rem;
+            margin-bottom: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+
+        /* TABS */
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .tab {
+            flex: 1; padding: 0.8rem 0.5rem; background: var(--inactive);
+            border: none; border-radius: 10px; color: var(--gray); font-size: 0.85rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.3rem;
+        }
+        .tab.active {
+            background: rgba(0,229,176,0.15); color: var(--primary);
+            border: 1px solid rgba(0,229,176,0.25);
+        }
+
+        /* FORM CARD */
+        .form-card { background: var(--bg-card); border-radius: 14px; padding: 1.5rem; }
+        .form-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+        .form-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 1.2rem; line-height: 1.5; }
+        .form-input {
+            width: 100%; padding: 1rem; background: var(--input-bg);
+            border: none; border-radius: 10px; color: #fff; font-size: 1rem; margin-bottom: 1rem;
+        }
+        .form-input::placeholder { color: var(--gray); }
+        .btn-row { display: flex; gap: 0.8rem; }
+        .btn-check {
+            flex: 1.2; padding: 1rem; background: var(--primary); color: #000;
+            border: none; border-radius: 10px; font-weight: 700; font-size: 1rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+        }
+        .btn-refresh {
+            flex: 1; padding: 1rem; background: var(--input-bg); color: #fff;
+            border: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>🔍 CEK STATUS PESANAN</p>
+            <h2>Cek Proses Pesanan</h2>
+            <p>Pilih jenis pesanan di bawah, lalu masukkan kode pesanan untuk melihat status terbaru dan riwayat prosesnya.</p>
+        </div>
+        <div class="search-icon">🔍</div>
+    </div>
+
+    <!-- KEMBALI -->
+    <button class="back-btn">← Kembali ke Pemesanan Remix</button>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab active">🎵 Pesanan Lagu</button>
+        <button class="tab">🎹 Susun Melodi</button>
+        <button class="tab">🎼 Chord & BPM</button>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card">
+        <h3 class="form-title">🔍 Cek Pesanan Lagu</h3>
+        <p class="form-desc">Gunakan kode RMX-xxxxxx untuk melihat status terbaru dan riwayat proses pesanan lagu.</p>
+        
+        <input type="text" class="form-input" placeholder="Contoh: RMX-746580">
+        
+        <div class="btn-row">
+            <button class="btn-check">🔍 Cek Pesanan</button>
+            <button class="btn-refresh">🔄 Refresh</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
+<a href="mixing-mastering.html" class="menu-item">
+    <span class="menu-icon">🎚️</span>
+    <span>Mixing & Mastering</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Mixing & Mastering</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .music-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* PACKAGES */
+        .packages-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .packages-desc { font-size: 0.9rem; color: var(--gray); margin-bottom: 1rem; }
+        .package-item {
+            background: var(--input-bg); border-radius: 10px; padding: 1rem;
+            text-align: center; margin-bottom: 0.7rem;
+        }
+        .package-name { font-size: 0.95rem; color: var(--gray); margin-bottom: 0.3rem; }
+        .package-price { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+
+        /* FORM */
+        .form-card { margin-top: 1rem; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label {
+            font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%; padding: 0.9rem 1rem; background: var(--input-bg);
+            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem;
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--gray); }
+        .form-textarea { min-height: 90px; resize: vertical; }
+        .note-opt { font-size: 0.8rem; color: var(--gray); margin-top: 0.4rem; }
+
+        .btn-wa {
+            width: 100%; padding: 1rem; background: var(--primary); color: #000;
+            border: none; border-radius: 10px; font-weight: 700; font-size: 1rem;
+            margin: 0.5rem 0; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .btn-preview {
+            width: 100%; padding: 0.9rem; background: var(--input-bg); color: #fff;
+            border: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;
+        }
+        .info-note {
+            background: rgba(0,229,176,0.08); padding: 1rem; border-radius: 10px;
+            font-size: 0.85rem; color: var(--gray); line-height: 1.5; margin-bottom: 2rem;
+        }
+        .copyright { text-align: center; font-size: 0.75rem; color: var(--gray); }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>🛠️ JASA AUDIO</p>
+            <h2>Mixing & Mastering</h2>
+            <p>Pesan jasa mixing dan mastering untuk merapikan balance, karakter, serta hasil akhir audio kamu.</p>
+        </div>
+        <div class="music-icon">🎵</div>
+    </div>
+
+    <!-- PACKAGES -->
+    <h3 class="packages-title">Pesan Jasa Mixing & Mastering</h3>
+    <p class="packages-desc">Pilih paket, isi data & detail, lalu kirim file FLM melalui WhatsApp.</p>
+
+    <div class="package-item">
+        <p class="package-name">Mixing Saja</p>
+        <p class="package-price">IDR 50.000</p>
+    </div>
+    <div class="package-item">
+        <p class="package-name">Mastering Saja</p>
+        <p class="package-price">IDR 50.000</p>
+    </div>
+    <div class="package-item">
+        <p class="package-name">Mixing & Mastering</p>
+        <p class="package-price">IDR 100.000</p>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card">
+        <div class="form-group">
+            <label class="form-label">👤 Nama</label>
+            <input type="text" class="form-input" placeholder="Masukkan nama kamu">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📱 Kontak (WA atau Email)</label>
+            <input type="text" class="form-input" placeholder="Contoh: 0838xxxx atau email@ex.com">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📋 Pilih Paket</label>
+            <select class="form-select">
+                <option>Mixing Saja — IDR 50.000</option>
+                <option>Mastering Saja — IDR 50.000</option>
+                <option>Mixing & Mastering — IDR 100.000</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">🔗 Link FLM (Google Drive / Dropbox) — opsional</label>
+            <input type="url" class="form-input" placeholder="https://drive.google.com/...">
+            <p class="note-opt">Kalau file besar, upload ke Google Drive lalu paste link di sini.</p>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📝 Detail / Catatan</label>
+            <textarea class="form-textarea" placeholder="Contoh: suara vokal ke depan, bass sedikit ditekankan"></textarea>
+        </div>
+
+        <button class="btn-wa">📱 Kirim & Pesan lewat WhatsApp</button>
+        <button class="btn-preview">👀 Preview Pesan</button>
+
+        <p class="info-note">💡 Setelah pesan dibuka di WhatsApp, cek kembali detail paket dan file sebelum mengirim ke admin.</p>
+
+        <p class="copyright">© 2025 EGI PERDANA SHOP. All rights reserved.</p>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
+<a href="chord-bpm.html" class="menu-item">
+    <span class="menu-icon">🎼</span>
+    <span>Chord & BPM Lagu</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Chord & BPM</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .music-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        .section-title { font-size: 1.2rem; font-weight: 700; margin-bottom: 0.3rem; }
+        .section-desc { font-size: 0.9rem; color: var(--gray); margin-bottom: 1rem; }
+
+        .price-box {
+            background: var(--input-bg); border-radius: 10px; padding: 1rem; margin-bottom: 1.2rem;
+        }
+        .price-label { font-size: 0.9rem; color: var(--gray); margin-bottom: 0.3rem; }
+        .price-val { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+        .price-note { font-size: 0.8rem; color: var(--gray); margin-top: 0.4rem; }
+
+        /* FORM */
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label {
+            font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%; padding: 0.9rem 1rem; background: var(--input-bg);
+            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem;
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--gray); }
+        .form-textarea { min-height: 80px; resize: vertical; }
+        .link-row { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+        .link-num {
+            width: 28px; height: 28px; background: rgba(0,229,176,0.15); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; font-weight: 700; color: var(--primary); font-size: 0.85rem; flex-shrink: 0;
+        }
+        .link-input { flex: 1; }
+        .form-note { font-size: 0.8rem; color: var(--gray); margin-top: 0.4rem; }
+
+        .file-upload {
+            display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem;
+            background: var(--input-bg); border-radius: 8px; margin-top: 0.5rem;
+        }
+        .btn-choose {
+            background: var(--primary); color: #000; border: none; padding: 0.5rem 1rem;
+            border-radius: 6px; font-weight: 600; cursor: pointer;
+        }
+        .file-text { font-size: 0.85rem; color: var(--gray); }
+
+        .btn-submit {
+            width: 100%; padding: 1rem; background: var(--primary); color: #000;
+            border: none; border-radius: 10px; font-weight: 700; font-size: 1rem;
+            margin: 0.5rem 0; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .btn-check {
+            width: 100%; padding: 0.9rem; background: var(--input-bg); color: #fff;
+            border: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;
+        }
+        .info-note {
+            background: rgba(0,229,176,0.08); padding: 1rem; border-radius: 10px;
+            font-size: 0.85rem; color: var(--gray); line-height: 1.5; margin-bottom: 2rem;
+        }
+        .copyright { text-align: center; font-size: 0.75rem; color: var(--gray); }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>🎹 JASA MUSIK</p>
+            <h2>Nyusun Chord & BPM Lagu</h2>
+            <p>Pesan jasa penyusunan chord dan BPM lagu dengan hasil yang jelas dan mudah dipakai untuk produksi musik.</p>
+        </div>
+        <div class="music-icon">🎵</div>
+    </div>
+
+    <h3 class="section-title">Pesan Jasa Nyusun Chord & BPM Lagu</h3>
+    <p class="section-desc">Pilih paket, isi data & detail, lalu kirim ke WhatsApp.</p>
+
+    <!-- HARGA -->
+    <div class="price-box">
+        <p class="price-label">🎵 Harga per lagu</p>
+        <p class="price-val">IDR 15.000 / Lagu</p>
+        <p class="price-note">Pilih 1–10 lagu, link otomatis menyesuaikan.</p>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card">
+        <div class="form-group">
+            <label class="form-label">👤 Nama</label>
+            <input type="text" class="form-input" placeholder="Masukkan nama kamu">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📱 Kontak (WA atau Email)</label>
+            <input type="text" class="form-input" placeholder="Contoh: 0838xxxx atau email@ex.com">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">🎵 Jumlah Lagu</label>
+            <select class="form-select">
+                <option>1 Lagu — IDR 15.000</option>
+                <option>2 Lagu — IDR 30.000</option>
+                <option>3 Lagu — IDR 45.000</option>
+                <option>4 Lagu — IDR 60.000</option>
+                <option>5 Lagu — IDR 75.000</option>
+                <option>6 Lagu — IDR 90.000</option>
+                <option>7 Lagu — IDR 105.000</option>
+                <option>8 Lagu — IDR 120.000</option>
+                <option>9 Lagu — IDR 135.000</option>
+                <option>10 Lagu — IDR 150.000</option>
+            </select>
+            <p class="form-note">Harga dihitung IDR 15.000 × jumlah lagu. Maksimal 10 lagu per pesanan.</p>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">🔗 Link Lagu YouTube</label>
+            <div class="link-row">
+                <span class="link-num">1</span>
+                <input type="url" class="form-input link-input" placeholder="Link Lagu 1 — https://youtube.com/...">
+            </div>
+            <p class="form-note">Jumlah kolom link otomatis mengikuti jumlah lagu yang dipilih.</p>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">💳 Metode Pembayaran</label>
+            <select class="form-select">
+                <option>Pilih Metode Pembayaran</option>
+                <option>DANA</option>
+                <option>QRIS</option>
+                <option>Bank Transfer</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📄 Upload Bukti Pembayaran</label>
+            <div class="file-upload">
+                <button class="btn-choose">Pilih File</button>
+                <span class="file-text">Tidak ada file yang dipilih</span>
+            </div>
+            <p class="form-note">Upload screenshot/foto bukti pembayaran. JPG, PNG, atau WEBP maksimal 5 MB.<br>Belum ada file dipilih.</p>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📝 Detail / Catatan</label>
+            <textarea class="form-textarea" placeholder="Contoh: ingin chord gitar + tempo BPM jelas"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📝 Detail / Catatan</label>
+            <textarea class="form-textarea" placeholder="Contoh: ingin chord gitar + tempo BPM jelas"></textarea>
+        </div>
+
+        <button class="btn-submit">🟢 Kirim Pesanan</button>
+        <button class="btn-check">🔍 Cek Pesanan</button>
+
+        <p class="info-note">💡 Isi link YouTube dan catatan sedetail mungkin agar hasil chord dan BPM lebih sesuai kebutuhanmu.</p>
+
+        <p class="copyright">© 2025 EGI PERDANA SHOP. All rights reserved.</p>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
+<a href="susun-melodi-vocal.html" class="menu-item">
+    <span class="menu-icon">🎤</span>
+    <span>Susun Melodi Vocal</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Susun Melodi Vocal</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.6rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .music-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* PRICE */
+        .price-main { text-align: center; font-size: 1.3rem; font-weight: 700; color: var(--primary); margin-bottom: 0.5rem; }
+        .price-note {
+            background: rgba(0,229,176,0.08); padding: 0.7rem 1rem; border-radius: 10px;
+            font-size: 0.85rem; color: var(--gray); margin-bottom: 1.5rem; text-align: center;
+        }
+
+        /* FORM */
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label {
+            font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem;
+        }
+        .form-input, .form-select, .form-textarea {
+            width: 100%; padding: 0.9rem 1rem; background: var(--input-bg);
+            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem;
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--gray); }
+        .form-textarea { min-height: 90px; resize: vertical; }
+
+        .select-plus-row { display: flex; gap: 0.6rem; align-items: center; }
+        .form-select.flex-1 { flex: 1; }
+        .btn-add {
+            width: 44px; height: 44px; background: var(--primary); color: #000; border: none;
+            border-radius: 8px; font-size: 1.3rem; font-weight: 700; cursor: pointer;
+        }
+        .select-note { font-size: 0.8rem; color: var(--gray); margin: 0.5rem 0; line-height: 1.4; }
+        .empty-hint { text-align: center; color: var(--gray); font-size: 0.9rem; padding: 1rem; background: var(--input-bg); border-radius: 8px; }
+
+        .total-box {
+            display: flex; justify-content: space-between; align-items: center;
+            background: var(--input-bg); padding: 1rem; border-radius: 8px; margin: 1rem 0;
+        }
+        .total-label { font-weight: 600; }
+        .total-val { font-size: 1.2rem; font-weight: 700; color: var(--primary); }
+
+        .file-upload {
+            display: flex; align-items: center; gap: 0.8rem; padding: 0.8rem;
+            background: var(--input-bg); border-radius: 8px; margin-top: 0.5rem;
+        }
+        .btn-choose {
+            background: var(--primary); color: #000; border: none; padding: 0.5rem 1rem;
+            border-radius: 6px; font-weight: 600; cursor: pointer;
+        }
+        .file-text { font-size: 0.85rem; color: var(--gray); }
+        .file-note { font-size: 0.8rem; color: var(--gray); margin-top: 0.4rem; }
+
+        .btn-submit {
+            width: 100%; padding: 1rem; background: var(--primary); color: #000;
+            border: none; border-radius: 10px; font-weight: 700; font-size: 1rem;
+            margin: 0.5rem 0; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+        .btn-check {
+            width: 100%; padding: 0.9rem; background: var(--input-bg); color: #fff;
+            border: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1rem;
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>🎤 JASA SUSUN MELODI VOCAL</p>
+            <h2>Susun Melodi Vocal</h2>
+            <p>Pilih bagian lagu yang ingin dibuatkan melodi vocal, tentukan timestamp-nya, lalu kirim pesanan.</p>
+        </div>
+        <div class="music-icon">🎵</div>
+    </div>
+
+    <!-- HARGA -->
+    <p class="price-main">💰 IDR 15.000 / bagian</p>
+    <p class="price-note">💡 Setiap bagian lagu yang dipilih dikenakan harga IDR 15.000.</p>
+
+    <!-- FORM -->
+    <div class="form-card">
+        <div class="form-group">
+            <label class="form-label">👤 Nama Customer</label>
+            <input type="text" class="form-input" placeholder="Contoh: Muslih">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📱 Nomor WhatsApp</label>
+            <input type="tel" class="form-input" placeholder="Contoh: 081234567890">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">1️⃣ Judul Lagu</label>
+            <input type="text" class="form-input" placeholder="Contoh: Empat Mata">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">2️⃣ Link Lagu</label>
+            <input type="url" class="form-input" placeholder="Contoh: https://youtu.be/abcd1234">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">3️⃣ Bagian Melodi yang Dipesan</label>
+            <div class="select-plus-row">
+                <select class="form-select flex-1">
+                    <option>Pilih Bagian Lagu</option>
+                    <option>Intro</option>
+                    <option>Verse</option>
+                    <option>Reff</option>
+                    <option>Bridge</option>
+                    <option>Outro</option>
+                </select>
+                <button class="btn-add">+</button>
+            </div>
+            <p class="select-note">Pilih bagian lagu, klik +, lalu isi waktu mulai dan waktu selesai sesuai timestamp pada link lagu.</p>
+            <p class="empty-hint">Belum ada bagian yang dipilih.</p>
+        </div>
+
+        <div class="total-box">
+            <span class="total-label">TOTAL PESANAN</span>
+            <span class="total-val">IDR 0</span>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">4️⃣ Metode Pembayaran</label>
+            <select class="form-select">
+                <option>Pilih Metode Pembayaran</option>
+                <option>DANA</option>
+                <option>QRIS</option>
+                <option>Bank Transfer</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">5️⃣ Upload Bukti Transfer</label>
+            <div class="file-upload">
+                <button class="btn-choose">Pilih File</button>
+                <span class="file-text">Tidak ada file yang dipilih</span>
+            </div>
+            <p class="file-note">Upload screenshot/foto bukti pembayaran. Format JPG, PNG, atau WEBP, maksimal 5 MB.<br>Belum ada file dipilih.</p>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">6️⃣ Catatan / Request Khusus</label>
+            <textarea class="form-textarea" placeholder="Contoh: melodinya ingin terdengar catchy dan mudah dinyanyikan."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">6️⃣ Catatan / Request Khusus</label>
+            <textarea class="form-textarea" placeholder="Contoh: melodinya ingin terdengar catchy dan mudah dinyanyikan."></textarea>
+        </div>
+
+        <button class="btn-submit">🟢 Kirim Pesanan</button>
+        <button class="btn-check">🔍 Cek Proses Pesanan</button>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
+<a href="bukti-transaksi.html" class="menu-item">
+    <span class="menu-icon">📸</span>
+    <span>Bukti Transaksi</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Bukti Transaksi</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(40,80,120,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .check-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* SECTION HEADER */
+        .section-card {
+            background: var(--bg-card); border-radius: 14px; padding: 1.3rem; margin-bottom: 1rem;
+        }
+        .section-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 1rem; }
+
+        .rating-btn {
+            width: 100%; padding: 0.9rem; background: var(--input-bg);
+            border: none; border-radius: 10px; color: #fff; font-size: 0.95rem;
+            margin-bottom: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+
+        /* PROOF CARD */
+        .proof-card {
+            background: var(--input-bg); border-radius: 12px; overflow: hidden;
+        }
+        .proof-img-wrap {
+            position: relative; width: 100%; aspect-ratio: 4/5; background: #1a1a2e;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        .proof-img-placeholder {
+            width: 100%; height: 100%; background: linear-gradient(135deg, #fefefe 0%, #e0e0e0 100%);
+            display: flex; align-items: center; justify-content: center; color: #333;
+            position: relative;
+        }
+        .redact-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 40% 50%, #ff4422 0%, #ff4422 55%, transparent 55%);
+            opacity: 0.95; pointer-events: none;
+        }
+        .share-icon {
+            position: absolute; right: 1rem; bottom: 1rem;
+            width: 36px; height: 36px; background: rgba(0,0,0,0.5); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1rem;
+        }
+        .proof-label {
+            padding: 0.8rem 1rem 0.4rem; font-weight: 600; font-size: 0.9rem;
+        }
+        .proof-details {
+            padding: 0.5rem 1rem 1rem;
+        }
+        .proof-details p { margin: 0.4rem 0; font-size: 0.9rem; }
+        .proof-details strong { display: inline-block; min-width: 90px; color: var(--primary); }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>📸 BUKTI TRANSAKSI</p>
+            <h2>Bukti Transaksi</h2>
+            <p>Lihat bukti transaksi pelanggan EGI PERDANA SHOP sebagai referensi dan tanda kepercayaan sebelum melakukan pemesanan.</p>
+        </div>
+        <div class="check-icon">✓</div>
+    </div>
+
+    <!-- PROOF SECTION -->
+    <div class="section-card">
+        <h3 class="section-title">📸 Bukti Transaksi Pelanggan</h3>
+        <p class="section-desc">Bukti yang tampil di sini telah dipublikasikan oleh admin.</p>
+
+        <button class="rating-btn">💬 Beri Rating & Komentar</button>
+
+        <!-- SINGLE PROOF ITEM -->
+        <div class="proof-card">
+            <div class="proof-img-wrap">
+                <div class="proof-img-placeholder">
+                    <span>📄 Bukti Pembayaran</span>
+                    <div class="redact-overlay"></div>
+                </div>
+                <span class="share-icon">↗</span>
+            </div>
+            <p class="proof-label">Website Pembayaran - EGI Perdana</p>
+            <div class="proof-details">
+                <p><strong>ID Transaksi</strong>: EP-826903</p>
+                <p><strong>Produk</strong>: FLM MAMAN FVNDY</p>
+                <p><strong>Nominal</strong>: Rp100.000</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item active">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
+<a href="review-komentar.html" class="menu-item">
+    <span class="menu-icon">⭐</span>
+    <span>Review & Komentar</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Review & Komentar</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --star: #ffd700;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(40,80,120,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .star-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* RATING SUMMARY */
+        .rating-summary {
+            background: var(--bg-card); border-radius: 14px; padding: 1.5rem 1.3rem;
+            margin-bottom: 1.2rem; display: flex; align-items: center; gap: 1.5rem;
+        }
+        .rating-score { font-size: 2.5rem; font-weight: 700; line-height: 1; }
+        .stars-row { color: var(--star); font-size: 1.2rem; margin-top: 0.3rem; }
+        .rating-count p { color: var(--gray); font-size: 0.9rem; margin-top: 0.3rem; }
+
+        /* FORM CARD */
+        .form-card { background: var(--bg-card); border-radius: 14px; padding: 1.3rem; }
+        .form-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 1.2rem; }
+        .form-group { margin-bottom: 1.2rem; }
+        .form-label {
+            font-size: 0.95rem; font-weight: 600; margin-bottom: 0.6rem; display: flex; align-items: center; gap: 0.4rem;
+        }
+        .form-input, .form-textarea {
+            width: 100%; padding: 0.9rem 1rem; background: var(--input-bg);
+            border: none; border-radius: 8px; color: #fff; font-size: 0.95rem;
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: var(--gray); }
+        .form-textarea { min-height: 100px; resize: vertical; }
+
+        .stars-select {
+            display: flex; gap: 0.5rem; font-size: 1.8rem; color: var(--star); cursor: pointer;
+        }
+        .star-empty { color: #444; }
+
+        .upload-note { font-size: 0.85rem; color: var(--gray); margin-top: 0.4rem; }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>💬 REVIEW PELANGGAN</p>
+            <h2>Komentar & Rating</h2>
+            <p>Bagikan pengalaman kamu setelah menggunakan layanan EGI PERDANA SHOP.</p>
+        </div>
+        <div class="star-icon">⭐</div>
+    </div>
+
+    <!-- RATING SUMMARY -->
+    <div class="rating-summary">
+        <div>
+            <div class="rating-score">5.0</div>
+            <div class="stars-row">⭐⭐⭐⭐⭐</div>
+        </div>
+        <div class="rating-count">
+            <p style="font-size: 1.1rem; font-weight: 600;">3 komentar</p>
+            <p>Rating & komentar pelanggan</p>
+        </div>
+    </div>
+
+    <!-- FORM KOMENTAR -->
+    <div class="form-card">
+        <h3 class="form-title">Tulis Komentar</h3>
+
+        <div class="form-group">
+            <label class="form-label">👤 Nama</label>
+            <input type="text" class="form-input" placeholder="Nama kamu">
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">⭐ Rating</label>
+            <div class="stars-select">
+                <span>⭐</span>
+                <span>⭐</span>
+                <span>⭐</span>
+                <span>⭐</span>
+                <span>⭐</span>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📝 Komentar</label>
+            <textarea class="form-textarea" placeholder="Tulis pengalaman kamu..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label class="form-label">📷 Upload Foto <span style="color:var(--gray); font-weight:normal; font-size:0.9rem">(opsional, maks. 5 MB)</span></label>
+            <input type="file" accept="image/*" class="form-input" style="padding: 0.7rem 1rem; cursor: pointer;">
+        </div>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item active">💬 Review</a>
+</nav>
+
+</body>
+</html>
