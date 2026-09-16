@@ -1,0 +1,183 @@
+<a href="cek-pesanan.html" class="menu-item">
+    <span class="menu-icon">🔍</span>
+    <span>Cek Pesanan</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Cek Pesanan</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(0,40,80,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+            --inactive: rgba(255,255,255,0.1);
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .search-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* BACK BUTTON */
+        .back-btn {
+            width: 100%; padding: 0.9rem; background: var(--input-bg);
+            border: none; border-radius: 10px; color: #fff; font-size: 0.95rem;
+            margin-bottom: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+
+        /* TABS */
+        .tabs { display: flex; gap: 0.5rem; margin-bottom: 1.5rem; }
+        .tab {
+            flex: 1; padding: 0.8rem 0.5rem; background: var(--inactive);
+            border: none; border-radius: 10px; color: var(--gray); font-size: 0.85rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.3rem;
+        }
+        .tab.active {
+            background: rgba(0,229,176,0.15); color: var(--primary);
+            border: 1px solid rgba(0,229,176,0.25);
+        }
+
+        /* FORM CARD */
+        .form-card { background: var(--bg-card); border-radius: 14px; padding: 1.5rem; }
+        .form-title { font-size: 1.1rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.4rem; }
+        .form-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 1.2rem; line-height: 1.5; }
+        .form-input {
+            width: 100%; padding: 1rem; background: var(--input-bg);
+            border: none; border-radius: 10px; color: #fff; font-size: 1rem; margin-bottom: 1rem;
+        }
+        .form-input::placeholder { color: var(--gray); }
+        .btn-row { display: flex; gap: 0.8rem; }
+        .btn-check {
+            flex: 1.2; padding: 1rem; background: var(--primary); color: #000;
+            border: none; border-radius: 10px; font-weight: 700; font-size: 1rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+        }
+        .btn-refresh {
+            flex: 1; padding: 1rem; background: var(--input-bg); color: #fff;
+            border: none; border-radius: 10px; font-weight: 600; font-size: 0.95rem;
+            cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.4rem;
+        }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>🔍 CEK STATUS PESANAN</p>
+            <h2>Cek Proses Pesanan</h2>
+            <p>Pilih jenis pesanan di bawah, lalu masukkan kode pesanan untuk melihat status terbaru dan riwayat prosesnya.</p>
+        </div>
+        <div class="search-icon">🔍</div>
+    </div>
+
+    <!-- KEMBALI -->
+    <button class="back-btn">← Kembali ke Pemesanan Remix</button>
+
+    <!-- TABS -->
+    <div class="tabs">
+        <button class="tab active">🎵 Pesanan Lagu</button>
+        <button class="tab">🎹 Susun Melodi</button>
+        <button class="tab">🎼 Chord & BPM</button>
+    </div>
+
+    <!-- FORM -->
+    <div class="form-card">
+        <h3 class="form-title">🔍 Cek Pesanan Lagu</h3>
+        <p class="form-desc">Gunakan kode RMX-xxxxxx untuk melihat status terbaru dan riwayat proses pesanan lagu.</p>
+        
+        <input type="text" class="form-input" placeholder="Contoh: RMX-746580">
+        
+        <div class="btn-row">
+            <button class="btn-check">🔍 Cek Pesanan</button>
+            <button class="btn-refresh">🔄 Refresh</button>
+        </div>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>

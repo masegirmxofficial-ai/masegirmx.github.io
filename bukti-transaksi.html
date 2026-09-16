@@ -1,0 +1,190 @@
+<a href="bukti-transaksi.html" class="menu-item">
+    <span class="menu-icon">📸</span>
+    <span>Bukti Transaksi</span>
+</a>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EGI PERDANA SHOP — Bukti Transaksi</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+        :root {
+            --primary: #00e5b0;
+            --bg-dark: #051a2c;
+            --bg-card: rgba(40,80,120,0.35);
+            --input-bg: rgba(255,255,255,0.06);
+            --text: #ffffff;
+            --gray: #8ab4c8;
+        }
+        body {
+            background: linear-gradient(180deg, #051a2c 0%, #0a2a42 50%, #051a2c 100%);
+            color: var(--text);
+            min-height: 100vh;
+            padding-bottom: 85px;
+        }
+        /* HEADER */
+        .header {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 1rem 1.2rem;
+            background: rgba(0,20,40,0.85);
+            position: sticky; top: 0; z-index: 100;
+        }
+        .header-left { display: flex; align-items: center; gap: 0.8rem; }
+        .menu-btn {
+            width: 40px; height: 40px;
+            background: rgba(0,229,176,0.1);
+            border-radius: 8px; border: none;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.1rem; color: #fff; cursor: pointer;
+        }
+        .logo-circle {
+            width: 40px; height: 40px;
+            background: #000; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-weight: bold; color: var(--primary); font-size: 1.1rem;
+        }
+        .brand h1 { font-size: 1rem; font-weight: 700; }
+        .brand p { font-size: 0.7rem; color: var(--gray); }
+        .cart-icon { font-size: 1.4rem; color: var(--primary); }
+        .container { padding: 1rem 1.2rem; max-width: 520px; margin: 0 auto; }
+
+        /* TOP CARD */
+        .top-card {
+            background: rgba(0,60,100,0.25); border-radius: 14px; padding: 1.3rem;
+            margin-bottom: 1.2rem; display: flex; justify-content: space-between; align-items: flex-start;
+        }
+        .top-text p:first-child { color: var(--primary); font-size: 0.85rem; font-weight: 600; margin-bottom: 0.4rem; }
+        .top-text h2 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+        .top-text p:last-child { font-size: 0.9rem; color: var(--gray); line-height: 1.5; }
+        .check-icon {
+            width: 48px; height: 48px; background: rgba(0,229,176,0.15);
+            border-radius: 10px; display: flex; align-items: center; justify-content: center;
+            font-size: 1.4rem; color: var(--primary);
+        }
+
+        /* SECTION HEADER */
+        .section-card {
+            background: var(--bg-card); border-radius: 14px; padding: 1.3rem; margin-bottom: 1rem;
+        }
+        .section-title { font-size: 1.15rem; font-weight: 700; margin-bottom: 0.4rem; display: flex; align-items: center; gap: 0.5rem; }
+        .section-desc { font-size: 0.85rem; color: var(--gray); margin-bottom: 1rem; }
+
+        .rating-btn {
+            width: 100%; padding: 0.9rem; background: var(--input-bg);
+            border: none; border-radius: 10px; color: #fff; font-size: 0.95rem;
+            margin-bottom: 1.2rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 0.5rem;
+        }
+
+        /* PROOF CARD */
+        .proof-card {
+            background: var(--input-bg); border-radius: 12px; overflow: hidden;
+        }
+        .proof-img-wrap {
+            position: relative; width: 100%; aspect-ratio: 4/5; background: #1a1a2e;
+            display: flex; align-items: center; justify-content: center;
+            overflow: hidden;
+        }
+        .proof-img-placeholder {
+            width: 100%; height: 100%; background: linear-gradient(135deg, #fefefe 0%, #e0e0e0 100%);
+            display: flex; align-items: center; justify-content: center; color: #333;
+            position: relative;
+        }
+        .redact-overlay {
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(circle at 40% 50%, #ff4422 0%, #ff4422 55%, transparent 55%);
+            opacity: 0.95; pointer-events: none;
+        }
+        .share-icon {
+            position: absolute; right: 1rem; bottom: 1rem;
+            width: 36px; height: 36px; background: rgba(0,0,0,0.5); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center; color: #fff; font-size: 1rem;
+        }
+        .proof-label {
+            padding: 0.8rem 1rem 0.4rem; font-weight: 600; font-size: 0.9rem;
+        }
+        .proof-details {
+            padding: 0.5rem 1rem 1rem;
+        }
+        .proof-details p { margin: 0.4rem 0; font-size: 0.9rem; }
+        .proof-details strong { display: inline-block; min-width: 90px; color: var(--primary); }
+
+        /* BOTTOM NAV */
+        .bottom-nav {
+            position: fixed; bottom: 0; left: 0; right: 0;
+            background: rgba(0,20,40,0.95);
+            display: flex; justify-content: space-around; padding: 0.7rem 0;
+            border-top: 1px solid rgba(0,229,176,0.15);
+        }
+        .nav-item {
+            display: flex; flex-direction: column; align-items: center; gap: 0.2rem;
+            font-size: 0.7rem; color: var(--gray);
+        }
+        .nav-item.active { color: var(--primary); }
+    </style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+    <div class="header-left">
+        <button class="menu-btn">☰</button>
+        <div class="logo-circle">EP</div>
+        <div class="brand">
+            <h1>EGI PERDANA SHOP</h1>
+            <p>FLM • PACK • JASA MUSIK</p>
+        </div>
+    </div>
+    <span class="cart-icon">🛒</span>
+</header>
+
+<div class="container">
+    <!-- TOP CARD -->
+    <div class="top-card">
+        <div class="top-text">
+            <p>📸 BUKTI TRANSAKSI</p>
+            <h2>Bukti Transaksi</h2>
+            <p>Lihat bukti transaksi pelanggan EGI PERDANA SHOP sebagai referensi dan tanda kepercayaan sebelum melakukan pemesanan.</p>
+        </div>
+        <div class="check-icon">✓</div>
+    </div>
+
+    <!-- PROOF SECTION -->
+    <div class="section-card">
+        <h3 class="section-title">📸 Bukti Transaksi Pelanggan</h3>
+        <p class="section-desc">Bukti yang tampil di sini telah dipublikasikan oleh admin.</p>
+
+        <button class="rating-btn">💬 Beri Rating & Komentar</button>
+
+        <!-- SINGLE PROOF ITEM -->
+        <div class="proof-card">
+            <div class="proof-img-wrap">
+                <div class="proof-img-placeholder">
+                    <span>📄 Bukti Pembayaran</span>
+                    <div class="redact-overlay"></div>
+                </div>
+                <span class="share-icon">↗</span>
+            </div>
+            <p class="proof-label">Website Pembayaran - EGI Perdana</p>
+            <div class="proof-details">
+                <p><strong>ID Transaksi</strong>: EP-826903</p>
+                <p><strong>Produk</strong>: FLM MAMAN FVNDY</p>
+                <p><strong>Nominal</strong>: Rp100.000</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<!-- NAV BAWAH -->
+<nav class="bottom-nav">
+    <a href="#" class="nav-item">🏠 Beranda</a>
+    <a href="#" class="nav-item">🎵 Jual FLM</a>
+    <a href="#" class="nav-item">📦 Pack</a>
+    <a href="#" class="nav-item active">✅ Bukti</a>
+    <a href="#" class="nav-item">💬 Review</a>
+</nav>
+
+</body>
+</html>
