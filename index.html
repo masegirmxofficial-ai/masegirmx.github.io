@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+ <html lang="id">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>EGI PERDANA SHOP — FLM • PACK • JASA MUSIK</title>
+     <style>
+         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+         :root {
+             --primary: #00e5b0;
+             --bg-dark: #0a2533;
+             --bg-card: rgba(15, 64, 89, 0.6);
+             --accent: #0099ff;
+             --text: #fff;
+             --muted: #94d2bd;
+             --success: #4ade80;
+             --danger: #e53935;
+         }
+         body {
+             background: linear-gradient(180deg, #0a2533 0%, #0f4059 100%);
+             color: var(--text);
+             min-height: 100vh;
+             padding-bottom: 90px;
+         }
+         a { text-decoration: none; color: inherit; }
+         /* Overlay & Sidebar */
+         .overlay {
+             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+             background: rgba(0,0,0,0.7); z-index: 199; display: none;
+         }
+         .overlay.active { display: block; }
+         .sidebar {
+             position: fixed; top: 0; left: 0; bottom: 0; width: 280px;
+             background: #0c2c3c; z-index: 200;
+             transform: translateX(-100%); transition: 0.3s;
+             overflow-y: auto; border-right: 1px solid rgba(0,229,176,0.2);
+         }
+         .sidebar.active { transform: translateX(0); }
+         .sidebar-header {
+             padding: 20px 16px; display: flex; align-items: center; gap: 12px;
+             border-bottom: 1px solid rgba(0,229,176,0.15);
+         }
+         .sidebar-logo {
+             width: 44px; height: 44px; border-radius: 50%; background: #000;
+             border: 2px solid var(--primary); display: flex; align-items: center;
+             justify-content: center; font-weight: bold; color: var(--primary);
+         }
+         .sidebar-close { margin-left: auto; background: none; border: none; color: white; font-size: 20px; cursor: pointer; }
+         .sidebar-menu { padding: 12px; }
+         .sidebar-item {
+             padding: 12px 14px; border-radius: 8px; margin-bottom: 4px; cursor: pointer;
+             display: flex; align-items: center; gap: 10px; transition: 0.2s;
+         }
+         .sidebar-item:hover, .sidebar-item.active { background: rgba(0,229,176,0.15); color: var(--primary); }
+         /* Header */
+         .header {
+             background: rgba(15, 64, 89, 0.85); backdrop-filter: blur(10px);
+             padding: 12px 16px; position: sticky; top: 0; z-index: 100;
+             display: flex; align-items: center; gap: 12px;
+             border-bottom: 1px solid rgba(0,229,176,0.2);
+         }
+         .menu-btn {
+             width: 40px; height: 40px; border-radius: 8px; border: none;
+             background: rgba(0,229,176,0.15); color: white; font-size: 20px; cursor: pointer;
+         }
+         .logo-circle {
+             width: 40px; height: 40px; border-radius: 50%; background: #000;
+             border: 2px solid var(--primary); display: flex; align-items: center;
+             justify-content: center; font-weight: bold; color: var(--primary);
+         }
+         .cart-icon { margin-left: auto; font-size: 24px; cursor: pointer; position: relative; }
+         .cart-badge {
+             position: absolute; top: -6px; right: -6px; background: var(--danger);
+             color: white; font-size: 11px; min-width: 18px; height: 18px;
+             border-radius: 50%; display: flex; align-items: center; justify-content: center;
+         }
+         /* Container */
+         .container { padding: 16px; max-width: 480px; margin: 0 auto; }
+         .page { display: none; }
+         .page.active { display: block; }
+         .hero {
+             background: var(--bg-card); border-radius: 16px; padding: 20px; margin-bottom: 16px;
+             border: 1px solid rgba(0,229,176,0.2);
+         }
+         .promo {
+             background: linear-gradient(90deg, #00b894, #00cec9);
+             border-radius: 10px; padding: 12px; text-align: center;
+             font-weight: 700; margin-bottom: 20px; color: #000;
+         }
+         .section-title {
+             font-size: 18px; font-weight: 700; margin: 24px 0 12px;
+             display: flex; align-items: center; gap: 8px;
+             border-bottom: 2px solid var(--primary); padding-bottom: 6px;
+         }
+         /* FLM Grid */
+         .flm-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; }
+         .flm-card {
+             background: var(--bg-card); border-radius: 12px; overflow: hidden;
+             border: 1px solid rgba(0,229,176,0.15);
+         }
+         .flm-cover {
+             aspect-ratio: 3/4; background: linear-gradient(135deg, #1e3a5f, #0f4059);
+             display: flex; align-items: center; justify-content: center; position: relative;
+         }
+         .play-btn {
+             width: 48px; height: 48px; border-radius: 50%; border: none;
+             background: rgba(0,153,255,0.8); color: white; font-size: 20px;
+             cursor: pointer; display: flex; align-items: center; justify-content: center;
+         }
+         .flm-info { padding: 12px; }
+         .flm-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; }
+         .flm-sold { font-size: 11px; color: var(--success); margin-bottom: 6px; }
+         .price-new { color: var(--primary); font-weight: 700; font-size: 16px; }
+         .flm-actions { display: flex; gap: 6px; margin-top: 8px; }
+         .btn-small {
+             flex: 1; padding: 8px; border-radius: 6px; border: none; cursor: pointer;
+             font-size: 13px; font-weight: 600;
+         }
+         .btn-cart { background: rgba(0,153,255,0.25); color: white; }
+         .btn-buy { background: var(--primary); color: #000; }
+         /* Form & Cards */
+         .form-card {
+             background: var(--bg-card); border-radius: 14px; padding: 20px;
+             margin-bottom: 16px; border: 1px solid rgba(0,229,176,0.15);
+         }
+         label { display: block; margin-bottom: 6px; font-size: 14px; font-weight: 600; }
+         input, select, textarea, button {
+             width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(0,229,176,0.2);
+             background: rgba(0,0,0,0.25); color: white; font-size: 14px; margin-bottom: 12px;
+         }
+         button { cursor: pointer; font-weight: 600; border: none; }
+         .btn-primary { background: linear-gradient(90deg, #0099ff, #00d4ff); }
+         .btn-success { background: linear-gradient(90deg, #00b894, #00cec9); color: #000; }
+         /* Keranjang Popup */
+         .popup {
+             position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%);
+             background: #0f3443; border-radius: 16px; padding: 24px;
+             width: 90%; max-width: 420px; z-index: 202; display: none;
+             border: 2px solid var(--primary); max-height: 85vh; overflow-y: auto;
+         }
+         .popup.active { display: block; }
+         .popup-head { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+         .popup-close { background: none; border: none; color: white; font-size: 22px; cursor: pointer; }
+         .cart-item {
+             padding: 10px 0; border-bottom: 1px solid rgba(0,229,176,0.2);
+             display: flex; justify-content: space-between; align-items: center;
+         }
+         .cart-del {
+             padding: 6px 10px; background: var(--danger); border: none; border-radius: 6px;
+             color: white; font-size: 12px; width: auto; margin: 0;
+         }
+         .cart-total {
+             margin-top: 16px; padding-top: 12px; border-top: 2px solid var(--primary);
+             font-size: 18px; font-weight: 700; display: flex; justify-content: space-between;
+         }
+         .cart-checkout { width: 100%; margin-top: 16px; }
+         /* Stars */
+         .stars { font-size: 32px; cursor: pointer; letter-spacing: 4px; margin: 10px 0; }
+         .star { color: #444; transition: 0.2s; }
+         .star.active { color: #ffd700; }
+         .review-item {
+             background: rgba(0,0,0,0.2); border-radius: 10px; padding: 14px; margin-bottom: 10px;
+         }
+         .review-name { font-weight: 600; margin-bottom: 4px; }
+         /* Bottom Nav */
+         .bottom-nav {
+             position: fixed; bottom: 0; left: 0; right: 0;
+             background: rgba(10, 37, 51, 0.92); backdrop-filter: blur(10px);
+             display: flex; justify-content: space-around; padding: 10px 0;
+             border-top: 1px solid rgba(0,229,176,0.2); z-index: 100;
+         }
+         .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; color: var(--muted); cursor: pointer; }
+         .nav-item.active { color: var(--primary); font-weight: 700; }
+         .nav-icon { font-size: 18px; }
+         .hidden { display: none !important; }
+         .qris-preview { max-width: 200px; margin: 10px auto; border-radius: 8px; }
+     </style>
+ </head>
+ <body>
+ <!-- Overlay -->
+ <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+ <!-- Sidebar -->
+ <div class="sidebar" id="sidebar">
+     <div class="sidebar-header">
+         <div class="sidebar-logo">EP</div>
+         <div>
+             <h3>EGI PERDANA SHOP</h3>
+             <p style="font-size:11px; color:var(--muted)">FLM • PACK • JASA MUSIK</p>
+         </div>
+         <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+     </div>
+     <div class="sidebar-menu">
+         <div class="sidebar-item active" data-page="beranda" onclick="switchPage('beranda')">🏠 Beranda</div>
+         <div class="sidebar-item" data-page="flm" onclick="switchPage('flm')">📦 FLM Satuan</div>
+         <div class="sidebar-item" data-page="pack" onclick="switchPage('pack')">🎁 Sample Pack</div>
+         <div class="sidebar-item" data-page="request" onclick="switchPage('request')">🎵 Request FLM</div>
+         <div class="sidebar-item" data-page="remix" onclick="switchPage('remix')">🎤 Pesan Remix</div>
+         <div class="sidebar-item" data-page="bukti" onclick="switchPage('bukti')">📸 Kirim Bukti Bayar</div>
+         <div class="sidebar-item" data-page="cek" onclick="switchPage('cek')">🔍 Cek Status Pesanan</div>
+         <div class="sidebar-item" data-page="review" onclick="switchPage('review')">⭐ Ulasan</div>
+         <div class="sidebar-item" data-page="pembayaran" onclick="switchPage('pembayaran')">💳 Pembayaran</div>
+     </div>
+ </div>
+ <!-- Keranjang Popup -->
+ <div class="popup" id="cartPopup">
+     <div class="popup-head">
+         <h3>🛒 Keranjang Belanja</h3>
+         <button class="popup-close" onclick="tutupKeranjang()">✕</button>
+     </div>
+     <div id="cartList"></div>
+     <div class="cart-total" id="cartTotal" style="display:none;">
+         <span>TOTAL</span>
+         <span id="totalHarga">Rp 0</span>
+     </div>
+     <button class="btn-primary cart-checkout" id="checkoutBtn" style="display:none;" onclick="checkoutKeranjang()">✅ Checkout ke WhatsApp</button>
+     <p id="cartEmpty" style="text-align:center; color:var(--muted); padding:20px;">Keranjang masih kosong</p>
+ </div>
+ <!-- Header -->
+ <div class="header">
+     <button class="menu-btn" onclick="bukaSidebar()">☰</button>
+     <div class="logo-circle">EP</div>
+     <div>
+         <h1 style="font-size:15px;">EGI PERDANA SHOP</h1>
+         <p style="font-size:11px; color:var(--muted)">FLM • PACK • JASA MUSIK</p>
+     </div>
+     <div class="cart-icon" onclick="bukaKeranjang()">
+         🛒 <span class="cart-badge" id="cartBadge" style="display:none;">0</span>
+     </div>
+ </div>
+ <div class="container">
+ <!-- ============= BERANDA ============= -->
+ <div id="page-beranda" class="page active">
+     <div class="hero">
+         <h2>🎧 Selamat Datang!</h2>
+         <p style="color:var(--muted); margin:8px 0;">EGI PERDANA SHOP — Semua Kebutuhan Musikmu</p>
+         <p style="font-size:13px; line-height:1.6;">FLM Siap Pakai • Sample Pack • Jasa Remix • Pembayaran Mudah DANA</p>
+     </div>
+     <div class="promo">🔥 PROMO — Semua FLM Cuma Rp 90.000!</div>
+     
+     <h3 class="section-title">Produk Unggulan</h3>
+     <div class="flm-grid">
+         <div class="flm-card">
+             <div class="flm-cover">
+                 <button class="play-btn" onclick="putarMusik('sample1.mp3')">▶</button>
+             </div>
+             <div class="flm-info">
+                 <div class="flm-name">STYLE BABAT TRETETEW</div>
+                 <div class="flm-sold">✅ Terjual 20</div>
+                 <div class="price-new">Rp 90.000</div>
+                 <div class="flm-actions">
+                     <button class="btn-small btn-cart" onclick="tambahKeranjang('STYLE BABAT TRETETEW', 90000)">🛒</button>
+                     <button class="btn-small btn-buy" onclick="bukaWA('STYLE BABAT TRETETEW', 'Beli')">Beli</button>
+                 </div>
+             </div>
+         </div>
+         <div class="flm-card">
+             <div class="flm-cover">
+                 <button class="play-btn" onclick="putarMusik('sample2.mp3')">▶</button>
+             </div>
+             <div class="flm-info">
+                 <div class="flm-name">STYLE F17</div>
+                 <div class="flm-sold">✅ Baru Tersedia</div>
+                 <div class="price-new">Rp 90.000</div>
+                 <div class="flm-actions">
+                     <button class="btn-small btn-cart" onclick="tambahKeranjang('STYLE F17', 90000)">🛒</button>
+                     <button class="btn-small btn-buy" onclick="bukaWA('STYLE F17', 'Beli')">Beli</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!-- ============= FLM SATUAN ============= -->
+ <div id="page-flm" class="page">
+     <h2 class="section-title">📦 FLM Satuan</h2>
+     <p style="color:var(--muted); margin-bottom:16px;">Semua Rp 90.000 / file</p>
+     <div class="flm-grid">
+         <!-- 1 -->
+         <div class="flm-card">
+             <div class="flm-cover"><button class="play-btn" onclick="putarMusik('drophh.mp3')">▶</button></div>
+             <div class="flm-info">
+                 <div class="flm-name">1. STYLE DROP BBHC</div>
+                 <div class="price-new">Rp 90.000</div>
+                 <div class="flm-actions">
+                     <button class="btn-small btn-cart" onclick="tambahKeranjang('STYLE DROP BBHC', 90000)">🛒</button>
+                     <button class="btn-small btn-buy" onclick="bukaWA('STYLE DROP BBHC', 'Beli')">Beli</button>
+                 </div>
+             </div>
+         </div>
+         <!-- 2 -->
+         <div class="flm-card">
+             <div class="flm-cover"><button class="play-btn" onclick="putarMusik('funkot.mp3')">▶</button></div>
+             <div class="flm-info">
+                 <div class="flm-name">2. STYLE FUNKOT</div>
+                 <div class="price-new">Rp 90.000</div>
+                 <div class="flm-actions">
+                     <button class="btn-small btn-cart" onclick="tambahKeranjang('STYLE FUNKOT', 90000)">🛒</button>
+                     <button class="btn-small btn-buy" onclick="bukaWA('STYLE FUNKOT', 'Beli')">Beli</button>
+                 </div>
+             </div>
+         </div>
+         <!-- 3 -->
+         <div class="flm-card">
+             <div class="flm-cover"><button class="play-btn" onclick="putarMusik('gedruk.mp3')">▶</button></div>
+             <div class="flm-info">
+                 <div class="flm-name">3. STYLE GEDRUK</div>
+                 <div class="price-new">Rp 90.000</div>
+                 <div class="flm-actions">
+                     <button class="btn-small btn-cart" onclick="tambahKeranjang('STYLE GEDRUK', 90000)">🛒</button>
+                     <button class="btn-small btn-buy" onclick="bukaWA('STYLE GEDRUK', 'Beli')">Beli</button>
+                 </div>
+             </div>
+         </div>
+         <!-- 4 -->
+         <div class="flm-card">
+             <div class="flm-cover"><button class="play-btn" onclick="putarMusik('kondang.mp3')">▶</button></div>
+             <div class="flm-info">
+                 <div class="flm-name">4. STYLE KONDANG</div>
+                 <div class="price-new">Rp 90.000</div>
+                 <div class="flm-actions">
+                     <button class="btn-small btn-cart" onclick="tambahKeranjang('STYLE KONDANG', 90000)">🛒</button>
+                     <button class="btn-small btn-buy" onclick="bukaWA('STYLE KONDANG', 'Beli')">Beli</button>
+                 </div>
+             </div>
+         </div>
+         <!-- 5 -->
+         <div class="flm-card">
+             <div class="flm-cover"><button class="play-btn" onclick="putarMusik('maman.mp3')">▶</button></div>
+             <div class="flm-info">
+                 <div class="flm-name">5. STYLE MAMAN FVNDY</div>
+                 <div class="price-new">Rp 90.000</div>
+                 <div class="flm-actions">
+                     <button class="btn-small btn-cart" onclick="tambahKeranjang('STYLE MAMAN FVNDY', 90000)">🛒</button>
+                     <button class="btn-small btn-buy" onclick="bukaWA('STYLE MAMAN FVNDY', 'Beli')">Beli</button>
+                 </div>
+             </div>
+         </div>
+         <!-- 6 -->
+         <div class="flm-card">
+             <div class="flm-cover"><button class="play-btn" onclick="putarMusik('pani.mp3')">▶</button></div>
+             <div class="flm-info">
+                 <div class="flm-name">6. STYLE PANI FVNKY</div>
+                 <div class="price-new">Rp 90.000</div>
+                 <div class="flm-actions">
+                     <button class="btn-small btn-cart" onclick="tambahKeranjang('STYLE PANI FVNKY', 90000)">🛒</button>
+                     <button class="btn-small btn-buy" onclick="bukaWA('STYLE PANI FVNKY', 'Beli')">Beli</button>
+                 </div>
+             </div>
+         </div>
+         <!-- 7 -->
+         <div class="flm-card">
+             <div class="flm-cover"><button class="play-btn" onclick="putarMusik('trap.mp3')">▶</button></div>
+             <div class="flm-info">
+                 <div class="flm-name">7. STYLE TRAP HOREG</div>
+                 <div class="price-new">Rp 90.000</div>
+                 <div class="flm-actions">
+                     <button class="btn-small btn-cart" onclick="tambahKeranjang('STYLE TRAP HOREG', 90000)">🛒</button>
+                     <button class="btn-small btn-buy" onclick="bukaWA('STYLE TRAP HOREG', 'Beli')">Beli</button>
+                 </div>
+             </div>
+         </div>
+         <!-- 8 -->
+         <div class="flm-card">
+             <div class="flm-cover"><button class="play-btn" onclick="putarMusik('xputz.mp3')">▶</button></div>
+             <div class="flm-info">
+                 <div class="flm-name">8. STYLE XPUTZ</div>
+                 <div class="price-new">Rp 90.000</div>
+                 <div class="flm-actions">
+                     <button class="btn-small btn-cart" onclick="tambahKeranjang('STYLE XPUTZ', 90000)">🛒</button>
+                     <button class="btn-small btn-buy" onclick="bukaWA('STYLE XPUTZ', 'Beli')">Beli</button>
+                 </div>
+             </div>
+         </div>
+         <!-- 9 -->
+         <div class="flm-card">
+             <div class="flm-cover"><button class="play-btn" onclick="putarMusik('babat.mp3')">▶</button></div>
+             <div class="flm-info">
+                 <div class="flm-name">9. STYLE BABAT TRETETEW</div>
+                 <div class="flm-sold">✅ Terjual 20</div>
+                 <div class="price-new">Rp 90.000</div>
+                 <div class="flm-actions">
+                     <button class="btn-small btn-cart" onclick="tambahKeranjang('STYLE BABAT TRETETEW', 90000)">🛒</button>
+                     <button class="btn-small btn-buy" onclick="bukaWA('STYLE BABAT TRETETEW', 'Beli')">Beli</button>
+                 </div>
+             </div>
+         </div>
+         <!-- 10 -->
+         <div class="flm-card">
+             <div class="flm-cover"><button class="play-btn" onclick="putarMusik('f17.mp3')">▶</button></div>
+             <div class="flm-info">
+                 <div class="flm-name">10. STYLE F17</div>
+                 <div class="flm-sold">✅ Baru</div>
+                 <div class="price-new">Rp 90.000</div>
+                 <div class="flm-actions">
+                     <button class="btn-small btn-cart" onclick="tambahKeranjang('STYLE F17', 90000)">🛒</button>
+                     <button class="btn-small btn-buy" onclick="bukaWA('STYLE F17', 'Beli')">Beli</button>
+                 </div>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!-- ============= SAMPLE PACK ============= -->
+ <div id="page-pack" class="page">
+     <h2 class="section-title">🎁 Sample Pack</h2>
+     <p style="color:var(--muted); margin-bottom:16px;">Lebih Hemat Beli Paket!</p>
+     
+     <div class="form-card">
+         <h3 style="margin-bottom:8px;">PAKET LENGKAP — 10 Style</h3>
+         <p style="color:var(--muted); margin-bottom:12px;">Dapatkan Semua FLM Sekaligus!</p>
+         <p class="price-new" style="font-size:24px;">Rp 810.000</p>
+         <p style="color:var(--success); margin-bottom:16px;">💰 Hemat Rp 90.000!</p>
+         <button class="btn-success" onclick="tambahKeranjang('PAKET LENGKAP 10 STYLE', 810000)">🛒 Tambah ke Keranjang</button>
+         <button class="btn-primary" style="margin-top:8px;" onclick="bukaWA('PAKET LENGKAP 10 STYLE', 'Beli Paket Lengkap')">Beli Sekarang</button>
+     </div>
+     
+     <div class="form-card">
+         <h3 style="margin-bottom:8px;">PAKET FAVORIT — 5 Style Terlaris</h3>
+         <p style="color:var(--muted); margin-bottom:12px;">Babat • F17 • Funkot • Gedruk • Trap</p>
+         <p class="price-new" style="font-size:24px;">Rp 400.000</p>
+         <p style="color:var(--success); margin-bottom:16px;">💰 Lebih Murah!</p>
+         <button class="btn-success" onclick="tambahKeranjang('PAKET FAVORIT 5 STYLE', 400000)">🛒 Tambah ke Keranjang</button>
+         <button class="btn-primary" style="margin-top:8px;" onclick="bukaWA('PAKET FAVORIT 5 STYLE', 'Beli Paket Favorit')">Beli Sekarang</button>
+     </div>
+ </div>
+ <!-- ============= REQUEST FLM ============= -->
+ <div id="page-request" class="page">
+     <h2 class="section-title">🎵 Request FLM Khusus</h2>
+     <p style="color:var(--muted); margin-bottom:16px;">Buat FLM Sesuai Lagu Kamu!</p>
+     <div class="form-card">
+         <label>Judul Lagu</label>
+         <input type="text" id="reqJudul" placeholder="Contoh: Sakit Berjuang">
+         
+         <label>Pilih Gaya</label>
+         <select id="reqStyle">
+             <option>-- Pilih Style --</option>
+             <option>DROP BBHC</option>
+             <option>FUNKOT</option>
+             <option>GEDRUK</option>
+             <option>KONDANG</option>
+             <option>MAMAN FVNDY</option>
+             <option>PANI FVNKY</option>
+             <option>TRAP HOREG</option>
+             <option>XPUTZ</option>
+             <option>BABAT TRETETEW</option>
+             <option>F17</option>
+             <option>Lainnya</option>
+         </select>
+         
+         <label>Catatan Tambahan</label>
+         <textarea id="reqCatatan" rows="3" placeholder="Tulis permintaan khusus..."></textarea>
+         
+         <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">💰 Harga: Rp 80.000 — Rp 150.000</p>
+         <button class="btn-primary" onclick="kirimRequest()">📤 Kirim Request ke WhatsApp</button>
+     </div>
+ </div>
+ <!-- ============= PESAN REMIX ============= -->
+ <div id="page-remix" class="page">
+     <h2 class="section-title">🎤 Pemesanan Remix Lagu</h2>
+     <p style="color:var(--muted); margin-bottom:16px;">Remixkan Lagu Favoritmu!</p>
+     <div class="form-card">
+         <label>Nama / Judul Lagu Asli</label>
+         <input type="text" id="remixJudul" placeholder="Contoh: Tak Ingin Usai">
+         
+         <label>Link Lagu Asli</label>
+         <input type="text" id="remixLink" placeholder="YouTube / Drive / dll">
+         
+         <label>Style Remix yang Diinginkan</label>
+         <select id="remixStyle">
+             <option>-- Pilih --</option>
+             <option>Slow Bass / Sad DJ</option>
+             <option>Funkot</option>
+             <option>Gedruk / Jaranan</option>
+             <option>DJ Viral TikTok</option>
+             <option>Sesuai Request FLM</option>
+         </select>
+         
+         <label>Catatan Khusus</label>
+         <textarea id="remixCatatan" rows="3" placeholder="Tempo, efek, bagian yang diinginkan..."></textarea>
+         
+         <p style="font-size:13px; color:var(--muted); margin-bottom:12px;">💰 Harga mulai Rp 100.000</p>
+         <button class="btn-primary" onclick="kirimRemix()">📤 Kirim Pesanan ke WhatsApp</button>
+     </div>
+ </div>
+ <!-- ============= KIRIM BUKTI ============= -->
+ <div id="page-bukti" class="page">
+     <h2 class="section-title">📸 Kirim Bukti Transaksi</h2>
+     <p style="color:var(--muted); margin-bottom:16px;">Sudah Bayar? Kirim Bukti di Sini!</p>
+     <div class="form-card">
+         <label>Nama Pemesan</label>
+         <input type="text" id="buktiNama" placeholder="Nama kamu...">
+         
+         <label>Produk yang Dibeli</label>
+         <input type="text" id="buktiProduk" placeholder="Contoh: STYLE F17">
+         
+         <label>Nominal Transfer</label>
+         <input type="number" id="buktiNominal" placeholder="Contoh: 90000">
+         
+         <label>Unggah Foto Bukti Bayar</label>
+         <input type="file" id="buktiFoto" accept="image/*" onchange="previewBukti(this)">
+         <img id="buktiPreview" class="qris-preview hidden" alt="Pratinjau bukti">
+         
+         <label>Catatan Tambahan</label>
+         <textarea id="buktiCatatan" rows="2" placeholder="Opsional..."></textarea>
+         
+         <button class="btn-success" onclick="kirimBukti()">✅ Kirim Bukti ke WhatsApp</button>
+     </div>
+ </div>
+ <!-- ============= CEK PESANAN ============= -->
+ <div id="page-cek" class="page">
+     <h2 class="section-title">🔍 Cek Status Pesanan</h2>
+     <p style="color:var(--muted); margin-bottom:16px;">Masukkan Nomor / Nama Pemesanan</p>
+     <div class="form-card">
+         <label>Nama / Nomor WhatsApp Pemesanan</label>
+         <input type="text" id="cekInput" placeholder="Contoh: Budi / 0812xxxx">
+         <button class="btn-primary" onclick="cekPesanan()">🔍 Cek Status</button>
+         
+         <div id="cekHasil" class="hidden" style="margin-top:16px; padding:16px; background:rgba(0,0,0,0.2); border-radius:10px;">
+             <h4 style="margin-bottom:8px;">Status Pesanan:</h4>
+             <p id="cekStatus">Menunggu Konfirmasi</p>
+             <p style="font-size:12px; color:var(--muted); margin-top:8px;">Untuk info lebih lanjut silakan hubungi WhatsApp kami</p>
+         </div>
+     </div>
+ </div>
+ <!-- ============= ULASAN ============= -->
+ <div id="page-review" class="page">
+     <h2 class="section-title">⭐ Ulasan Pelanggan</h2>
+     
+     <div id="daftarUlasan">
+         <div class="review-item">
+             <div class="review-name">🔥 Pelanggan Setia</div>
+             <div class="stars">⭐⭐⭐⭐⭐</div>
+             <p>Bagus banget, cepat dikirimnya! Recommended 👍</p>
+         </div>
+     </div>
+     
+     <div class="form-card" style="margin-top:24px;">
+         <h3 style="margin-bottom:12px;">Tulis Ulasanmu</h3>
+         <label>Beri Penilaian</label>
+         <div class="stars" id="bintangInput">
+             <span class="star" data-nilai="1">★</span>
+             <span class="star" data-nilai="2">★</span>
+             <span class="star" data-nilai="3">★</span>
+             <span class="star" data-nilai="4">★</span>
+             <span class="star" data-nilai="5">★</span>
+         </div>
+         <label>Nama Kamu</label>
+         <input type="text" id="ulasanNama" placeholder="Nama panggilan...">
+         <label>Komentar</label>
+         <textarea id="ulasanTeks" rows="3" placeholder="Bagaimana pengalamanmu..."></textarea>
+         <button class="btn-success" onclick="kirimUlasan()">✅ Kirim Ulasan</button>
+     </div>
+ </div>
+ <!-- ============= PEMBAYARAN ============= -->
+ <div id="page-pembayaran" class="page">
+     <h2 class="section-title">💳 Info Pembayaran</h2>
+     <div class="form-card">
+         <h3 style="margin-bottom:12px;">DANA</h3>
+         <p style="font-size:18px; font-weight:700; color:var(--primary); margin-bottom:4px;">0851-6718-2158</p>
+         <p style="color:var(--muted); margin-bottom:20px;">a.n. DIKA EGI WIBOWO</p>
+         
+         <h3 style="margin-bottom:12px;">QRIS</h3>
+         <p style="color:var(--muted); margin-bottom:12px;">Unggah & Tampilkan QRIS Kamu di Bawah:</p>
+         <input type="file" id="qrisUpload" accept="image/*" onchange="tampilQRIS(this)">
+         <div id="qrisArea" class="hidden">
+             <img id="qrisGambar" class="qris-preview" alt="QRIS">
+             <p style="text-align:center; color:var(--success); margin-top:8px;">✅ QRIS Sudah Aktif</p>
+         </div>
+         
+         <h3 style="margin:24px 0 12px;">WhatsApp</h3>
+         <p style="font-size:18px; font-weight:700; color:var(--accent);">0882-9331-1033</p>
+         <button class="btn-primary" style="margin-top:16px;" onclick="bukaWA('Info Pembayaran', 'Tanya Pembayaran')">💬 Hubungi via WhatsApp</button>
+     </div>
+ </div>
+ </div>
+ <!-- Bottom Nav -->
+ <div class="bottom-nav">
+     <div class="nav-item active" data-page="beranda" onclick="switchPage('beranda')">
+         <span class="nav-icon">🏠</span> Beranda
+     </div>
+     <div class="nav-item" data-page="flm" onclick="switchPage('flm')">
+         <span class="nav-icon">📦</span> FLM
+     </div>
+     <div class="nav-item" data-page="pack" onclick="switchPage('pack')">
+         <span class="nav-icon">🎁</span> Pack
+     </div>
+     <div class="nav-item" data-page="bukti" onclick="switchPage('bukti')">
+         <span class="nav-icon">📸</span> Bukti
+     </div>
+     <div class="nav-item" data-page="pembayaran" onclick="switchPage('pembayaran')">
+         <span class="nav-icon">💳</span> Bayar
+     </div>
+ </div>
+ <!-- ==============================================
+    SCRIPT: SEMUA FUNGSI BERFUNGSI
+    ============================================== -->
+ <script>
+ // === NOMOR KAMU ===
+ const NO_WA = '6288293311033';
+ const NO_DANA = '085167182158';
+ // === VARIABEL GLOBAL ===
+ let keranjang = [];
+ let pemutarMusik = null;
+ let nilaiBintang = 0;
+ let daftarUlasan = [
+     {nama: '🔥 Pelanggan Setia', bintang: 5, teks: 'Bagus banget, cepat dikirimnya! Recommended 👍'}
+ ];
+ // === SIDEBAR & NAVIGASI ===
+ function bukaSidebar() {
+     document.getElementById('sidebar').classList.add('active');
+     document.getElementById('overlay').classList.add('active');
+ }
+ function closeSidebar() {
+     document.getElementById('sidebar').classList.remove('active');
+     document.getElementById('overlay').classList.remove('active');
+ }
+ function switchPage(namaHalaman) {
+     document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+     document.getElementById(`page-${namaHalaman}`).classList.add('active');
+     closeSidebar();
+     document.querySelectorAll('.nav-item').forEach(item => {
+         item.classList.remove('active');
+         if (item.dataset.page === namaHalaman) item.classList.add('active');
+     });
+     document.querySelectorAll('.sidebar-item').forEach(item => {
+         item.classList.remove('active');
+         if (item.dataset.page === namaHalaman) item.classList.add('active');
+     });
+     window.scrollTo(0, 0);
+ }
+ // === 1. WHATSAPP ===
+ function bukaWA(namaProduk, aksi, pesanTambahan) {
+     let pesan = `Halo! Saya mau ${aksi}:\nProduk: ${namaProduk}\n`;
+     if (pesanTambahan) pesan += pesanTambahan + '\n';
+     pesan += '\nPembayaran ke DANA:\n' + NO_DANA;
+     const url = 'https://wa.me/' + NO_WA + '?text=' + encodeURIComponent(pesan);
+     window.open(url, '_blank');
+ }
+ // === 2. KERANJANG ===
+ function tambahKeranjang(nama, harga) {
+     keranjang.push({nama: nama, harga: harga});
+     updateKeranjang();
+     alert('✅ Ditambahkan!\n' + nama + '\nTotal: ' + keranjang.length + ' barang');
+ }
+ function hapusItemKeranjang(index) {
+     keranjang.splice(index, 1);
+     updateKeranjang();
+ }
+ function updateKeranjang() {
+     const badge = document.getElementById('cartBadge');
+     if (keranjang.length > 0) {
+         badge.style.display = 'flex';
+         badge.textContent = keranjang.length;
+     } else {
+         badge.style.display = 'none';
+     }
+ }
+ function bukaKeranjang() {
+     const popup = document.getElementById('cartPopup');
+     const list = document.getElementById('cartList');
+     const kosong = document.getElementById('cartEmpty');
+     const totalEl = document.getElementById('cartTotal');
+     const checkoutBtn = document.getElementById('checkoutBtn');
+     
+     list.innerHTML = '';
+     
+     if (keranjang.length === 0) {
+         kosong.style.display = 'block';
+         totalEl.style.display = 'none';
+         checkoutBtn.style.display = 'none';
+     } else {
+         kosong.style.display = 'none';
+         keranjang.forEach(function(item, idx) {
+             list.innerHTML += '<div class="cart-item"><div><div>' + item.nama + '</div><div style="color:var(--primary); font-weight:600;">Rp ' + item.harga.toLocaleString() + '</div></div><button class="cart-del" onclick="hapusItemKeranjang(' + idx + '); bukaKeranjang();">Hapus</button></div>';
+         });
+         const total = keranjang.reduce(function(sum, i) { return sum + i.harga; }, 0);
+         document.getElementById('totalHarga').textContent = 'Rp ' + total.toLocaleString();
+         totalEl.style.display = 'flex';
+         checkoutBtn.style.display = 'block';
+     }
+     popup.classList.add('active');
+ }
+ function tutupKeranjang() {
+     document.getElementById('cartPopup').classList.remove('active');
+ }
+ function checkoutKeranjang() {
+     if (keranjang.length === 0) return;
+     let daftar = keranjang.map(function(i) { return '- ' + i.nama + ': Rp ' + i.harga.toLocaleString(); }).join('\n');
+     let total = keranjang.reduce(function(sum, i) { return sum + i.harga; }, 0);
+     
+     const pesan = 'Halo! Saya mau pesan:\n\n' + daftar + '\n\nTOTAL: Rp ' + total.toLocaleString() + '\n\nBayar ke DANA:\n' + NO_DANA;
+     window.open('https://wa.me/' + NO_WA + '?text=' + encodeURIComponent(pesan), '_blank');
+     
+     keranjang = [];
+     updateKeranjang();
+     tutupKeranjang();
+ }
+ // === 3. PLAY MUSIK ===
+ function putarMusik(link) {
+     if (!pemutarMusik) {
+         pemutarMusik = new Audio(link);
+     } else {
+         pemutarMusik.pause();
+         pemutarMusik.src = link;
+     }
+     pemutarMusik.play()
+     .then(function() { alert('▶ Musik diputar'); })
+     .catch(function() { alert('ℹ️ Gagal putar — ganti link lagu dengan file aslimu'); });
+ }
+ // === 4. REQUEST FLM ===
+ function kirimRequest() {
+     const judul = document.getElementById('reqJudul').value || 'Tidak diisi';
+     const style = document.getElementById('reqStyle').value;
+     const catatan = document.getElementById('reqCatatan').value || '-';
+     bukaWA('Request FLM Khusus', 'Request FLM', 'Judul Lagu: ' + judul + '\nStyle: ' + style + '\nCatatan: ' + catatan);
+ }
+ // === 5. PESAN REMIX ===
+ function kirimRemix() {
+     const judul = document.getElementById('remixJudul').value || '-';
+     const link = document.getElementById('remixLink').value || '-';
+     const style = document.getElementById('remixStyle').value;
+     const catatan = document.getElementById('remixCatatan').value || '-';
+     bukaWA('Pemesanan Remix', 'Pesan Remix', 'Judul: ' + judul + '\nLink Lagu: ' + link + '\nStyle: ' + style + '\nCatatan: ' + catatan);
+ }
+ // === 6. KIRIM BUKTI ===
+ function previewBukti(input) {
+     const preview = document.getElementById('buktiPreview');
+     if (input.files && input.files[0]) {
+         const reader = new FileReader();
+         reader.onload = function(e) {
+             preview.src = e.target.result;
+             preview.classList.remove('hidden');
+         };
+         reader.readAsDataURL(input.files[0]);
+     }
+ }
+ function kirimBukti() {
+     const nama = document.getElementById('buktiNama').value || '-';
+     const produk = document.getElementById('buktiProduk').value || '-';
+     const nominal = document.getElementById('buktiNominal').value || '-';
+     const catatan = document.getElementById('buktiCatatan').value || '-';
+     bukaWA('Kirim Bukti Transaksi', 'Konfirmasi Pembayaran', 'Nama: ' + nama + '\nProduk: ' + produk + '\nNominal: Rp ' + nominal + '\nCatatan: ' + catatan + '\n\n⚠️ Silakan kirim foto bukti ke chat ini');
+ }
+ // === 7. CEK PESANAN ===
+ function cekPesanan() {
+     const input = document.getElementById('cekInput').value;
+     if (!input) { alert('Masukkan nama/nomor dulu!'); return; }
+     const hasil = document.getElementById('cekHasil');
+     hasil.classList.remove('hidden');
+     document.getElementById('cekStatus').innerHTML = '✅ Ditemukan pesanan atas nama: <strong>' + input + '</strong><br>Status: <span style="color:var(--success)">Menunggu Konfirmasi Admin</span><br>Estimasi: 1–3 jam kerja';
+ }
+ // === 8. ULASAN & BINTANG ===
+ document.addEventListener('DOMContentLoaded', function() {
+     const bintangWadah = document.getElementById('bintangInput');
+     if (bintangWadah) {
+         bintangWadah.querySelectorAll('.star').forEach(function(bintang) {
+             bintang.addEventListener('click', function() {
+                 nilaiBintang = parseInt(bintang.getAttribute('data-nilai'));
+                 bintangWadah.querySelectorAll('.star').forEach(function(el, idx) {
+                     if (idx < nilaiBintang) el.classList.add('active');
+                     else el.classList.remove('active');
+                 });
+             });
+         });
+     }
+ });
+ function kirimUlasan() {
+     const nama = document.getElementById('ulasanNama').value.trim() || 'Anonim';
+     const teks = document.getElementById('ulasanTeks').value.trim();
+     
+     if (nilaiBintang === 0) {
+         alert('Klik bintang dulu untuk beri penilaian ya! ⭐');
+         return;
+     }
+     if (!teks) {
+         alert('Tulis komentarmu dulu!');
+         return;
+     }
+     
+     daftarUlasan.unshift({ nama: nama, bintang: nilaiBintang, teks: teks });
+     renderUlasan();
+     
+     document.getElementById('ulasanNama').value = '';
+     document.getElementById('ulasanTeks').value = '';
+     nilaiBintang = 0;
+     document.querySelectorAll('#bintangInput .star').forEach(function(el) { el.classList.remove('active'); });
+     
+     alert('✅ Terima kasih atas ulasanmu!');
+ }
+ function renderUlasan() {
+     const wadah = document.getElementById('daftarUlasan');
+     wadah.innerHTML = '';
+     daftarUlasan.forEach(function(u) {
+         wadah.innerHTML += '<div class="review-item"><div class="review-name">' + u.nama + '</div><div class="stars">' + '⭐'.repeat(u.bintang) + '</div><p>' + u.teks + '</p></div>';
+     });
+ }
+ // === 9. QRIS ===
+ function tampilQRIS(input) {
+     if (input.files && input.files[0]) {
+         const reader = new FileReader();
+         reader.onload = function(e) {
+             document.getElementById('qrisGambar').src = e.target.result;
+             document.getElementById('qrisArea').classList.remove('hidden');
+         };
+         reader.readAsDataURL(input.files[0]);
+     }
+ }
+ // === Tutup keranjang klik luar ===
+ const overlay = document.getElementById('overlay');
+ if (overlay) {
+     overlay.addEventListener('click', function() {
+         tutupKeranjang();
+     });
+ }
+ </script>
+ </body>
+ </html>
+        
