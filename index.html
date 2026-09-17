@@ -1,0 +1,1070 @@
+<!DOCTYPE html>
+ <html lang="id">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>EGI PERDANA SHOP — FLM • PACK • JASA MUSIK</title>
+     <style>
+         * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', Arial, sans-serif; }
+         :root {
+             --primary: #00e5b0;
+             --secondary: #0f3443;
+             --accent: #0099ff;
+             --bg-dark: #0a2533;
+             --bg-card: #0f4059;
+             --bg-card-2: #0c364a;
+             --text: #ffffff;
+             --text-muted: #94d2bd;
+             --discount: #ffd700;
+             --saved: #4ade80;
+             --danger: #ef4444;
+             --sidebar-width: 280px;
+         }
+         body {
+             background: linear-gradient(180deg, #0a2533 0%, #0f4059 100%);
+             color: var(--text);
+             min-height: 100vh;
+             padding-bottom: 90px;
+         }
+         a { text-decoration: none; color: inherit; }
+         /* Overlay */
+         .overlay {
+             position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+             background: rgba(0,0,0,0.6); z-index: 199; display: none;
+         }
+         .overlay.active { display: block; }
+         /* Sidebar */
+         .sidebar {
+             position: fixed; top: 0; left: 0; bottom: 0;
+             width: var(--sidebar-width); background: #0c2c3c;
+             z-index: 200; transform: translateX(-100%);
+             transition: transform 0.3s ease; overflow-y: auto;
+             border-right: 1px solid rgba(0, 229, 176, 0.2);
+         }
+         .sidebar.active { transform: translateX(0); }
+         .sidebar-header {
+             padding: 20px 16px; border-bottom: 1px solid rgba(0, 229, 176, 0.15);
+             display: flex; align-items: center; gap: 12px;
+         }
+         .sidebar-logo {
+             width: 44px; height: 44px; border-radius: 50%; background: #000;
+             border: 2px solid var(--primary); display: flex; align-items: center;
+             justify-content: center; font-weight: bold; color: var(--primary); font-size: 18px;
+         }
+         .sidebar-title h3 { font-size: 16px; }
+         .sidebar-title p { font-size: 11px; color: var(--text-muted); }
+         .sidebar-close {
+             margin-left: auto; background: none; border: none; color: white;
+             font-size: 20px; cursor: pointer;
+         }
+         .sidebar-menu { padding: 12px; }
+         .sidebar-item {
+             padding: 12px 14px; border-radius: 8px; margin-bottom: 4px;
+             cursor: pointer; transition: 0.2s; display: flex; align-items: center; gap: 10px;
+         }
+         .sidebar-item:hover, .sidebar-item.active {
+             background: rgba(0, 229, 176, 0.15); color: var(--primary);
+         }
+         /* Header */
+         .header {
+             background: rgba(15, 64, 89, 0.85);
+             backdrop-filter: blur(10px);
+             padding: 12px 16px;
+             position: sticky; top: 0; z-index: 100;
+             display: flex; align-items: center; gap: 12px;
+             border-bottom: 1px solid rgba(0, 229, 176, 0.2);
+         }
+         .menu-btn {
+             width: 40px; height: 40px; border-radius: 8px;
+             background: rgba(0, 229, 176, 0.15);
+             border: none; color: white; font-size: 20px; cursor: pointer;
+             display: flex; align-items: center; justify-content: center;
+         }
+         .logo-circle {
+             width: 40px; height: 40px; border-radius: 50%;
+             background: #000; border: 2px solid var(--primary);
+             display: flex; align-items: center; justify-content: center;
+             font-weight: bold; color: var(--primary);
+         }
+         .header-info h1 { font-size: 15px; font-weight: 700; }
+         .header-info p { font-size: 11px; color: var(--text-muted); }
+         .cart-icon { margin-left: auto; font-size: 22px; color: var(--accent); }
+         /* Container */
+         .container { padding: 16px; max-width: 480px; margin: 0 auto; }
+         /* Hero Section */
+         .hero {
+             background: rgba(15, 64, 89, 0.6);
+             border-radius: 16px; padding: 20px; margin-bottom: 16px;
+             border: 1px solid rgba(0, 229, 176, 0.2);
+         }
+         .hero h2 { font-size: 22px; line-height: 1.3; margin-bottom: 8px; }
+         .hero p { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+         .hero-desc {
+             background: rgba(0, 0, 0, 0.2);
+             border-radius: 10px; padding: 12px; font-size: 13px; line-height: 1.5;
+             color: #d1fae5;
+         }
+         /* Promo Banner */
+         .promo-banner {
+             background: linear-gradient(90deg, #00b894, #00cec9);
+             border-radius: 10px; padding: 12px; text-align: center;
+             font-weight: 700; margin-bottom: 20px; color: #000;
+         }
+         /* Section Title */
+         .section-title {
+             font-size: 18px; font-weight: 700; margin-bottom: 12px;
+             display: flex; align-items: center; gap: 8px;
+             border-bottom: 2px solid var(--primary); padding-bottom: 6px;
+         }
+         /* Service List */
+         .service-item {
+             background: rgba(0, 153, 255, 0.12);
+             border-radius: 10px; padding: 14px 16px; margin-bottom: 10px;
+             display: flex; align-items: center; gap: 12px;
+             border: 1px solid rgba(0, 229, 176, 0.15);
+             cursor: pointer; transition: 0.2s;
+         }
+         .service-item:hover { background: rgba(0, 229, 176, 0.1); }
+         .service-icon { font-size: 20px; }
+         .service-text { flex: 1; font-weight: 600; }
+         .service-arrow { color: var(--text-muted); }
+         /* FLM Grid */
+         .flm-intro {
+             background: rgba(15, 64, 89, 0.5);
+             border-radius: 12px; padding: 16px; margin-bottom: 20px;
+             font-size: 13px; line-height: 1.6; color: #caf0e8;
+         }
+         .flm-grid {
+             display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px;
+         }
+         .flm-card {
+             background: rgba(15, 64, 89, 0.6);
+             border-radius: 12px; overflow: hidden;
+             border: 1px solid rgba(0, 229, 176, 0.15);
+         }
+         .flm-cover {
+             aspect-ratio: 3/4; background: linear-gradient(135deg, #1e3a5f, #0f4059);
+             display: flex; align-items: center; justify-content: center;
+             font-size: 32px; color: var(--primary); position: relative;
+         }
+         .play-btn {
+             position: absolute; width: 44px; height: 44px; border-radius: 50%;
+             background: rgba(0, 153, 255, 0.8); border: none; color: white;
+             font-size: 18px; cursor: pointer;
+         }
+         .flm-info { padding: 10px; }
+         .flm-name { font-size: 13px; font-weight: 600; margin-bottom: 4px; line-height: 1.3; }
+         .flm-sold { font-size: 11px; color: var(--saved); margin-bottom: 6px; }
+         .flm-price { margin-bottom: 8px; }
+         .price-old { text-decoration: line-through; color: var(--text-muted); font-size: 12px; }
+         .price-new { color: var(--primary); font-weight: 700; font-size: 16px; }
+         .flm-actions { display: flex; gap: 6px; }
+         .btn-cart { flex: 1; padding: 7px; border-radius: 6px; border: none;
+             background: rgba(0, 153, 255, 0.25); color: white; cursor: pointer; }
+         .btn-add { flex: 1.4; padding: 7px; border-radius: 6px; border: none;
+             background: var(--primary); color: #000; font-weight: 600; cursor: pointer; font-size: 12px; }
+         /* Pack */
+         .pack-category {
+             display: inline-block; padding: 4px 12px; border-radius: 20px;
+             font-size: 12px; font-weight: 700; margin-bottom: 10px;
+         }
+         .cat-premium { background: linear-gradient(90deg, #d4af37, #f0c808); color: #000; }
+         .cat-murah { background: linear-gradient(90deg, #00b894, #00cec9); color: #000; }
+         .pack-card {
+             background: rgba(15, 64, 89, 0.6); border-radius: 14px; padding: 18px;
+             margin-bottom: 18px; border: 1px solid rgba(0, 229, 176, 0.15);
+         }
+         .pack-size { text-align: right; font-size: 12px; color: var(--text-muted); margin-bottom: 8px; }
+         .pack-name { font-size: 18px; font-weight: 700; margin-bottom: 6px; }
+         .pack-desc { font-size: 13px; color: var(--text-muted); margin-bottom: 12px; }
+         .pack-list { margin: 12px 0; padding-left: 4px; }
+         .pack-item { display: flex; align-items: center; gap: 8px; padding: 4px 0; font-size: 13px; }
+         .pack-item span { color: var(--primary); }
+         .pack-price { font-size: 22px; font-weight: 700; color: var(--primary); margin: 10px 0 4px; }
+         .pack-saved { font-size: 13px; color: var(--saved); margin-bottom: 14px; }
+         .pack-buttons { display: flex; gap: 10px; }
+         .btn-tambah { flex: 1; padding: 12px; border-radius: 8px; border: none;
+             background: rgba(0, 229, 176, 0.2); color: var(--primary); font-weight: 600; cursor: pointer; }
+         .btn-beli { flex: 1.2; padding: 12px; border-radius: 8px; border: none;
+             background: linear-gradient(90deg, #0099ff, #00d4ff); color: white; font-weight: 700; cursor: pointer; }
+         /* Form */
+         .form-card {
+             background: rgba(15, 64, 89, 0.6); border-radius: 14px; padding: 18px;
+             margin-bottom: 18px; border: 1px solid rgba(0, 229, 176, 0.15);
+         }
+         .form-group { margin-bottom: 14px; }
+         label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; }
+         input, select, textarea {
+             width: 100%; padding: 12px; border-radius: 8px; border: 1px solid rgba(0, 229, 176, 0.2);
+             background: rgba(0, 0, 0, 0.25); color: white; font-size: 14px;
+         }
+         .price-note { font-size: 12px; color: var(--text-muted); margin-top: 4px; }
+         /* Bukti Transaksi */
+         .bukti-intro {
+             background: rgba(15, 64, 89, 0.5); border-radius: 12px; padding: 16px;
+             margin-bottom: 20px; font-size: 13px; line-height: 1.6; color: #caf0e8;
+         }
+         .bukti-header-bar {
+             display: flex; justify-content: space-between; align-items: center;
+             margin-bottom: 16px;
+         }
+         .bukti-title { font-size: 22px; font-weight: 700; }
+         .bukti-verify {
+             background: rgba(0, 229, 176, 0.2); color: var(--primary);
+             padding: 6px 14px; border-radius: 20px; font-size: 13px; font-weight: 600;
+         }
+         .bukti-subtitle { font-size: 13px; color: var(--text-muted); margin-bottom: 20px; }
+         .bukti-card {
+             background: #1a2c38; border-radius: 12px; padding: 16px;
+             margin-bottom: 16px; border: 1px solid rgba(0, 229, 176, 0.1);
+         }
+         .bukti-card-header {
+             background: #0f4d42; border-radius: 8px; padding: 10px 14px;
+             margin: -16px -16px 14px -16px; font-weight: 600;
+         }
+         .bukti-row { display: flex; margin: 6px 0; font-size: 14px; }
+         .bukti-label { width: 90px; color: var(--text-muted); }
+         .bukti-value { flex: 1; font-weight: 500; }
+         .bukti-nominal { color: var(--primary); font-weight: 700; font-size: 16px; }
+         .chat-bubble {
+             padding: 10px 14px; border-radius: 12px; margin: 8px 0; font-size: 14px;
+             max-width: 90%;
+         }
+         .chat-admin { background: #0f4d42; margin-left: 0; border-top-left-radius: 4px; }
+         .chat-user { background: rgba(0, 153, 255, 0.2); margin-left: auto; border-top-right-radius: 4px; }
+         .chat-time { font-size: 10px; color: var(--text-muted); margin-top: 4px; text-align: right; }
+         /* Review */
+         .review-card {
+             background: rgba(15, 64, 89, 0.6); border-radius: 12px; padding: 14px;
+             margin-bottom: 12px;
+         }
+         .review-name { font-weight: 600; margin-bottom: 4px; }
+         .stars { color: #ffd700; margin: 6px 0; }
+         #star-rating { font-size: 28px; cursor: pointer; color: #ffd700; }
+         /* Bottom Nav */
+         .bottom-nav {
+             position: fixed; bottom: 0; left: 0; right: 0;
+             background: rgba(10, 37, 51, 0.92); backdrop-filter: blur(10px);
+             display: flex; justify-content: space-around; padding: 10px 0;
+             border-top: 1px solid rgba(0, 229, 176, 0.2); z-index: 100;
+         }
+         .nav-item { display: flex; flex-direction: column; align-items: center; gap: 3px; font-size: 11px; color: var(--text-muted); cursor: pointer; }
+         .nav-item.active { color: var(--primary); font-weight: 700; }
+         .nav-icon { font-size: 18px; }
+         /* Page Switch */
+         .page { display: none; }
+         .page.active { display: block; }
+         /* Keunggulan & Hubungi */
+         .keunggulan { margin: 24px 0; }
+         .keunggulan ul { list-style: none; margin-top: 10px; }
+         .keunggulan li { padding: 6px 0; display: flex; align-items: center; gap: 8px; }
+         .keunggulan li span { color: var(--primary); }
+         .hubungi { background: rgba(15, 64, 89, 0.5); border-radius: 12px; padding: 16px; margin-top: 20px; }
+         .hubungi h3 { margin-bottom: 10px; }
+         .hubungi p { margin: 4px 0; font-size: 14px; }
+         .hubungi a { color: var(--primary); }
+     </style>
+ </head>
+ <body>
+ <!-- Overlay -->
+ <div class="overlay" id="overlay" onclick="closeSidebar()"></div>
+ <!-- Sidebar -->
+ <div class="sidebar" id="sidebar">
+     <div class="sidebar-header">
+         <div class="sidebar-logo">EP</div>
+         <div class="sidebar-title">
+             <h3>EGI PERDANA SHOP</h3>
+             <p>FLM • PACK • JASA MUSIK</p>
+         </div>
+         <button class="sidebar-close" onclick="closeSidebar()">✕</button>
+     </div>
+     <div class="sidebar-menu">
+         <div class="sidebar-item active" data-page="beranda" onclick="switchPage('beranda'); closeSidebar();">
+             <span>🏠</span> Beranda
+         </div>
+         <div class="sidebar-item" data-page="jual-flm" onclick="switchPage('jual-flm'); closeSidebar();">
+             <span>📦</span> FLM Satuan
+         </div>
+         <div class="sidebar-item" data-page="pack" onclick="switchPage('pack'); closeSidebar();">
+             <span>💰</span> Paket Hemat
+         </div>
+         <div class="sidebar-item" data-page="request" onclick="switchPage('request'); closeSidebar();">
+             <span>🎵</span> Request FLM Khusus
+         </div>
+         <div class="sidebar-item" data-page="mixing" onclick="switchPage('mixing'); closeSidebar();">
+             <span>🎚️</span> Mixing & Mastering
+         </div>
+         <div class="sidebar-item" data-page="chord" onclick="switchPage('chord'); closeSidebar();">
+             <span>🎹</span> Chord & BPM
+         </div>
+         <div class="sidebar-item" data-page="melodi" onclick="switchPage('melodi'); closeSidebar();">
+             <span>🎤</span> Susun Melodi
+         </div>
+         <div class="sidebar-item" data-page="bukti" onclick="switchPage('bukti'); closeSidebar();">
+             <span>📸</span> Bukti Transaksi
+         </div>
+         <div class="sidebar-item" data-page="review" onclick="switchPage('review'); closeSidebar();">
+             <span>⭐</span> Review & Komentar
+         </div>
+     </div>
+ </div>
+ <!-- Header -->
+ <div class="header">
+     <button class="menu-btn" id="menuBtn" onclick="openSidebar()">☰</button>
+     <div class="logo-circle">EP</div>
+     <div class="header-info">
+         <h1>EGI PERDANA SHOP</h1>
+         <p>FLM • PACK • JASA MUSIK</p>
+     </div>
+     <div class="cart-icon">🛒</div>
+ </div>
+ <div class="container">
+     <!-- PAGE BERANDA -->
+     <div id="page-beranda" class="page active">
+         <div class="hero">
+             <p style="color: var(--primary); font-weight: 600; margin-bottom: 4px;">🎧 EGI PERDANA SHOP</p>
+             <h2>Semua Kebutuhan Musikmu, di Satu Tempat</h2>
+             <p>FLM • Pack • Jasa Musik • Pemesanan Lagu</p>
+             <div class="hero-desc">
+                 Selamat datang di EGI PERDANA SHOP. Temukan FLM, paket project, dan jasa musik untuk kebutuhan produksi kamu dengan tampilan yang simpel dan mudah dipilih.
+             </div>
+         </div>
+         <div class="promo-banner">
+             📢 PROMO — Semua FLM Cuma Rp 90.000! Diskon Terbatas!
+         </div>
+         <h3 class="section-title">🔥 Produk Unggulan</h3>
+         <div class="flm-grid" style="margin-bottom: 24px;">
+             <div class="flm-card">
+                 <div class="flm-cover"><button class="play-btn">▶</button></div>
+                 <div class="flm-info">
+                     <div class="flm-name">STYLE BABAT BABAT TRETETEW</div>
+                     <div class="flm-sold">✅ Terjual 20</div>
+                     <div class="flm-price">
+                         <span class="price-old">Rp 150.000</span><br>
+                         <span class="price-new">Rp 90.000</span>
+                     </div>
+                     <div class="flm-actions">
+                         <button class="btn-cart">🛒<button onclick="putarMusik('style-babat-babat-tretetew.mp3')">▶ Play</button>
+
+                         <button class="btn-add">Beli</button>
+                     </div>
+                 </div>
+             </div>
+             <div class="flm-card">
+                 <div class="flm-cover"><button class="play-btn">▶</button></div>
+                 <div class="flm-info">
+                     <div class="flm-name">STYLE F17</div>
+                     <div class="flm-sold">✅ Baru Tersedia</div>
+                     <div class="flm-price">
+                         <span class="price-old">Rp 120.000</span><br>
+                         <span class="price-new">Rp 90.000</span>
+                     </div>
+                     <div class="flm-actions">
+                         <button class="btn-cart">🛒<button onclick="putarMusik('style-f17.mp3')">▶ Play</button>
+                         
+                         <button class="btn-add">Beli</button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+         <h3 class="section-title">📋 Pilih Layanan</h3>
+         <div class="service-item" onclick="switchPage('jual-flm')">
+             <span class="service-icon">📦</span>
+             <span class="service-text">FLM Satuan</span>
+             <span class="service-arrow">›</span>
+         </div>
+         <div class="service-item" onclick="switchPage('pack')">
+             <span class="service-icon">💰</span>
+             <span class="service-text">Paket Hemat 🔥</span>
+             <span class="service-arrow">›</span>
+         </div>
+         <div class="service-item" onclick="switchPage('request')">
+             <span class="service-icon">🎵</span>
+             <span class="service-text">Request FLM Khusus</span>
+             <span class="service-arrow">›</span>
+         </div>
+         <div class="service-item" onclick="switchPage('mixing')">
+             <span class="service-icon">🎚️</span>
+             <span class="service-text">Jasa Mixing & Mastering</span>
+             <span class="service-arrow">›</span>
+         </div>
+         <div class="service-item" onclick="switchPage('chord')">
+             <span class="service-icon">🎹</span>
+             <span class="service-text">Jasa Chord & BPM</span>
+             <span class="service-arrow">›</span>
+         </div>
+         <div class="service-item" onclick="switchPage('melodi')">
+             <span class="service-icon">🎤</span>
+             <span class="service-text">Susun Melodi Vocal</span>
+             <span class="service-arrow">›</span>
+         </div>
+         <div class="service-item" onclick="switchPage('bukti')">
+             <span class="service-icon">📸</span>
+             <span class="service-text">Bukti Transaksi</span>
+             <span class="service-arrow">›</span>
+         </div>
+         <div class="service-item" onclick="switchPage('review')">
+             <span class="service-icon">⭐</span>
+          <span class="service-text">Review & Komentar</span>
+             <span class="service-arrow">›</span>
+         </div>
+         <div class="keunggulan">
+             <h3 class="section-title">✅ Keunggulan Kami</h3>
+             <ul>
+                 <li><span>✅</span> Harga Murah & Terjangkau</li>
+                 <li><span>✅</span> Website Original EGI PERDANA</li>
+                 <li><span>✅</span> Produk Sendiri, Bukan Ambil Orang</li>
+             </ul>
+         </div>
+     </div>
+     <!-- PAGE JUAL FLM -->
+     <div id="page-jual-flm" class="page">
+         <h3 class="section-title">📦 FLM Satuan</h3>
+  <div class="flm-intro">
+             Pilih FLM yang kamu butuhkan. Harga promo berlaku untuk semua daftar di bawah ini! Semua FLM hanya <strong>Rp 90.000</strong>!
+         </div>
+         <div class="flm-grid">
+             <!-- 1 -->
+             <div class="flm-card">
+                 <div class="flm-cover"><button class="play-btn">▶</button></div>
+                 <div class="flm-info">
+                     <div class="flm-name">STYLE DROP BBHC</div>
+                     <div class="flm-sold">✅ Tersedia</div>
+                     <div class="flm-price">
+                         <span class="price-old">Rp 150.000</span><br>
+                         <span class="price-new">Rp 90.000</span>
+                     </div>
+                     <div class="flm-actions">
+                         <button onclick="tambahKeranjang('style-drop-bbhc', 90000)">🛒</button>
+<button onclick="checkoutKeranjang()">Pesan Semua</button>
+ onclick="putarMusik('style-drop-bbhc.mp3')">▶ Play</button>
+
+                         <button class="btn-add">Beli</button>
+                     </div>
+                 </div>
+  </div>
+             <!-- 2 -->
+             <div class="flm-card">
+                 <div class="flm-cover"><button class="play-btn">▶</button></div>
+                 <div class="flm-info">
+                     <div class="flm-name">STYLE FUNKOT</div>
+                     <div class="flm-sold">✅ Tersedia</div>
+                     <div class="flm-price">
+                         <span class="price-old">Rp 150.000</span><br>
+                         <span class="price-new">Rp 90.000</span>
+                     </div>
+                     <div class="flm-actions">
+                         <button onclick="tambahKeranjang('style-funkot', 90000)">🛒</button>
+<button onclick="checkoutKeranjang()">Pesan Semua</button>
+<button onclick="putarMusik('style-funkot.mp3')">▶ Play</button>
+                                                  <button class="btn-add">Beli</button>
+                     </div>
+                 </div>
+             </div>
+             <!-- 3 -->
+             <div class="flm-card">
+                 <div class="flm-cover"><button class="play-btn">▶</button></div>
+                 <div class="flm-info">
+                     <div class="flm-name">STYLE GEDRUK</div>
+                     <div class="flm-sold">✅ Tersedia</div>
+                     <div class="flm-price">
+                         <span class="price-old">Rp 150.000</span><br>
+                         <span class="price-new">Rp 90.000</span>
+                     </div>
+                     <div class="flm-actions">
+                         <button onclick="tambahKeranjang('style-gedruk', 90000)">🛒</button>
+<button onclick="checkoutKeranjang()">Pesan Semua</button>
+<button onclick="putarMusik('style-gedruk.mp3')">▶ Play</button>
+                         
+                         <button class="btn-add">Beli</button>
+                     </div>
+                 </div>
+             </div>
+             <!-- 4 -->
+             <div class="flm-card">
+                 <div class="flm-cover"><button class="play-btn">▶</button></div>
+                 <div class="flm-info">
+                     <div class="flm-name">STYLE KONDANG</div>
+                     <div class="flm-sold">✅ Tersedia</div>
+                     <div class="flm-price">
+                         <span class="price-old">Rp 150.000</span><br>
+                         <span class="price-new">Rp 90.000</span>
+                     </div>
+                     <div class="flm-actions">
+                         <button onclick="tambahKeranjang('style-kondang', 90000)">🛒</button>
+<button onclick="checkoutKeranjang()">Pesan Semua</button>
+<button onclick="putarMusik('style-kondang.mp3')">▶ Play</button>
+                         
+                         <button class="btn-add">Beli</button>
+                     </div>
+                 </div>
+             </div>
+             <!-- 5 -->
+             <div class="flm-card">
+                 <div class="flm-cover"><button class="play-btn">▶</button></div>
+                 <div class="flm-info">
+                     <div class="flm-name">STYLE MAMAN FVNDY</div>
+                     <div class="flm-sold">✅ Tersedia</div>
+                     <div class="flm-price">
+                         <span class="price-old">Rp 150.000</span><br>
+                         <span class="price-new">Rp 90.000</span>
+                     </div>
+                     <div class="flm-actions">
+                         <button onclick="tambahKeranjang('style-maman-fvndy', 90000)">🛒</button>
+<button onclick="checkoutKeranjang()">Pesan Semua</button>
+<button onclick="putarMusik('style-maman-fvndy.mp3')">▶ Play</button>
+                         
+                         <button class="btn-add">Beli</button>
+                     </div>
+                 </div>
+             </div>
+             <!-- 6 -->
+             <div class="flm-card">
+                 <div class="flm-cover"><button class="play-btn">▶</button></div>
+                 <div class="flm-info">
+                     <div class="flm-name">STYLE PANI FVNKY</div>
+                     <div class="flm-sold">✅ Tersedia</div>
+                     <div class="flm-price">
+                         <span class="price-old">Rp 150.000</span><br>
+                         <span class="price-new">Rp 90.000</span>
+                     </div>
+                     <div class="flm-actions">
+                         <button onclick="tambahKeranjang('style-pani-fvnky', 90000)">🛒</button>
+<button onclick="checkoutKeranjang()">Pesan Semua</button>
+ onclick="putarMusik('style-pani-fvnky.mp3')">▶ Play</button>
+                         
+                         <button class="btn-add">Beli</button>
+                     </div>
+                 </div>
+             </div>
+             <!-- 7 -->
+             <div class="flm-card">
+                 <div class="flm-cover"><button class="play-btn">▶</button></div>
+                 <div class="flm-info">
+                     <div class="flm-name">STYLE TRAP HOREG</div>
+                     <div class="flm-sold">✅ Tersedia</div>
+                     <div class="flm-price">
+                         <span class="price-old">Rp 150.000</span><br>
+                         <span class="price-new">Rp 90.000</span>
+                     </div>
+                     <div class="flm-actions">
+                         <button onclick="tambahKeranjang('style-trap-horeg', 90000)">🛒</button>
+<button onclick="checkoutKeranjang()">Pesan Semua</button>
+<button onclick="putarMusik('style-trap-horeg.mp3')">▶ Play</button>
+                         
+                         <button class="btn-add">Beli</button>
+                     </div>
+                 </div>
+             </div>
+             <!-- 8 -->
+             <div class="flm-card">
+                 <div class="flm-cover"><button class="play-btn">▶</button></div>
+                 <div class="flm-info">
+                     <div class="flm-name">STYLE XPUTZ</div>
+                     <div class="flm-sold">✅ Tersedia</div>
+                     <div class="flm-price">
+                         <span class="price-old">Rp 150.000</span><br>
+                         <span class="price-new">Rp 90.000</span>
+                     </div>
+                     <div class="flm-actions">
+                         <button onclick="tambahKeranjang('style-xputz', 90000)">🛒</button>
+<button onclick="checkoutKeranjang()">Pesan Semua</button>
+<button onclick="putarMusik('style-xputz.mp3')">▶ Play</button>
+                         
+                         <button class="btn-add">Beli</button>
+                     </div>
+                 </div>
+             </div>
+             <!-- 9 -->
+             <div class="flm-card">
+                 <div class="flm-cover"><button class="play-btn">▶</button></div>
+                 <div class="flm-info">
+                     <div class="flm-name">STYLE BABAT BABAT TRETETEW</div>
+                     <div class="flm-sold">✅ Terjual 20</div>
+                     <div class="flm-price">
+                         <span class="price-old">Rp 150.000</span><br>
+                         <span class="price-new">Rp 90.000</span>
+                     </div>
+                     <div class="flm-actions">
+                         <button onclick="tambahKeranjang('style-babat-babat-tretetew', 90000)">🛒</button>
+<button onclick="checkoutKeranjang()">Pesan Semua</button>
+🛒<button onclick="putarMusik('style-babat-babat-tretetew.mp3')">▶ Play</button>
+                         
+                        <button onclick="bukaWA('style-babat-babat-tretetew', 'Beli')">Beli Sekarang</button>
+                        
+                     </div>
+                 </div>
+             </div>
+             <!-- 10 -->
+             <div class="flm-card">
+                 <div class="flm-cover"><button class="play-btn">▶</button></div>
+                 <div class="flm-info">
+                     <div class="flm-name">STYLE F17</div>
+                     <div class="flm-sold">✅ Baru Tersedia</div>
+                     <div class="flm-price">
+                         <span class="price-old">Rp 120.000</span><br>
+                         <span class="price-new">Rp 90.000</span>
+                     </div>
+                     <div class="flm-actions">
+                         <button onclick="tambahKeranjang('style-f17', 90000)">🛒</button>
+<button onclick="checkoutKeranjang()">Pesan Semua</button>
+🛒<button onclick="putarMusik('style-f17.mp3')">▶ Play</button>
+                         
+                         <button onclick="bukaWA('style-f17', 'Beli')">Beli Sekarang</button>
+                     </div>
+                 </div>
+             </div>
+         </div>
+     </div>
+     <!-- PAGE PACK -->
+     <div id="page-pack" class="page">
+         <h3 class="section-title">💰 Paket Hemat</h3>
+         
+         <div class="pack-card">
+             <span class="pack-category cat-premium">PREMIUM</span>
+             <div class="pack-size">Isi 10 FLM</div>
+             <h4 class="pack-name">PAKET GOLD</h4>
+             <p class="pack-desc">Koleksi lengkap gaya lagu paling laris</p>
+             <div class="pack-list">
+                 <div class="pack-item"><span>✓</span> 5 FLM Viral TikTok</div>
+                 <div class="pack-item"><span>✓</span> 3 FLM Dj Slow</div>
+                 <div class="pack-item"><span>✓</span> 2 FLM Style Baru</div>
+             </div>
+             <div class="pack-price">Rp 500.000</div>
+             <div class="pack-saved">🎉 Hemat Rp 400.000 dari beli satuan!</div>
+             <div class="pack-buttons">
+                 <button onclick="tambahKeranjang('premium', 90000)">🛒</button>
+<button onclick="checkoutKeranjang()">Pesan Semua</button>    
+                 <button onclick="bukaWA('premium', 'Beli')">Beli Sekarang</button>
+             </div>
+         </div>
+         <div class="pack-card">
+             <span class="pack-category cat-murah">HEMAT</span>
+             <div class="pack-size">Isi 5 FLM</div>
+             <h4 class="pack-name">PAKET AWAL</h4>
+             <p class="pack-desc">Cocok untuk pemula & uji coba</p>
+             <div class="pack-list">
+                        <div class="pack-item"><span>✓</span> 2 FLM Bebas Pilih</div>
+             </div>
+             <div class="pack-price">Rp 250.000</div>
+             <div class="pack-saved">🎉 Hemat Rp 200.000!</div>
+             <div class="pack-buttons">
+                 <button onclick="tambahKeranjang('2-flm-bebas-pilih', 90000)">🛒</button>
+<button onclick="checkoutKeranjang()">Pesan Semua</button>
+
+                <button onclick="bukaWA('2-flm-bebas-pilih', 'Beli')">Beli Sekarang</button>
+             </div>
+         </div>
+     </div>
+     <!-- PAGE REQUEST -->
+     <div id="page-request" class="page">
+         <h3 class="section-title">🎵 Request FLM Khusus</h3>
+         <div class="form-card">
+             <h4 style="margin-bottom: 14px;">Isi Data Permintaan</h4>
+             <div class="form-group">
+                 <label>Nama Lagu / Judul</label>
+                 <input type="text" placeholder="Contoh: Lagu Galau - Versi DJ Slow">
+             </div>
+             <div class="form-group">
+                 <label>Link Referensi (YouTube/MP3)</label>
+                 <input type="text" placeholder="Tempel link lagu aslinya di sini">
+             </div>
+             </div>
+             <div class="form-group">
+                 <label>Style / Tipe</label>
+                 <select>
+                     <option>Pilih gaya yang diinginkan</option>
+                     <option>DJ Slow Bass Jedag Jedug</option>
+                     <option>Style Babat Babat</option>
+                     <option>Style F17</option>
+                     <option>Full Melodi Original</option>
+                 </select>
+             </div>
+             <div class="form-group">
+                 <label>Catatan Khusus</label>
+                 <textarea rows="3" placeholder="Durasi, bagian yang diinginkan, dll."></textarea>
+             </div>
+             <div class="form-group">
+                 <label>Harga Mulai Dari</label>
+                 <p class="pack-price">Rp 100.000</p>
+                 <p class="price-note">Tergantung kerumitan & durasi — dikonfirmasi setelah pesanan diterima</p>
+             </div>
+             <button style="width: 100%; padding: 12px; border-radius: 8px; border: none; background: linear-gradient(90deg, #0099ff, #00d4ff); color: white; font-weight: 700; cursor: pointer;">
+                 Kirim Permintaan →
+             </button>
+         </div>
+     </div>
+     <!-- PAGE MIXING -->
+     <div id="page-mixing" class="page">
+         <h3 class="section-title">🎚️ Mixing & Mastering</h3>
+         <div class="form-card">
+             <p style="margin-bottom: 14px; font-size: 13px; line-height: 1.6;">Kirim rekaman kamu, kami rapikan suaranya agar jernih, tebal, dan siap dipublikasikan.</p>
+             <div class="form-group">
+                 <label>Jenis Lagu</label>
+                 <select>
+                     <option>DJ / Remix</option>
+                     <option>Pop / Dangdut</option>
+                     <option>Slow Rock / Galau</option>
+                     <option>Lainnya</option>
+                 </select>
+             </div>
+             <div class="form-group">
+                 <label>Catatan Khusus</label>
+                 <textarea rows="3" placeholder="Efek, keras suara, dll."></textarea>
+             </div>
+             <p class="pack-price">Mulai Rp 80.000</p>
+             <button style="width: 100%; padding: 12px; border-radius: 8px; border: none; background: linear-gradient(90deg, #0099ff, #00d4ff); color: white; font-weight: 700; cursor: pointer; margin-top: 8px;">    
+                 Pesan Sekarang →
+             </button>
+         </div>
+     </div>
+     <!-- PAGE CHORD -->
+     <div id="page-chord" class="page">
+         <h3 class="section-title">🎹 Chord & BPM</h3>
+         <div class="form-card">
+             <p style="margin-bottom: 14px; font-size: 13px; line-height: 1.6;">Kami cari nada dasar, akor, dan kecepatan lagu untuk kamu.</p>
+             <div class="form-group">
+                 <label>Judul Lagu / Link</label>
+                 <input type="text" placeholder="Nama atau link lagu">
+             </div>
+             <p class="pack-price">Rp 25.000 / Lagu</p>
+             <button style="width: 100%; padding: 12px; border-radius: 8px; border: none; background: linear-gradient(90deg, #0099ff, #00d4ff); color: white; font-weight: 700; cursor: pointer; margin-top: 8px;">
+                 Pesan Sekarang →
+             </button>
+         </div>
+     </div>
+     <!-- PAGE MELODI -->
+     <div id="page-melodi" class="page">
+         <h3 class="section-title">🎤 Susun Melodi Vocal</h3>
+         <div class="form-card">
+             <p style="margin-bottom: 14px; font-size: 13px; line-height: 1.6;">Punya lirik tapi belum ada nada? Kami buatkan melodi yang pas!</p>
+             <div class="form-group">
+                 <label>Jenis Suasana</label>
+                 <select>
+                     <option>Sedih / Galau</option>
+                     <option>Semangat / Ceria</option>
+                     <option>Romantis</option>
+                     <option>Slow / Tenang</option>
+                 </select>
+             </div>
+             <div class="form-group">
+                 <label>Lirik / Tema</label>
+                 <textarea rows="4" placeholder="Tulis lirik atau gambarkan ceritanya di sini"></textarea>
+             </div>
+             <p class="pack-price">Rp 150.000</p>
+             <button style="width: 100%; padding: 12px; border-radius: 8px; border: none; background: linear-gradient(90deg, #0099ff, #00d4ff); color: white; font-weight: 700; cursor: pointer; margin-top: 8px;">
+                 Mulai Proses →
+             </button>
+         </div>
+     </div>
+    <!-- PAGE BUKTI -->
+     <div id="page-bukti" class="page">
+         <h3 class="section-title">📸 Bukti Transaksi</h3>
+         
+         <!-- INTRO -->
+         <div class="bukti-intro">
+             Lihat bukti transaksi pelanggan lain sebagai referensi, atau <strong>kirim bukti & ulasanmu</strong> setelah pembayaran! ✅
+         </div>
+         <!-- FORM KIRIM BUKTI & TESTIMONI -->
+         <div class="form-card">
+             <h4 style="margin-bottom: 16px; font-size: 15px;">📤 Kirim Bukti Pembayaran & Testimoni</h4>
+             
+             <div class="form-group">
+                 <label>Nama / Panggilan Kamu</label>
+                 <input type="text" placeholder="Contoh: Andra — DJ Musik">
+             </div>
+             <div class="form-group">
+                 <label>Produk yang Dibeli</label>
+                 <input type="text" placeholder="Contoh: FLM MAMAN FVNDY / Paket Gold">
+             </div>
+             <div class="form-group">
+                 <label>Nominal Pembayaran</label>
+                 <input type="text" placeholder="Contoh: Rp 100.000">
+             </div>
+             <div class="form-group">
+                 <label>📸 Screenshot Bukti Pembayaran</label>
+                 <input type="file" accept="image/*" style="padding: 10px; cursor: pointer;">
+                <p style="font-size: 11px; color: var(--text-muted); margin-top: 4px;">Pilih gambar/foto bukti transfer dari galeri HP kamu</p>
+             </div>
+             <div class="form-group">
+                 <label>💬 Pesan / Testimoni (Opsional)</label>
+                 <textarea rows="3" placeholder="Bagaimana pengalamanmu? Sampaikan kesan atau pesan untuk kami 😊"></textarea>
+             </div>
+             <button style="width: 100%; padding: 13px; border-radius: 8px; border: none; background: linear-gradient(90deg, #00e5b0, #00d4ff); color: #000; font-weight: 700; cursor: pointer; font-size: 15px;">
+                 ✅ Kirim Sekarang
+             </button>
+         </div>
+         <h4 style="margin: 24px 0 12px; font-size: 15px;">📋 Bukti yang Sudah Masuk</h4>
+         <!-- DAFTAR BUKTI YANG SUDAH ADA -->
+         <div class="bukti-card">
+             <div class="bukti-card-header">Transaksi #001</div>
+             <div class="bukti-row">
+                 <span class="bukti-label">Nama</span>
+                 <span class="bukti-value">— Andra —</span>
+             </div>
+             <div class="bukti-row">
+                 <span class="bukti-label">Produk</span>
+                  <span class="bukti-value">Request FLM Khusus</span>
+             </div>
+             <div class="bukti-row">
+                 <span class="bukti-label">Nominal</span>
+                 <span class="bukti-nominal">Rp 100.000</span>
+             </div>
+             <div class="chat-bubble chat-admin">
+                 ✅ FLM sudah selesai Kak! Terima kasih sudah pesan di EGI PERDANA SHOP 🙏
+                 <div class="chat-time">14:30</div>
+             </div>
+             <div class="chat-bubble chat-user">
+                 Makasih Kak Hasilnya Bagus Banget! Akan Pesan Lagi Nanti 🔥
+                 <div class="chat-time">14:32</div>
+             </div>
+         </div>
+         <div class="bukti-card">
+             <div class="bukti-card-header">Transaksi #002</div>
+             <div class="bukti-row">
+                 <span class="bukti-label">Nama</span>
+                 <span class="bukti-value">— Rian Musik —</span>
+             </div>
+             <div class="bukti-row">
+                 <span class="bukti-label">Produk</span>
+                 <span class="bukti-value">Paket Gold 10 FLM</span>
+             </div>
+             <div class="bukti-row">
+                 <span class="bukti-label">Nominal</span>
+                 <span class="bukti-nominal">Rp 500.000</span>
+             </div>
+         </div>
+         <!-- TAMBAHAN: CONTOH BUKTI DENGAN GAMBAR -->
+         <div class="bukti-card">
+             <div class="bukti-card-header">Transaksi #003</div>
+             <div class="bukti-row">
+                 <span class="bukti-label">Nama</span>
+                 <span class="bukti-value">— ridho Fvnky —</span>
+             </div>
+             <div class="bukti-row">
+                 <span class="bukti-label">Produk</span>
+                 <span class="bukti-value">FLM MAMAN FVNDY</span>
+             </div>
+             <div class="bukti-row">
+                 <span class="bukti-label">Nominal</span>
+                 <span class="bukti-nominal">Rp 100.000</span>
+             </div>
+             <div style="margin: 12px 0; border-radius: 8px; overflow: hidden; background: rgba(0,0,0,0.2); padding: 8px; text-align: center;">
+                 <p style="font-size: 12px; color: var(--text-muted); margin-bottom: 6px;">📸 Screenshot Bukti Pembayaran</p>
+                 <div style="background: linear-gradient(135deg, #0f4059, #1a5f7a); padding: 30px 10px; border-radius: 6px; color: var(--primary); font-weight: 600;">
+                     Gambar Screenshot<br>Tampil di Sini
+                 </div>
+             </div>
+             <div class="chat-bubble chat-user">
+                 Hasilnya memuaskan, cepat prosesnya! Terima kasih Kak 🔥
+                 <div class="chat-time">23:57</div>
+             </div>
+         </div>
+     </div>
+     <!-- PAGE REVIEW -->
+     <div id="page-review" class="page">
+         <h3 class="section-title">⭐ Review & Komentar</h3>
+         
+         <!-- Form Tambah Ulasan -->
+         <div class="form-card">
+             <h4 style="margin-bottom: 14px; font-size: 15px;">Tulis Ulasan Kamu</h4>
+             <div class="form-group">
+                 <label>Nama Kamu</label>
+                 <input type="text" id="reviewer-name" placeholder="Masukkan nama panggilanmu">
+             </div>
+             <div class="form-group">
+                 <label>Beri Penilaian</label>
+                 <div id="star-rating">
+                     <span class="star" data-value="1">☆</span>
+                     <span class="star" data-value="2">☆</span>
+                     <span class="star" data-value="3">☆</span>
+                     <span class="star" data-value="4">☆</span>
+                     <span class="star" data-value="5">☆</span>
+                 </div>
+                 <p style="font-size: 12px; color: var(--text-muted); margin-top: 4px;">Klik untuk memberikan bintang</p>
+                 <input type="hidden" id="rating-value" value="0">
+             </div>
+             <div class="form-group">
+                 <label>Komentar</label>
+                 <textarea id="review-text" rows="3" placeholder="Bagaimana pengalamanmu di EGI PERDANA SHOP?"></textarea>
+             </div>
+             <button onclick="submitReview()" style="width: 100%; padding: 12px; border-radius: 8px; border: none; background: var(--primary); color: #000; font-weight: 700; cursor: pointer;">
+                 Kirim Ulasan
+             </button>
+         </div>
+         <!-- Daftar Ulasan -->
+         <h4 style="margin: 24px 0 12px; font-size: 15px;">Semua Ulasan</h4>
+         <div id="reviews-list">
+             <div class="review-card">
+                 <div class="review-name">Andra DJ</div>
+                 <div class="stars">⭐⭐⭐⭐⭐</div>
+                 <p style="font-size: 13px; color: #ddd;">FLM-nya kualitas bagus, pengiriman cepat! Rekomen 🔥</p>
+             </div>
+             <div class="review-card">
+                 <div class="review-name">Rian Musik</div>
+                 <div class="stars">⭐⭐⭐⭐⭐</div>
+                 <p style="font-size: 13px; color: #ddd;">Harga terjangkau, hasil sesuai permintaan. Makasih Kak!</p>
+             </div>
+         </div>
+     </div>
+ </div>
+ <!-- Bottom Nav -->
+ <div class="bottom-nav">
+     <div class="nav-item active" onclick="switchPage('beranda')">
+         <span class="nav-icon">🏠</span>
+         <span>Beranda</span>
+     </div>
+     <div class="nav-item" onclick="switchPage('jual-flm')">
+         <span class="nav-icon">📦</span>
+         <span>FLM</span>
+     </div>
+     <div class="nav-item" onclick="switchPage('pack')">
+         <span class="nav-icon">💰</span>
+         <span>Pack</span>
+     </div>
+     <div class="nav-item" onclick="switchPage('bukti')">
+         <span class="nav-icon">📸</span>
+         <span>Bukti</span>
+     </div>
+     <div class="nav-item" onclick="switchPage('review')">
+         <span class="nav-icon">⭐</span>
+         <span>Ulasan</span>
+     </div>
+ </div>
+ <script>
+     // Fungsi Bintang Rating
+     const stars = document.querySelectorAll('.star');
+     let selectedRating = 0;
+     stars.forEach(star => {
+         star.addEventListener('mouseover', function() {
+             const value = parseInt(this.dataset.value);
+             highlightStars(value);
+         });
+         star.addEventListener('mouseout', function() {
+             highlightStars(selectedRating);
+         });
+         star.addEventListener('click', function() {
+             selectedRating = parseInt(this.dataset.value);
+             document.getElementById('rating-value').value = selectedRating;
+             highlightStars(selectedRating);
+         });
+     });
+     function highlightStars(count) {
+         stars.forEach((star, index) => {
+             star.textContent = index < count ? '⭐' : '☆';
+         });
+     }
+     // Kirim Ulasan
+     function submitReview() {
+         const name = document.getElementById('reviewer-name').value.trim();
+         const rating = parseInt(document.getElementById('rating-value').value);
+         const text = document.getElementById('review-text').value.trim();
+         if (!name) {
+             alert('Silakan isi nama kamu dulu!');
+             return;
+         }
+         if (rating === 0) {
+             alert('Silakan berikan penilaian bintang!');
+             return;
+         }
+         if (!text) {
+             alert('Silakan tulis komentarmu!');
+             return;
+         }
+         const starsHtml = '⭐'.repeat(rating);
+         const newReview = document.createElement('div');
+         newReview.className = 'review-card';
+         newReview.innerHTML = `
+             <div class="review-name">${name}</div>
+             <div class="stars">${starsHtml}</div>
+             <p style="font-size: 13px; color: #ddd;">${text}</p>
+         `;
+         const list = document.getElementById('reviews-list');
+         list.insertBefore(newReview, list.firstChild);
+         // Reset form
+         document.getElementById('reviewer-name').value = '';
+         document.getElementById('rating-value').value = '0';
+         document.getElementById('review-text').value = '';
+         selectedRating = 0;
+         highlightStars(0);
+         alert('✅ Terima kasih! Ulasanmu sudah masuk!');
+     }
+     // Fungsi Asli — TIDAK DIUBAH
+     function openSidebar() {
+         document.getElementById('sidebar').classList.add('active');
+         document.getElementById('overlay').classList.add('active');
+     }
+     function closeSidebar() {
+         document.getElementById('sidebar').classList.remove('active');
+         document.getElementById('overlay').classList.remove('active');
+     }
+     function switchPage(pageName) {
+         // Sembunyikan semua halaman
+         document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+         // Tampilkan halaman yang dipilih
+         document.getElementById(`page-${pageName}`).classList.add('active');
+         // Tandai menu aktif di sidebar
+         document.querySelectorAll('.sidebar-item').forEach(item => {
+             item.classList.remove('active');
+             if (item.dataset.page === pageName) item.classList.add('active');
+         });
+         // Tandai menu aktif di bottom nav
+         document.querySelectorAll('.nav-item').forEach(item => {
+             item.classList.remove('active');
+         });
+         window.scrollTo(0, 0);
+         <script>
+ // === NOMOR KAMU ===
+ const NO_WA = '6288293311033';
+ const NO_DANA = '085167182158';
+ // === 1. FITUR BELI → BUKA WHATSAPP ===
+ function bukaWA(namaProduk, aksi) {
+     const pesan = encodeURIComponent(
+         `Halo! Saya mau ${aksi}:\n` +
+         `Produk: ${namaProduk}\n` +
+         `Harga: Rp 90.000\n\n` +
+         `Pembayaran ke DANA:\n${NO_DANA}`
+     );
+     window.open(`https://wa.me/${NO_WA}?text=${pesan}`, '_blank');
+ }
+ // === 2. FITUR KERANJANG BELANJA ===
+ let keranjang = [];
+ function tambahKeranjang(nama, harga) {
+     keranjang.push({ nama, harga });
+     alert(`✅ ${nama} ditambahkan!\nIsi keranjang: ${keranjang.length} barang`);
+ }
+ function bayarKeranjang() {
+     if (keranjang.length === 0) {
+         alert('Keranjang masih kosong!');
+         return;
+     }
+     let daftar = keranjang.map(i => `- ${i.nama}: Rp ${i.harga.toLocaleString()}`).join('\n');
+     let total = keranjang.reduce((sum, i) => sum + i.harga, 0);
+     const pesan = encodeURIComponent(
+         `Halo! Saya mau pesan:\n\n${daftar}\n\nTOTAL: Rp ${total.toLocaleString()}\n\nBayar ke DANA:\n${NO_DANA}`
+     );
+     window.open(`https://wa.me/${NO_WA}?text=${pesan}`, '_blank');
+ }
+ // === 3. FITUR PUTAR MUSIK ===
+ let pemutar = null;
+ function putarMusik(linkLagu) {
+     if (!pemutar) {
+         pemutar = new Audio(linkLagu);
+     } else {
+         if (pemutar.src !== linkLagu) {
+             pemutar.src = linkLagu;
+         }
+     }
+     
+     if (pemutar.paused) {
+         pemutar.play()
+         .then(() => alert('▶ Musik diputar'))
+         .catch(() => alert('⚠️ Gagal putar — cek link lagu'));
+     } else {
+         pemutar.pause();
+         alert('⏸ Musik dijeda');
+     }
+ }
+</script>
+</body>
+ </html>
